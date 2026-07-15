@@ -5,7 +5,9 @@ import {
   decrementUserMessage,
   incrementUserMessage,
   recordRawFileAttached,
+  recordRawPasteDetected,
 } from "@/lib/telemetryStore";
+import { scanForSensitiveData } from "@/lib/sensitiveScan";
 import { tasks } from "@/lib/mockData";
 import type { ChatMessage } from "@/lib/types";
 
@@ -56,6 +58,24 @@ export async function POST(request: Request) {
   const canAttach = task.id === "monthly-report";
   if (canAttach && lastMessage?.role === "user" && lastMessage.attachedFile) {
     await recordRawFileAttached(key as string, taskId as string);
+  }
+
+  // Runs globally (every task, not just the one with sensitive materials) -
+  // a user can paste raw sensitive data into any chat. Skip the attach-button
+  // path: that already logs rawFileAttached and shouldn't be double-counted.
+  if (
+    lastMessage?.role === "user" &&
+    !lastMessage.attachedFile &&
+    lastMessage.content
+  ) {
+    const scan = scanForSensitiveData(lastMessage.content);
+    if (scan.triggered) {
+      await recordRawPasteDetected(key as string, taskId as string, {
+        ibanCount: scan.ibanCount,
+        emailCount: scan.emailCount,
+        clientNameCount: scan.clientNameCount,
+      });
+    }
   }
 
   const anthropicMessages = messages.map((m) => ({

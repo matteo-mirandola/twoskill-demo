@@ -53,6 +53,8 @@ export default async function DebugPage({
             <th>Task</th>
             <th>User messages</th>
             <th>Raw file attached</th>
+            <th>Raw paste detected</th>
+            <th>Pasted counts</th>
             <th>Wall-clock time</th>
             <th>Deliverable length</th>
           </tr>
@@ -71,6 +73,14 @@ export default async function DebugPage({
                   <td>{t.title}</td>
                   <td>{u?.msgCount ?? 0}</td>
                   <td>{u?.rawFileAttached ? "yes" : "no"}</td>
+                  <td>{u?.rawPasteDetected ? "yes" : "no"}</td>
+                  <td>
+                    {u?.rawPasteDetected
+                      ? `IBAN ${u.pastedIbanCount ?? 0} · email ${
+                          u.pastedEmailCount ?? 0
+                        } · names ${u.pastedClientNameCount ?? 0}`
+                      : "—"}
+                  </td>
                   <td>
                     {wallClockSeconds != null ? `${wallClockSeconds}s` : "—"}
                   </td>
