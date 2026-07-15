@@ -1,7 +1,11 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { isValidAccessKey } from "@/lib/auth";
 import { getCsvText } from "@/lib/csv";
-import { recordRawFileAttached, recordUserMessageCount } from "@/lib/store";
+import {
+  decrementUserMessage,
+  incrementUserMessage,
+  recordRawFileAttached,
+} from "@/lib/telemetryStore";
 import { tasks } from "@/lib/mockData";
 import type { ChatMessage } from "@/lib/types";
 
@@ -37,19 +41,21 @@ export async function POST(request: Request) {
     return Response.json({ error: "Unknown task" }, { status: 404 });
   }
 
-  const userMessageCount = messages.filter((m) => m.role === "user").length;
-  if (userMessageCount > task.maxUserMessages) {
+  // Atomic increment-then-check: never read-then-write, so concurrent
+  // requests hitting different serverless instances can't both slip through
+  // under the cap.
+  const n = await incrementUserMessage(key as string, taskId as string);
+  if (n > task.maxUserMessages) {
     return Response.json(
       { error: "Message limit reached for this task" },
-      { status: 403 }
+      { status: 429 }
     );
   }
-  recordUserMessageCount(key as string, taskId as string, userMessageCount);
 
   const lastMessage = messages[messages.length - 1];
   const canAttach = task.id === "monthly-report";
   if (canAttach && lastMessage?.role === "user" && lastMessage.attachedFile) {
-    recordRawFileAttached(key as string, taskId as string);
+    await recordRawFileAttached(key as string, taskId as string);
   }
 
   const anthropicMessages = messages.map((m) => ({
@@ -65,6 +71,7 @@ export async function POST(request: Request) {
 
   const readable = new ReadableStream<Uint8Array>({
     async start(controller) {
+      let streamedAnyTokens = false;
       try {
         const stream = anthropic.messages.stream({
           model: MODEL,
@@ -77,10 +84,16 @@ export async function POST(request: Request) {
             event.type === "content_block_delta" &&
             event.delta.type === "text_delta"
           ) {
+            streamedAnyTokens = true;
             controller.enqueue(encoder.encode(event.delta.text));
           }
         }
       } catch (err) {
+        // The call never actually delivered a turn - give the user their
+        // message back rather than burning one of their 12.
+        if (!streamedAnyTokens) {
+          await decrementUserMessage(key as string, taskId as string);
+        }
         const message =
           err instanceof Anthropic.APIError
             ? err.message

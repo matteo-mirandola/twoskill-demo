@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { TaskDef } from "@/lib/mockData";
 import type { TaskClientState, ChatMessage, SlideContent } from "@/lib/types";
 import Markdown from "./Markdown";
@@ -33,6 +33,16 @@ export default function TaskScreen({
   // 0 = none, 1 = "empty deliverable?" check, 2 = final "can't go back" confirm
   const [confirmStep, setConfirmStep] = useState<0 | 1 | 2>(0);
   const [deliverableExpanded, setDeliverableExpanded] = useState(false);
+
+  useEffect(() => {
+    fetch("/api/telemetry", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ key: accessKey, taskId: task.id, event: "started" }),
+    }).catch(() => {});
+    // Fires once per task screen mount (TaskScreen is keyed by task.id).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const isEmpty =
     task.deliverableKind === "slides"

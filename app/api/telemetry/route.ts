@@ -1,25 +1,39 @@
 import { isValidAccessKey } from "@/lib/auth";
-import { recordTelemetry } from "@/lib/store";
+import {
+  recordTaskStarted,
+  recordTaskSubmitted,
+  resetSession,
+} from "@/lib/telemetryStore";
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
   const key = typeof body?.key === "string" ? body.key : null;
   const taskId = typeof body?.taskId === "string" ? body.taskId : null;
+  const event = body?.event;
 
-  if (!isValidAccessKey(key) || !taskId) {
+  if (!isValidAccessKey(key)) {
     return Response.json({ ok: false }, { status: 401 });
   }
 
-  recordTelemetry(key, taskId, {
-    wallClockSeconds:
-      typeof body?.wallClockSeconds === "number"
-        ? body.wallClockSeconds
-        : undefined,
-    deliverableLength:
-      typeof body?.deliverableLength === "number"
-        ? body.deliverableLength
-        : undefined,
-  });
+  // Dev-nav "reset session" - the one event that isn't scoped to a task.
+  if (event === "reset") {
+    await resetSession(key as string);
+    return Response.json({ ok: true });
+  }
+
+  if (!taskId) {
+    return Response.json({ ok: false, error: "Missing taskId" }, { status: 400 });
+  }
+
+  if (event === "started") {
+    await recordTaskStarted(key as string, taskId);
+  } else if (event === "submitted") {
+    const deliverableChars =
+      typeof body?.deliverableChars === "number" ? body.deliverableChars : 0;
+    await recordTaskSubmitted(key as string, taskId, deliverableChars);
+  } else {
+    return Response.json({ ok: false, error: "Unknown event" }, { status: 400 });
+  }
 
   return Response.json({ ok: true });
 }

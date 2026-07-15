@@ -1,5 +1,9 @@
 import { isValidAccessKey } from "@/lib/auth";
-import { getUsageForKey } from "@/lib/store";
+import {
+  backendName,
+  getAllTelemetry,
+  type SessionTelemetry,
+} from "@/lib/telemetryStore";
 import { tasks } from "@/lib/mockData";
 
 export default async function DebugPage({
@@ -18,15 +22,26 @@ export default async function DebugPage({
     );
   }
 
-  const usage = getUsageForKey(k as string);
+  let sessions: SessionTelemetry[] = [];
+  let readError: string | null = null;
+  try {
+    sessions = await getAllTelemetry();
+  } catch (err) {
+    readError = err instanceof Error ? err.message : String(err);
+  }
 
   return (
     <div style={{ padding: 24, fontFamily: "monospace", fontSize: 13 }}>
-      <h1>Telemetry — key: {k}</h1>
-      <p style={{ color: "#666", maxWidth: 600 }}>
-        In-memory only — resets on server restart / redeploy, or may vary
-        across serverless instances. Acceptable for a pitch prototype.
+      <h1>Telemetry</h1>
+      <p style={{ color: "#666" }}>
+        store:{" "}
+        {backendName() === "redis" ? "redis" : "memory (non-persistent)"}
       </p>
+      {readError && (
+        <p style={{ color: "crimson" }}>
+          Error reading telemetry store: {readError}
+        </p>
+      )}
       <table
         border={1}
         cellPadding={6}
@@ -34,6 +49,7 @@ export default async function DebugPage({
       >
         <thead>
           <tr>
+            <th>Key</th>
             <th>Task</th>
             <th>User messages</th>
             <th>Raw file attached</th>
@@ -42,24 +58,31 @@ export default async function DebugPage({
           </tr>
         </thead>
         <tbody>
-          {tasks.map((t) => {
-            const u = usage[t.id];
-            return (
-              <tr key={t.id}>
-                <td>{t.title}</td>
-                <td>{u?.userMessageCount ?? 0}</td>
-                <td>{u?.rawFileAttached ? "yes" : "no"}</td>
-                <td>
-                  {u?.wallClockSeconds != null ? `${u.wallClockSeconds}s` : "—"}
-                </td>
-                <td>
-                  {u?.deliverableLength != null
-                    ? `${u.deliverableLength} chars`
-                    : "—"}
-                </td>
-              </tr>
-            );
-          })}
+          {sessions.flatMap((session) =>
+            tasks.map((t) => {
+              const u = session.tasks[t.id];
+              const wallClockSeconds =
+                u?.startedAt != null && u?.submittedAt != null
+                  ? Math.round((u.submittedAt - u.startedAt) / 1000)
+                  : null;
+              return (
+                <tr key={`${session.accessKey}:${t.id}`}>
+                  <td>{session.accessKey}</td>
+                  <td>{t.title}</td>
+                  <td>{u?.msgCount ?? 0}</td>
+                  <td>{u?.rawFileAttached ? "yes" : "no"}</td>
+                  <td>
+                    {wallClockSeconds != null ? `${wallClockSeconds}s` : "—"}
+                  </td>
+                  <td>
+                    {u?.deliverableChars != null
+                      ? `${u.deliverableChars} chars`
+                      : "—"}
+                  </td>
+                </tr>
+              );
+            })
+          )}
         </tbody>
       </table>
     </div>

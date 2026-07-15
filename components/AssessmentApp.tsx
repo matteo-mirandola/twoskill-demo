@@ -155,10 +155,7 @@ export default function AssessmentApp({
     if (!session) return;
     const task = tasks[idx];
     const state = session.tasks[idx];
-    const wallClockSeconds = state.startedAt
-      ? Math.round((Date.now() - state.startedAt) / 1000)
-      : 0;
-    const deliverableLength =
+    const deliverableChars =
       task.deliverableKind === "slides"
         ? state.slides.reduce(
             (sum, s) => sum + s.title.length + s.bullets.length,
@@ -166,14 +163,16 @@ export default function AssessmentApp({
           )
         : state.deliverable.length;
 
+    // Wall-clock time is derived server-side from startedAt/submittedAt -
+    // the client doesn't need to compute or send it.
     fetch("/api/telemetry", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         key: accessKey,
         taskId: task.id,
-        wallClockSeconds,
-        deliverableLength,
+        event: "submitted",
+        deliverableChars,
       }),
     }).catch(() => {});
 
@@ -182,6 +181,12 @@ export default function AssessmentApp({
   }
 
   function handleReset() {
+    fetch("/api/telemetry", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ key: accessKey, event: "reset" }),
+    }).catch(() => {});
+
     clearStoredSession();
     setSession(createInitialSession(accessKey));
     setShowResetConfirm(false);
