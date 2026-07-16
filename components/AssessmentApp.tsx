@@ -23,6 +23,7 @@ import DevNav from "./DevNav";
 import ConfirmDialog from "./ConfirmDialog";
 
 type GateStatus = "checking" | "valid" | "invalid";
+export type ReportStatus = "idle" | "sending" | "sent" | "error";
 
 function normalizeStep(session: SessionState): SessionState {
   let stepIndex = session.stepIndex;
@@ -46,6 +47,8 @@ export default function AssessmentApp({
   const [gateStatus, setGateStatus] = useState<GateStatus>("checking");
   const [session, setSession] = useState<SessionState | null>(null);
   const [showResetConfirm, setShowResetConfirm] = useState(false);
+  const [reportStatus, setReportStatus] = useState<ReportStatus>("idle");
+  const [reportPdfReady, setReportPdfReady] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -151,6 +154,33 @@ export default function AssessmentApp({
     goToStep(1);
   }
 
+  async function sendReport(current: SessionState) {
+    setReportStatus("sending");
+    try {
+      const res = await fetch("/api/report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          key: current.accessKey,
+          intakeAnswers: current.intakeAnswers,
+          tasks: tasks.map((t, i) => ({
+            taskId: t.id,
+            messages: current.tasks[i]?.messages ?? [],
+            deliverable: current.tasks[i]?.deliverable ?? "",
+            slides: current.tasks[i]?.slides ?? [],
+          })),
+        }),
+      });
+      const data: { ok?: boolean; pdfReady?: boolean } | null = await res
+        .json()
+        .catch(() => null);
+      setReportPdfReady(Boolean(data?.pdfReady));
+      setReportStatus(res.ok && data?.ok ? "sent" : "error");
+    } catch {
+      setReportStatus("error");
+    }
+  }
+
   function handleSubmitTask(idx: number) {
     if (!session) return;
     const task = tasks[idx];
@@ -178,6 +208,13 @@ export default function AssessmentApp({
 
     updateTaskState(idx, { submitted: true });
     goToStep(idx + 2);
+
+    // Last task submitted → grade the session and email the report.
+    // Task content (messages/deliverables) is already in `session`; the
+    // submitted flag set above doesn't affect the report payload.
+    if (idx === tasks.length - 1) {
+      void sendReport(session);
+    }
   }
 
   function handleReset() {
@@ -242,7 +279,17 @@ export default function AssessmentApp({
           />
         )}
 
-        {isDone && <CompletionScreen />}
+        {isDone && (
+          <CompletionScreen
+            reportStatus={reportStatus}
+            downloadUrl={
+              reportPdfReady
+                ? `/api/report/download?key=${encodeURIComponent(accessKey)}`
+                : null
+            }
+            onRetry={() => void sendReport(session)}
+          />
+        )}
       </div>
 
       {devMode && (

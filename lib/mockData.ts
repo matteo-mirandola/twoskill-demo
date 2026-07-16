@@ -204,4 +204,9 @@ For your context only: part of the reason we're changing this is a dispute with 
 export const completionScreen = {
   title: "Assessment complete",
   body: "Thanks — your session has been recorded. Your report is being prepared and will be shared with you directly.",
+  reportSending: "Grading your session and preparing your report…",
+  reportReady: "Your personal results report is ready — download it below.",
+  reportError: "We couldn't generate your report. Please try again.",
+  reportRetry: "Try again",
+  reportDownload: "Download your report (PDF)",
 };
