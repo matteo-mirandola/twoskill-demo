@@ -60,7 +60,7 @@ export async function POST(request: Request) {
 
   try {
     const pdf = await renderReportPdf({ grades, intakeAnswers });
-    storeReportPdf(key as string, pdf);
+    await storeReportPdf(key as string, pdf);
     return Response.json({ ok: true, mocked, pdfReady: true });
   } catch (err) {
     console.error("[report] failed:", err);
