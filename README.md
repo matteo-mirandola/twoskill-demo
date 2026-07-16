@@ -26,6 +26,15 @@ ANTHROPIC_API_KEY=sk-ant-...
 
 # Comma-separated list of access keys. Participants open the app with ?k=<key>
 ACCESS_KEYS=key-one,key-two
+
+# REQUIRED IN PRODUCTION (optional locally): Upstash Redis, used for telemetry
+# and the generated-PDF cache. Without it the app falls back to in-memory
+# storage, which breaks report downloads on serverless hosts (each request may
+# hit a different instance). Create a free database at console.upstash.com, or
+# via Vercel → Storage → Upstash for Redis (which injects KV_REST_API_URL /
+# KV_REST_API_TOKEN automatically — both names are accepted).
+UPSTASH_REDIS_REST_URL=https://....upstash.io
+UPSTASH_REDIS_REST_TOKEN=...
 ```
 
 > **Note:** Next.js only reads `.env.local` at startup — restart the dev server after changing it.

@@ -7,7 +7,7 @@ export async function GET(request: Request) {
     return Response.json({ error: "Invalid access key" }, { status: 401 });
   }
 
-  const pdf = getReportPdf(key as string);
+  const pdf = await getReportPdf(key as string);
   if (!pdf) {
     return Response.json(
       { error: "No report available for this session yet." },
