@@ -194,7 +194,7 @@ export async function gradeSession(
   const text = response.content.find((b) => b.type === "text");
   if (!text) throw new Error("Grading model returned no text output.");
 
-  const grades = JSON.parse(text.text) as ReportGrades;
+  const grades = sanitize(JSON.parse(text.text)) as ReportGrades;
   grades.overall.score = clamp(grades.overall.score);
   for (const t of grades.tasks) t.score = clamp(t.score);
   return grades;
@@ -202,4 +202,25 @@ export async function gradeSession(
 
 function clamp(n: number): number {
   return Math.max(0, Math.min(100, Math.round(n)));
+}
+
+// The PDF uses standard Helvetica (WinAnsi encoding); glyphs outside it render
+// as garbage. Swap the ones the grader tends to produce for safe equivalents.
+function sanitize<T>(value: T): T {
+  if (typeof value === "string") {
+    return value
+      .replace(/→|➔|➡/g, " to ")
+      .replace(/←/g, " from ")
+      .replace(/✓|✔/g, "")
+      .replace(/✗|✘/g, "")
+      .replace(/ /g, " ")
+      .replace(/ {2,}/g, " ") as T;
+  }
+  if (Array.isArray(value)) return value.map(sanitize) as T;
+  if (value && typeof value === "object") {
+    return Object.fromEntries(
+      Object.entries(value).map(([k, v]) => [k, sanitize(v)])
+    ) as T;
+  }
+  return value;
 }

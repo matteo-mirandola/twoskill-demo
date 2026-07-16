@@ -9,10 +9,8 @@ export async function GET() {
   }
 
   const pdf = await renderReportPdf({
-    email: "preview@example.com",
     grades: MOCK_GRADES,
     intakeAnswers: {
-      email: "preview@example.com",
       area: "Marketing & Content",
       tools: ["ChatGPT", "Claude"],
       frequency: "Weekly",

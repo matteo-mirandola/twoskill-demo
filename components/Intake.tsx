@@ -13,13 +13,8 @@ export default function Intake({
 }) {
   const [answers, setAnswers] = useState<IntakeAnswers>(initialAnswers);
 
-  function isValidEmail(v: unknown): boolean {
-    return typeof v === "string" && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
-  }
-
   function isAnswered(q: (typeof intakeQuestions)[number]) {
     const v = answers[q.id];
-    if (q.type === "email") return isValidEmail(v);
     if (q.type === "multi") return Array.isArray(v) && v.length > 0;
     if (q.type === "scale") return typeof v === "number";
     if (typeof v !== "string" || v.length === 0) return false;
@@ -64,30 +59,6 @@ export default function Intake({
             <h3 className="mb-3 text-sm font-medium text-[var(--foreground)]">
               {q.question}
             </h3>
-
-            {q.type === "email" && (
-              <>
-                {"note" in q && q.note && (
-                  <p className="-mt-2 mb-3 text-xs leading-5 text-[var(--foreground-muted)]">
-                    {q.note}
-                  </p>
-                )}
-                <input
-                  type="email"
-                  value={(answers[q.id] as string) ?? ""}
-                  onChange={(e) => setSingle(q.id, e.target.value)}
-                  placeholder="name@company.com"
-                  autoComplete="email"
-                  className={`w-full rounded-lg border bg-white px-3 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors focus:border-[var(--accent)] sm:max-w-sm ${
-                    typeof answers[q.id] === "string" &&
-                    (answers[q.id] as string).length > 0 &&
-                    !isValidEmail(answers[q.id])
-                      ? "border-[var(--red-soft-border)]"
-                      : "border-[var(--border)]"
-                  }`}
-                />
-              </>
-            )}
 
             {q.type === "single" && (
               <>

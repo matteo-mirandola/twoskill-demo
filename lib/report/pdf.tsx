@@ -165,12 +165,10 @@ function formatAnswer(v: string | string[] | number): string {
 }
 
 function ReportDocument({
-  email,
   grades,
   intakeAnswers,
   generatedAt,
 }: {
-  email: string;
   grades: ReportGrades;
   intakeAnswers: IntakeAnswers;
   generatedAt: Date;
@@ -192,9 +190,7 @@ function ReportDocument({
           <Text style={s.wordmark}>2Skill</Text>
           <View>
             <Text style={s.headerMeta}>AI Skills Assessment Report</Text>
-            <Text style={s.headerMeta}>
-              {email} · {dateLabel}
-            </Text>
+            <Text style={s.headerMeta}>{dateLabel}</Text>
           </View>
         </View>
 
@@ -287,13 +283,11 @@ function ReportDocument({
 }
 
 export async function renderReportPdf(args: {
-  email: string;
   grades: ReportGrades;
   intakeAnswers: IntakeAnswers;
 }): Promise<Buffer> {
   return renderToBuffer(
     <ReportDocument
-      email={args.email}
       grades={args.grades}
       intakeAnswers={args.intakeAnswers}
       generatedAt={new Date()}

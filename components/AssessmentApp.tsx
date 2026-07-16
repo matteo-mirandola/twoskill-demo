@@ -155,14 +155,6 @@ export default function AssessmentApp({
   }
 
   async function sendReport(current: SessionState) {
-    const email =
-      typeof current.intakeAnswers?.email === "string"
-        ? current.intakeAnswers.email.trim()
-        : null;
-    if (!email) {
-      setReportStatus("error");
-      return;
-    }
     setReportStatus("sending");
     try {
       const res = await fetch("/api/report", {
@@ -170,7 +162,6 @@ export default function AssessmentApp({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           key: current.accessKey,
-          email,
           intakeAnswers: current.intakeAnswers,
           tasks: tasks.map((t, i) => ({
             taskId: t.id,
@@ -291,11 +282,6 @@ export default function AssessmentApp({
         {isDone && (
           <CompletionScreen
             reportStatus={reportStatus}
-            email={
-              typeof session.intakeAnswers?.email === "string"
-                ? session.intakeAnswers.email
-                : null
-            }
             downloadUrl={
               reportPdfReady
                 ? `/api/report/download?key=${encodeURIComponent(accessKey)}`

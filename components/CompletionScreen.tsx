@@ -3,20 +3,18 @@ import type { ReportStatus } from "./AssessmentApp";
 
 export default function CompletionScreen({
   reportStatus = "idle",
-  email,
   downloadUrl,
   onRetry,
 }: {
   reportStatus?: ReportStatus;
-  email?: string | null;
   downloadUrl?: string | null;
   onRetry?: () => void;
 }) {
   const statusBody =
     reportStatus === "sending"
       ? completionScreen.reportSending
-      : reportStatus === "sent" && email
-        ? completionScreen.reportSent.replace("{email}", email)
+      : reportStatus === "sent"
+        ? completionScreen.reportReady
         : reportStatus === "error"
           ? completionScreen.reportError
           : completionScreen.body;
@@ -34,10 +32,7 @@ export default function CompletionScreen({
             stroke="currentColor"
             strokeWidth="2"
           >
-            <path
-              d="M10 2a8 8 0 018 8"
-              strokeLinecap="round"
-            />
+            <path d="M10 2a8 8 0 018 8" strokeLinecap="round" />
           </svg>
         ) : (
           <svg
