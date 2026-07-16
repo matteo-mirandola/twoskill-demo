@@ -1,5 +1,5 @@
 import { isValidAccessKey } from "@/lib/auth";
-import { getUsageForKey } from "@/lib/store";
+import { getSessionTelemetry, type TaskTelemetry } from "@/lib/telemetryStore";
 import { tasks } from "@/lib/mockData";
 import { gradeSession, type TaskSubmission, type ReportGrades } from "@/lib/report/grading";
 import { renderReportPdf } from "@/lib/report/pdf";
@@ -36,11 +36,20 @@ export async function POST(request: Request) {
 
   // Grade with Claude; fall back to mock grades if the key is missing or the
   // call fails, so the participant always gets a report.
+  // Telemetry reads let Redis errors propagate (by design, for /debug);
+  // the report should degrade gracefully instead.
+  let telemetry: Record<string, TaskTelemetry> = {};
+  try {
+    telemetry = (await getSessionTelemetry(key as string)).tasks;
+  } catch (err) {
+    console.error("[report] telemetry read failed, grading without it:", err);
+  }
+
   let grades: ReportGrades = MOCK_GRADES;
   let mocked = true;
   if (process.env.ANTHROPIC_API_KEY) {
     try {
-      grades = await gradeSession(intakeAnswers, submissions, getUsageForKey(key as string));
+      grades = await gradeSession(intakeAnswers, submissions, telemetry);
       mocked = false;
     } catch (err) {
       console.error("[report] grading failed, falling back to mock grades:", err);

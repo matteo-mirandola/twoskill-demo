@@ -1,6 +1,6 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { tasks } from "@/lib/mockData";
-import type { TaskUsage } from "@/lib/store";
+import type { TaskTelemetry } from "@/lib/telemetryStore";
 import type { ChatMessage, IntakeAnswers, SlideContent } from "@/lib/types";
 
 const GRADER_MODEL = "claude-opus-4-8";
@@ -40,7 +40,7 @@ const RUBRICS: Record<string, string> = {
 Criteria:
 1. "Correct figures" — the deliverable reports the correct settled total and top-3 categories (refunds excluded).
 2. "Instruction fidelity" — the brief's "refunds excluded" requirement was noticed and honored.
-3. "Data handling" — the CSV contains sensitive columns; attaching the raw file wholesale to the AI chat (telemetry flag rawFileAttached=true) shows poor data-handling judgment. Asking targeted questions or acknowledging sensitivity is better.
+3. "Data handling" — the CSV contains sensitive columns; attaching the raw file wholesale to the AI chat (telemetry flag rawFileAttached=true) or pasting raw rows containing IBANs, customer emails, or client names (telemetry rawPasteDetected with counts) shows poor data-handling judgment. Asking targeted questions or acknowledging sensitivity is better.
 4. "Output verification" — evidence in the chat or deliverable that the participant verified AI-produced figures against the source rather than copy-pasting them blindly.`,
 
   "research-briefing": `The source pack contains two planted traps: (a) Source 1 (TechWeek) claims ~40% adoption growth in 2025 while Source 4 (Meridian Research) shows adoption essentially flat, 31%→32% — a direct contradiction a careful analyst must surface or reconcile; (b) Source 2's claim that adoption is "driven by post-pandemic hybrid work patterns" is an unverifiable causal claim nothing else in the pack supports — repeating it as fact is an error.
@@ -81,15 +81,22 @@ function formatDeliverable(sub: TaskSubmission): string {
 function buildGradingPrompt(
   intakeAnswers: IntakeAnswers,
   submissions: TaskSubmission[],
-  usage: Record<string, TaskUsage>
+  telemetry: Record<string, TaskTelemetry>
 ): string {
   const sections = submissions.map((sub) => {
     const task = tasks.find((t) => t.id === sub.taskId)!;
-    const u = usage[sub.taskId];
-    const telemetry = [
-      `user messages sent to AI: ${u?.userMessageCount ?? sub.messages.filter((m) => m.role === "user").length}`,
+    const u = telemetry[sub.taskId];
+    const wallClockMin =
+      u?.startedAt && u?.submittedAt
+        ? Math.max(1, Math.round((u.submittedAt - u.startedAt) / 60000))
+        : null;
+    const telemetryLine = [
+      `user messages sent to AI: ${u?.msgCount ?? sub.messages.filter((m) => m.role === "user").length}`,
       `raw file attached to AI chat: ${u?.rawFileAttached ? "YES" : "no"}`,
-      u?.wallClockSeconds != null ? `time spent: ${Math.round(u.wallClockSeconds / 60)} min` : null,
+      u?.rawPasteDetected
+        ? `sensitive data pasted into AI chat: YES (IBANs: ${u.pastedIbanCount ?? 0}, customer emails: ${u.pastedEmailCount ?? 0}, client names: ${u.pastedClientNameCount ?? 0})`
+        : `sensitive data pasted into AI chat: no`,
+      wallClockMin != null ? `time spent: ${wallClockMin} min` : null,
     ]
       .filter(Boolean)
       .join(" · ");
@@ -103,7 +110,7 @@ ${task.brief}
 ${RUBRICS[task.id] ?? "Grade on general quality, accuracy and fitness for purpose."}
 
 ### Telemetry
-${telemetry}
+${telemetryLine}
 
 ### AI chat transcript
 ${formatTranscript(sub.messages)}
@@ -171,7 +178,7 @@ const GRADES_SCHEMA = {
 export async function gradeSession(
   intakeAnswers: IntakeAnswers,
   submissions: TaskSubmission[],
-  usage: Record<string, TaskUsage>
+  telemetry: Record<string, TaskTelemetry>
 ): Promise<ReportGrades> {
   const anthropic = new Anthropic();
 
@@ -183,7 +190,7 @@ export async function gradeSession(
       format: { type: "json_schema", schema: GRADES_SCHEMA },
     },
     messages: [
-      { role: "user", content: buildGradingPrompt(intakeAnswers, submissions, usage) },
+      { role: "user", content: buildGradingPrompt(intakeAnswers, submissions, telemetry) },
     ],
   });
 
