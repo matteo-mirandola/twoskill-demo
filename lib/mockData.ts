@@ -4,6 +4,12 @@
 
 export const intakeQuestions = [
   {
+    id: "email",
+    type: "email" as const,
+    question: "What's your work email?",
+    note: "We'll send your personal results report to this address.",
+  },
+  {
     id: "area",
     type: "single" as const,
     question: "What's your main area of work?",
@@ -204,4 +210,10 @@ For your context only: part of the reason we're changing this is a dispute with 
 export const completionScreen = {
   title: "Assessment complete",
   body: "Thanks — your session has been recorded. Your report is being prepared and will be shared with you directly.",
+  reportSending: "Grading your session and preparing your report…",
+  reportSent: "Your results report has been sent to {email}. Check your inbox (and spam folder).",
+  reportError:
+    "We couldn't send your report automatically. Your session is recorded — we'll follow up by email.",
+  reportRetry: "Try sending again",
+  reportDownload: "Download your report (PDF)",
 };
