@@ -39,7 +39,7 @@ export default function Modal({
           </h2>
           <button
             onClick={onClose}
-            aria-label="Close"
+            aria-label="Cerrar"
             className="btn-press rounded-md p-1 text-[var(--foreground-muted)] hover:bg-black/5"
           >
             <svg

@@ -17,7 +17,7 @@ export default function Intake({
     const v = answers[q.id];
     if (q.type === "multi") {
       if (!Array.isArray(v) || v.length === 0) return false;
-      if (v.includes("Other")) {
+      if (v.includes("Otro")) {
         const other = answers[`${q.id}__other`];
         return typeof other === "string" && other.trim().length > 0;
       }
@@ -25,7 +25,7 @@ export default function Intake({
     }
     if (q.type === "scale") return typeof v === "number";
     if (typeof v !== "string" || v.length === 0) return false;
-    if (v === "Other") {
+    if (v === "Otro") {
       const other = answers[`${q.id}__other`];
       return typeof other === "string" && other.trim().length > 0;
     }
@@ -53,11 +53,11 @@ export default function Intake({
   return (
     <div className="fade-in mx-auto w-full max-w-2xl px-6 py-12">
       <h1 className="text-2xl font-semibold tracking-tight text-[var(--foreground)]">
-        Welcome
+        Bienvenido/a
       </h1>
       <p className="mt-2 text-sm leading-6 text-[var(--foreground-muted)]">
-        This assessment takes about 30 minutes and is built around three real
-        work tasks.
+        Esta evaluación dura unos 30 minutos y está organizada en torno a
+        tres tareas de trabajo reales.
       </p>
 
       <div className="mt-10 flex flex-col gap-8">
@@ -88,7 +88,7 @@ export default function Intake({
                     );
                   })}
                 </div>
-                {answers[q.id] === "Other" && (
+                {answers[q.id] === "Otro" && (
                   <input
                     type="text"
                     value={(answers[`${q.id}__other`] as string) ?? ""}
@@ -98,7 +98,7 @@ export default function Intake({
                         [`${q.id}__other`]: e.target.value,
                       }))
                     }
-                    placeholder="Please specify…"
+                    placeholder="Especifica, por favor…"
                     className="fade-in mt-2 w-full rounded-lg border border-[var(--border)] bg-white px-3 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors focus:border-[var(--accent)]"
                   />
                 )}
@@ -129,7 +129,7 @@ export default function Intake({
                   })}
                 </div>
                 {Array.isArray(answers[q.id]) &&
-                  (answers[q.id] as string[]).includes("Other") && (
+                  (answers[q.id] as string[]).includes("Otro") && (
                     <input
                       type="text"
                       value={(answers[`${q.id}__other`] as string) ?? ""}
@@ -139,7 +139,7 @@ export default function Intake({
                           [`${q.id}__other`]: e.target.value,
                         }))
                       }
-                      placeholder="Please specify…"
+                      placeholder="Especifica, por favor…"
                       className="fade-in mt-2 w-full rounded-lg border border-[var(--border)] bg-white px-3 py-2.5 text-sm text-[var(--foreground)] outline-none transition-colors focus:border-[var(--accent)]"
                     />
                   )}
@@ -180,7 +180,7 @@ export default function Intake({
         onClick={() => onStart(answers)}
         className="btn-press btn-hover-lift mt-10 w-full rounded-lg bg-[var(--accent)] py-3 text-sm font-semibold text-white transition-opacity disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto sm:px-8"
       >
-        Start
+        Empezar
       </button>
     </div>
   );

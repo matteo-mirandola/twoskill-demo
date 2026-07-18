@@ -55,7 +55,7 @@ export default function ChatPanel({
     if ((!text && !pendingAttachment) || locked || isStreaming) return;
 
     const content = pendingAttachment
-      ? `Attached file: ${pendingAttachment.name}\n\`\`\`\n${pendingAttachment.content}\n\`\`\`${
+      ? `Archivo adjunto: ${pendingAttachment.name}\n\`\`\`\n${pendingAttachment.content}\n\`\`\`${
           text ? `\n\n${text}` : ""
         }`
       : text;
@@ -83,7 +83,7 @@ export default function ChatPanel({
 
       if (!res.ok || !res.body) {
         const data = await res.json().catch(() => null);
-        setError(data?.error ?? "Something went wrong. Please try again.");
+        setError(data?.error ?? "Algo salió mal. Inténtalo de nuevo.");
         onChange(withUser);
         setIsStreaming(false);
         return;
@@ -100,7 +100,7 @@ export default function ChatPanel({
         onChange([...withUser, { role: "assistant", content: assistantText }]);
       }
     } catch {
-      setError("Connection lost. Please try again.");
+      setError("Se perdió la conexión. Inténtalo de nuevo.");
     } finally {
       setIsStreaming(false);
     }
@@ -123,7 +123,7 @@ export default function ChatPanel({
           </span>
         </div>
         <span className="text-[13px] font-semibold tabular-nums text-[var(--foreground-muted)]">
-          Number of prompts {userCount}/{maxUserMessages}
+          Número de mensajes {userCount}/{maxUserMessages}
         </span>
       </div>
 
@@ -133,7 +133,7 @@ export default function ChatPanel({
       >
         {messages.length === 0 && (
           <p className="mt-2 text-center text-xs text-[var(--foreground-subtle)]">
-            Ask the assistant anything about this task.
+            Pregunta al asistente lo que necesites sobre esta tarea.
           </p>
         )}
         {messages.map((m, i) => (
@@ -152,7 +152,7 @@ export default function ChatPanel({
                 <div
                   className={`mb-1 flex items-center gap-1 text-xs ${m.role === "user" ? "text-[var(--accent)]" : "text-[var(--foreground-subtle)]"}`}
                 >
-                  <PaperclipIcon /> {m.attachedFileName ?? "file"} attached
+                  <PaperclipIcon /> {m.attachedFileName ?? "archivo"} adjuntado
                 </div>
               )}
               {m.role === "assistant" ? (
@@ -180,7 +180,7 @@ export default function ChatPanel({
       )}
       {nearCap && (
         <p className="border-t border-[var(--amber-soft-border)] bg-[var(--amber-soft)] px-8 py-2 text-xs text-[var(--amber)]">
-          {maxUserMessages - userCount} messages left in this task.
+          Te quedan {maxUserMessages - userCount} mensajes en esta tarea.
         </p>
       )}
 
@@ -188,8 +188,8 @@ export default function ChatPanel({
         {locked ? (
           <p className="rounded-2xl bg-[var(--background)] px-4 py-3 text-center text-xs font-medium text-[var(--foreground-muted)]">
             {disabled
-              ? "This task has been submitted."
-              : "Message limit reached for this task."}
+              ? "Esta tarea ya ha sido enviada."
+              : "Has alcanzado el límite de mensajes para esta tarea."}
           </p>
         ) : (
           <>
@@ -198,7 +198,7 @@ export default function ChatPanel({
                 <PaperclipIcon /> {pendingAttachment.name}
                 <button
                   onClick={() => setPendingAttachment(null)}
-                  aria-label="Remove attachment"
+                  aria-label="Quitar archivo adjunto"
                   className="ml-1 text-[var(--accent)] hover:opacity-70"
                 >
                   ×
@@ -217,8 +217,8 @@ export default function ChatPanel({
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    title="Attach file"
-                    aria-label="Attach file"
+                    title="Adjuntar archivo"
+                    aria-label="Adjuntar archivo"
                     className={`btn-press flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors ${
                       pendingAttachment
                         ? "bg-[var(--accent-soft)] text-[var(--accent)]"
@@ -233,7 +233,7 @@ export default function ChatPanel({
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={onKeyDown}
-                placeholder="Reply to Claude…"
+                placeholder="Responde a Claude…"
                 rows={1}
                 className="thin-scroll max-h-28 flex-1 resize-none bg-transparent py-1.5 text-[14.5px] text-[var(--foreground)] outline-none"
               />
@@ -242,7 +242,7 @@ export default function ChatPanel({
                 disabled={isStreaming || (!input.trim() && !pendingAttachment)}
                 className="btn-press flex h-9 shrink-0 items-center justify-center rounded-[10px] bg-[image:var(--accent-gradient)] px-4 text-[13.5px] font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-40"
               >
-                Send
+                Enviar
               </button>
             </div>
           </>

@@ -14,93 +14,96 @@ function test(name: string, fn: () => void) {
   console.log(`ok - ${name}`);
 }
 
-const csvPath = path.join(process.cwd(), "public", "payments_march.csv");
+const csvPath = path.join(process.cwd(), "public", "alertas_junio_2026.csv");
 const csvText = fs.readFileSync(csvPath, "utf-8");
 const csvLines = csvText.split(/\r\n|\n/).filter((l) => l.length > 0);
 const headers = csvLines[0].split(",");
 const rows = csvLines.slice(1).map((line) => line.split(","));
 
-test("full raw CSV text triggers on all three fields", () => {
+test("full raw CSV text triggers on both fields", () => {
   const result = scanForSensitiveData(csvText);
   assert.equal(result.triggered, true);
   assert.deepEqual(
     [...result.matchedFields].sort(),
-    ["client_name", "email", "iban"].sort()
+    ["client_domain", "client_name"].sort()
   );
-  assert.ok(result.ibanCount >= 5);
-  assert.ok(result.emailCount >= 5);
   assert.ok(result.clientNameCount >= 5);
+  assert.ok(result.domainCount >= 5);
 });
 
 test("CSV with sensitive columns stripped never triggers", () => {
   const idx = {
-    transaction_id: headers.indexOf("transaction_id"),
-    amount: headers.indexOf("amount"),
-    category: headers.indexOf("category"),
-    status: headers.indexOf("status"),
+    alerta_id: headers.indexOf("alerta_id"),
+    fecha_hora: headers.indexOf("fecha_hora"),
+    categoria: headers.indexOf("categoria"),
+    severidad: headers.indexOf("severidad"),
+    estado: headers.indexOf("estado"),
   };
   const strippedLines = [
-    "transaction_id,amount,category,status",
-    ...rows.map(
-      (r) =>
-        `${r[idx.transaction_id]},${r[idx.amount]},${r[idx.category]},${
-          r[idx.status]
-        }`
+    "alerta_id,fecha_hora,categoria,severidad,estado",
+    ...rows.map((r) =>
+      [
+        r[idx.alerta_id],
+        r[idx.fecha_hora],
+        r[idx.categoria],
+        r[idx.severidad],
+        r[idx.estado],
+      ].join(",")
     ),
   ];
-  assert.equal(strippedLines.length - 1, 1904);
+  assert.equal(strippedLines.length - 1, 832);
   const strippedText = strippedLines.join("\n");
 
   const result = scanForSensitiveData(strippedText);
   assert.equal(result.triggered, false);
   assert.deepEqual(result.matchedFields, []);
-  assert.equal(result.ibanCount, 0);
-  assert.equal(result.emailCount, 0);
   assert.equal(result.clientNameCount, 0);
+  assert.equal(result.domainCount, 0);
 });
 
 test("aggregated category table does not trigger", () => {
-  const table = `Category | Settled total
-Subscriptions | 385000
-Professional Services | 298000
-Hardware | 176000
-Marketing | 154000
-Logistics | 99000
-Training | 55000`;
+  const table = `Categoria | Total gestionadas
+Phishing / correo malicioso | 186
+Malware en endpoint | 153
+Intento de suplantacion | 130
+Acceso no autorizado | 96
+Vulnerabilidad critica | 77
+Fuga de datos (DLP) | 40
+Navegacion no segura | 30`;
   const result = scanForSensitiveData(table);
   assert.equal(result.triggered, false);
 });
 
 test("mentioning a single client by name does not trigger", () => {
   const message =
-    "Quick note: Marlin Foods Ltd disputed one of their March charges, worth flagging for management.";
+    "Aviso rápido: Nexia Fintech concentra buena parte de los intentos de suplantación este mes, vale la pena avisar a dirección.";
   const result = scanForSensitiveData(message);
   assert.equal(result.triggered, false);
   assert.equal(result.clientNameCount, 1);
   assert.deepEqual(result.matchedFields, ["client_name"]);
 });
 
-test("6 distinct IBANs triggers", () => {
-  const ibans = [
-    "IT68 1448 1853 923755618874",
-    "NL44 9314 4524 629851082595",
-    "NL62 5223 4096 104390543744",
-    "FR35 7302 8916 236313758032",
-    "DE10 2226 5117 818164521570",
-    "DE11 2010 4641 267015453083",
+test("6 distinct client domains triggers", () => {
+  const domains = [
+    "loredologistica.es",
+    "gestoriavallbona.es",
+    "nexiapay.com",
+    "salazar-ortun.com",
+    "clinicanervion.es",
+    "acelor.es",
   ];
-  const message = `Here are the IBANs: ${ibans.join(", ")}`;
+  const message = `Dominios afectados: ${domains.join(", ")}`;
   const result = scanForSensitiveData(message);
-  assert.equal(result.ibanCount, 6);
+  assert.equal(result.domainCount, 6);
   assert.equal(result.triggered, true);
-  assert.deepEqual(result.matchedFields, ["iban"]);
+  assert.deepEqual(result.matchedFields, ["client_domain"]);
 });
 
-test("same IBAN repeated many times counts as distinct, not triggered", () => {
-  const iban = "IT68 1448 1853 923755618874";
-  const message = Array.from({ length: 20 }, () => iban).join(", ");
+test("same domain repeated many times counts as distinct, not triggered", () => {
+  const domain = "nexiapay.com";
+  const message = Array.from({ length: 20 }, () => domain).join(", ");
   const result = scanForSensitiveData(message);
-  assert.equal(result.ibanCount, 1);
+  assert.equal(result.domainCount, 1);
   assert.equal(result.triggered, false);
 });
 

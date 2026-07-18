@@ -15,7 +15,7 @@ const MODEL = "claude-sonnet-4-6";
 export async function POST(request: Request) {
   if (!process.env.ANTHROPIC_API_KEY) {
     return Response.json(
-      { error: "Server is not configured: ANTHROPIC_API_KEY is missing." },
+      { error: "El servidor no está configurado: falta ANTHROPIC_API_KEY." },
       { status: 500 }
     );
   }
@@ -28,12 +28,12 @@ export async function POST(request: Request) {
     : [];
 
   if (!isValidAccessKey(key)) {
-    return Response.json({ error: "Invalid access key" }, { status: 401 });
+    return Response.json({ error: "Clave de acceso no válida" }, { status: 401 });
   }
 
   const task = tasks.find((t) => t.id === taskId);
   if (!task) {
-    return Response.json({ error: "Unknown task" }, { status: 404 });
+    return Response.json({ error: "Tarea desconocida" }, { status: 404 });
   }
 
   // Atomic increment-then-check: never read-then-write, so concurrent
@@ -42,13 +42,13 @@ export async function POST(request: Request) {
   const n = await incrementUserMessage(key as string, taskId as string);
   if (n > task.maxUserMessages) {
     return Response.json(
-      { error: "Message limit reached for this task" },
+      { error: "Has alcanzado el límite de mensajes para esta tarea" },
       { status: 429 }
     );
   }
 
   const lastMessage = messages[messages.length - 1];
-  const canAttach = task.id === "monthly-report";
+  const canAttach = task.id === "alert-summary";
   if (canAttach && lastMessage?.role === "user" && lastMessage.attachedFile) {
     await recordRawFileAttached(key as string, taskId as string);
   }
@@ -64,9 +64,8 @@ export async function POST(request: Request) {
     const scan = scanForSensitiveData(lastMessage.content);
     if (scan.triggered) {
       await recordRawPasteDetected(key as string, taskId as string, {
-        ibanCount: scan.ibanCount,
-        emailCount: scan.emailCount,
         clientNameCount: scan.clientNameCount,
+        clientDomainCount: scan.domainCount,
       });
     }
   }
@@ -109,9 +108,9 @@ export async function POST(request: Request) {
             ? err.message
             : err instanceof Error
               ? err.message
-              : "Something went wrong.";
+              : "Algo salió mal.";
         controller.enqueue(
-          encoder.encode(`\n\n[Error contacting the model: ${message}]`)
+          encoder.encode(`\n\n[Error al contactar con el modelo: ${message}]`)
         );
       } finally {
         controller.close();

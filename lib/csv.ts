@@ -6,7 +6,7 @@ import path from "node:path";
 const globalForCsv = globalThis as unknown as { __csvText?: string };
 
 function readCsvFromDisk(): string {
-  const filePath = path.join(process.cwd(), "public", "payments_march.csv");
+  const filePath = path.join(process.cwd(), "public", "alertas_junio_2026.csv");
   return fs.readFileSync(filePath, "utf-8");
 }
 

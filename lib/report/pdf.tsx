@@ -29,9 +29,9 @@ const C = {
 };
 
 const STATUS: Record<FindingStatus, { label: string; color: string; soft: string }> = {
-  passed: { label: "Passed", color: C.good, soft: C.goodSoft },
-  partial: { label: "Partial", color: C.warning, soft: C.warningSoft },
-  missed: { label: "Missed", color: C.critical, soft: C.criticalSoft },
+  passed: { label: "Aprobado", color: C.good, soft: C.goodSoft },
+  partial: { label: "Parcial", color: C.warning, soft: C.warningSoft },
+  missed: { label: "No superado", color: C.critical, soft: C.criticalSoft },
 };
 
 const s = StyleSheet.create({
@@ -173,7 +173,7 @@ function ReportDocument({
   intakeAnswers: IntakeAnswers;
   generatedAt: Date;
 }) {
-  const dateLabel = generatedAt.toLocaleDateString("en-GB", {
+  const dateLabel = generatedAt.toLocaleDateString("es-ES", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -184,12 +184,12 @@ function ReportDocument({
   );
 
   return (
-    <Document title="2Skill — AI Skills Assessment Report" author="2Skill">
+    <Document title="2Skill — Informe de evaluación de habilidades con IA" author="2Skill">
       <Page size="A4" style={s.page}>
         <View style={s.header} fixed>
           <Text style={s.wordmark}>2Skill</Text>
           <View>
-            <Text style={s.headerMeta}>AI Skills Assessment Report</Text>
+            <Text style={s.headerMeta}>Informe de evaluación de habilidades con IA</Text>
             <Text style={s.headerMeta}>{dateLabel}</Text>
           </View>
         </View>
@@ -197,17 +197,17 @@ function ReportDocument({
         <View style={s.hero}>
           <View style={s.heroScoreBox}>
             <Text style={s.heroScore}>{grades.overall.score}</Text>
-            <Text style={{ fontSize: 8, color: C.muted }}>out of 100</Text>
+            <Text style={{ fontSize: 8, color: C.muted }}>sobre 100</Text>
           </View>
           <View style={{ flex: 1 }}>
             <Text style={s.levelChip}>{grades.overall.level}</Text>
-            <Text style={s.h1}>Your overall result</Text>
+            <Text style={s.h1}>Tu resultado global</Text>
             <ScoreBar score={grades.overall.score} />
             <Text style={s.muted}>{grades.overall.summary}</Text>
           </View>
         </View>
 
-        <Text style={s.sectionTitle}>Your profile</Text>
+        <Text style={s.sectionTitle}>Tu perfil</Text>
         <View style={s.profileGrid}>
           {profileEntries.map(([id, v]) => (
             <View key={id} style={s.profileItem}>
@@ -217,12 +217,12 @@ function ReportDocument({
           ))}
         </View>
 
-        <Text style={s.sectionTitle}>Task-by-task analysis</Text>
+        <Text style={s.sectionTitle}>Análisis por tarea</Text>
         {grades.tasks.map((task, i) => (
           <View key={task.taskId} style={s.card} wrap={false}>
             <View style={s.cardHeader}>
               <Text style={s.taskTitle}>
-                Task {i + 1} · {task.title}
+                Tarea {i + 1} · {task.title}
               </Text>
               <Text style={s.taskScore}>{task.score}/100</Text>
             </View>
@@ -247,7 +247,7 @@ function ReportDocument({
             {task.strengths.length > 0 && (
               <View style={{ marginTop: 6 }}>
                 <Text style={{ fontFamily: "Helvetica-Bold", fontSize: 8.5, color: C.good }}>
-                  What worked
+                  Qué funcionó
                 </Text>
                 {task.strengths.map((t, j) => (
                   <View key={j} style={s.listRow}>
@@ -260,7 +260,7 @@ function ReportDocument({
             {task.improvements.length > 0 && (
               <View style={{ marginTop: 4 }}>
                 <Text style={{ fontFamily: "Helvetica-Bold", fontSize: 8.5, color: C.warning }}>
-                  What to work on
+                  En qué trabajar
                 </Text>
                 {task.improvements.map((t, j) => (
                   <View key={j} style={s.listRow}>
@@ -274,7 +274,7 @@ function ReportDocument({
         ))}
 
         <View style={s.footer} fixed>
-          <Text>2Skill — practical AI skills assessment</Text>
+          <Text>2Skill — evaluación práctica de habilidades con IA</Text>
           <Text render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`} />
         </View>
       </Page>

@@ -14,7 +14,7 @@ export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
   const key = typeof body?.key === "string" ? body.key : null;
   if (!isValidAccessKey(key)) {
-    return Response.json({ error: "Invalid access key" }, { status: 401 });
+    return Response.json({ error: "Clave de acceso no válida" }, { status: 401 });
   }
 
   const intakeAnswers: IntakeAnswers =
@@ -64,6 +64,6 @@ export async function POST(request: Request) {
     return Response.json({ ok: true, mocked, pdfReady: true });
   } catch (err) {
     console.error("[report] failed:", err);
-    return Response.json({ error: "Failed to generate the report." }, { status: 500 });
+    return Response.json({ error: "No se pudo generar el informe." }, { status: 500 });
   }
 }

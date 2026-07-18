@@ -36,34 +36,34 @@ export type TaskSubmission = {
 // Rubrics encode the traps planted in mockData. Deliberately kept server-side
 // so the client bundle never ships the answer key.
 const RUBRICS: Record<string, string> = {
-  "monthly-report": `Ground truth (from the attached CSV): total SETTLED payment volume excluding refunds is €1,167,000. Top 3 categories by settled value: Subscriptions €385,000, Professional Services €298,000, Hardware €176,000. If refunds were wrongly included, the total comes out as €1,295,000 and Logistics (€199,000) wrongly replaces Hardware in the top 3.
-Criteria:
-1. "Correct figures" — the deliverable reports the correct settled total and top-3 categories (refunds excluded).
-2. "Instruction fidelity" — the brief's "refunds excluded" requirement was noticed and honored.
-3. "Data handling" — the CSV contains sensitive columns; attaching the raw file wholesale to the AI chat (telemetry flag rawFileAttached=true) or pasting raw rows containing IBANs, customer emails, or client names (telemetry rawPasteDetected with counts) shows poor data-handling judgment. Asking targeted questions or acknowledging sensitivity is better.
-4. "Output verification" — evidence in the chat or deliverable that the participant verified AI-produced figures against the source rather than copy-pasting them blindly.`,
+  "alert-summary": `Ground truth (from alertas_junio_2026.csv, 832 rows): alerts MANAGED excluding false positives (estado = "Gestionada" or "En curso") = 712. Top 3 categories by count among those 712: Phishing / correo malicioso (186), Malware en endpoint (153), Intento de suplantacion (130). If false positives were wrongly included, the total comes out as 832 (all rows) — every count is inflated even though the top-3 ranking happens to stay the same. A strong operational note: Nexia Fintech accounts for 82 of the 130 "Intento de suplantacion" alerts (63%) and has the highest overall managed-alert volume (191) of any client — a concentration worth flagging to leadership. Any other data-grounded observation counts too.
+Criterios:
+1. "Cifras correctas" — el entregable indica el total gestionado correcto (712) y las tres categorías correctas, excluyendo los falsos positivos.
+2. "Fidelidad a la instrucción" — se detectó y respetó el requisito de "sin contar los falsos positivos" del brief.
+3. "Manejo de datos" — el CSV contiene columnas sensibles (cliente, dominio_cliente); adjuntar el archivo completo tal cual al chat de IA (telemetría rawFileAttached=true) o pegar filas en bruto con nombres de cliente o dominios (telemetría rawPasteDetected con recuentos) demuestra un mal criterio de manejo de datos. Hacer preguntas puntuales o reconocer la sensibilidad de los datos es preferible.
+4. "Verificación del resultado" — evidencia en el chat o en el entregable de que el participante verificó las cifras generadas por la IA contra la fuente en lugar de copiarlas sin comprobar.`,
 
-  "research-briefing": `The source pack contains two planted traps: (a) Source 1 (TechWeek) claims ~40% adoption growth in 2025 while Source 4 (Meridian Research) shows adoption essentially flat, 31%→32% — a direct contradiction a careful analyst must surface or reconcile; (b) Source 2's claim that adoption is "driven by post-pandemic hybrid work patterns" is an unverifiable causal claim nothing else in the pack supports — repeating it as fact is an error.
-Criteria:
-1. "Contradiction caught" — the briefing surfaces or reconciles the growth-vs-flat contradiction rather than repeating one number as fact.
-2. "Unverified claims" — the hybrid-work causal claim is either omitted, attributed, or flagged as unverified.
-3. "Groundedness" — the briefing sticks to the provided sources, no invented statistics or generic padding.
-4. "Actionability" — ends with a clear move-now-or-wait recommendation as the brief demands.`,
+  "ai-notes-briefing": `El dossier de fuentes contiene dos trampas plantadas: (a) la Fuente A afirma que el 78% de las grandes empresas ya ha desplegado herramientas de IA para actas (frente al 31% de hace 18 meses), mientras que la Fuente E sostiene que menos del 15% ha pasado de piloto a un despliegue estable y generalizado, y critica explícitamente cifras infladas de "empresas que han desplegado" como la de la Fuente A — una contradicción directa que un analista cuidadoso debe señalar o reconciliar; (b) el cierre de la Fuente A ("la ventana... se está cerrando, quien entre el año que viene lo hará ya como rezagado, no como pionero") es una predicción categórica sobre resultado competitivo que nada más en el dossier respalda — repetirla como un hecho es un error.
+Criterios:
+1. "Contradicción detectada" — el briefing señala o reconcilia la contradicción entre el 78% y el menos del 15%, en lugar de repetir una sola cifra como un hecho.
+2. "Afirmaciones no verificadas" — la predicción sobre la ventana de oportunidad que se cierra se omite, se atribuye a su fuente, o se marca como no verificada.
+3. "Base en las fuentes" — el briefing se ciñe a las fuentes proporcionadas, sin estadísticas inventadas ni relleno genérico.
+4. "Accionabilidad" — termina con una recomendación clara de adoptar ahora o esperar, tal como pide el brief.`,
 
-  "the-deck": `The brief gives exact figures: fee drops from 2.1% to 1.8% on September 1st; transition window August 1–31 (both schedules accepted); applies to all partners on standard agreements, legacy agreements unchanged until renewal. It also discloses — for context only — a dispute with the previous payment processor still in arbitration, which must NOT appear in the partner-facing slides (a generic "improving our billing" is NOT a leak).
-Criteria:
-1. "Confidentiality" — the arbitration/processor dispute does not appear in any slide.
-2. "Figure accuracy" — 1.8%, 2.1%, September 1, August 1–31, and the standard-vs-legacy distinction are all correct in the slides.
-3. "Format fit" — exactly 5 slides, one clear message per slide, partner-appropriate tone.
-4. "Delivery polish" — free of obvious AI-tell markers (e.g. "Certainly!", placeholder text, markdown artifacts) and reads as ready to send.`,
+  "partner-deck": `El brief da cifras exactas: la cuota baja de 3,20 € a 2,80 € por endpoint a partir del 1 de septiembre; ventana de transición del 1 al 31 de agosto (se aceptan ambos esquemas); aplica a todos los partners con acuerdo estándar, los acuerdos legacy no cambian hasta su renovación. También revela — solo para contexto — que la empresa está migrando de proveedor de infraestructura tras un incidente de seguridad con el proveedor anterior, todavía bajo acuerdo de confidencialidad, que NO debe aparecer en ninguna diapositiva orientada a partners (un genérico "estamos mejorando nuestra infraestructura" NO es una fuga).
+Criterios:
+1. "Confidencialidad" — el incidente de seguridad/migración de proveedor no aparece en ninguna diapositiva.
+2. "Precisión de las cifras" — 2,80 €, 3,20 €, 1 de septiembre, 1–31 de agosto, y la distinción estándar-vs-legacy son todas correctas en las diapositivas.
+3. "Ajuste de formato" — exactamente 5 diapositivas, un mensaje claro por diapositiva, tono apropiado para partners externos.
+4. "Acabado de la entrega" — libre de marcas evidentes de IA (p. ej. "¡Claro!", texto de relleno, artefactos de markdown) y lista para enviar tal cual.`,
 };
 
 function formatTranscript(messages: ChatMessage[]): string {
-  if (messages.length === 0) return "(the participant did not use the AI assistant)";
+  if (messages.length === 0) return "(el participante no usó el asistente de IA)";
   return messages
     .map((m) => {
-      const attach = m.attachedFile ? " [attached the raw CSV file]" : "";
-      return `${m.role === "user" ? "PARTICIPANT" : "AI ASSISTANT"}${attach}:\n${m.content}`;
+      const attach = m.attachedFile ? " [adjuntó el archivo CSV en bruto]" : "";
+      return `${m.role === "user" ? "PARTICIPANTE" : "ASISTENTE IA"}${attach}:\n${m.content}`;
     })
     .join("\n\n");
 }
@@ -72,10 +72,10 @@ function formatDeliverable(sub: TaskSubmission): string {
   const task = tasks.find((t) => t.id === sub.taskId);
   if (task?.deliverableKind === "slides") {
     return sub.slides
-      .map((s, i) => `--- Slide ${i + 1} ---\nTitle: ${s.title}\n${s.bullets}`)
+      .map((s, i) => `--- Diapositiva ${i + 1} ---\nTítulo: ${s.title}\n${s.bullets}`)
       .join("\n\n");
   }
-  return sub.deliverable || "(empty deliverable)";
+  return sub.deliverable || "(entregable vacío)";
 }
 
 function buildGradingPrompt(
@@ -91,39 +91,39 @@ function buildGradingPrompt(
         ? Math.max(1, Math.round((u.submittedAt - u.startedAt) / 60000))
         : null;
     const telemetryLine = [
-      `user messages sent to AI: ${u?.msgCount ?? sub.messages.filter((m) => m.role === "user").length}`,
-      `raw file attached to AI chat: ${u?.rawFileAttached ? "YES" : "no"}`,
+      `mensajes enviados a la IA: ${u?.msgCount ?? sub.messages.filter((m) => m.role === "user").length}`,
+      `archivo en bruto adjuntado al chat de IA: ${u?.rawFileAttached ? "SÍ" : "no"}`,
       u?.rawPasteDetected
-        ? `sensitive data pasted into AI chat: YES (IBANs: ${u.pastedIbanCount ?? 0}, customer emails: ${u.pastedEmailCount ?? 0}, client names: ${u.pastedClientNameCount ?? 0})`
-        : `sensitive data pasted into AI chat: no`,
-      wallClockMin != null ? `time spent: ${wallClockMin} min` : null,
+        ? `datos sensibles pegados en el chat de IA: SÍ (nombres de cliente: ${u.pastedClientNameCount ?? 0}, dominios de cliente: ${u.pastedClientDomainCount ?? 0})`
+        : `datos sensibles pegados en el chat de IA: no`,
+      wallClockMin != null ? `tiempo empleado: ${wallClockMin} min` : null,
     ]
       .filter(Boolean)
       .join(" · ");
 
-    return `## Task: ${task.title} (id: ${task.id})
+    return `## Tarea: ${task.title} (id: ${task.id})
 
-### Brief given to the participant
+### Brief entregado al participante
 ${task.brief}
 
-### Rubric (ground truth — participant never saw this)
+### Rúbrica (respuesta correcta — el participante nunca la vio)
 ${RUBRICS[task.id] ?? "Grade on general quality, accuracy and fitness for purpose."}
 
-### Telemetry
+### Telemetría
 ${telemetryLine}
 
-### AI chat transcript
+### Transcripción del chat con la IA
 ${formatTranscript(sub.messages)}
 
-### Final deliverable submitted
+### Entregable final enviado
 ${formatDeliverable(sub)}`;
   });
 
-  return `You are grading a workplace AI-skills assessment for 2Skill. The participant completed ${submissions.length} realistic work tasks with access to an AI assistant. Traps were planted in each task; the rubrics below describe them.
+  return `You are grading a workplace AI-skills assessment for 2Skill. The participant completed ${submissions.length} realistic work tasks, in Spanish, with access to an AI assistant. Traps were planted in each task; the rubrics below (in Spanish) describe them.
 
 Participant self-reported profile (from intake): ${JSON.stringify(intakeAnswers)}
 
-Grade each task against its rubric. Every rubric criterion must appear as a finding with status "passed", "partial", or "missed" and a concrete, evidence-based detail quoting or referencing what the participant actually did. Scores: 0-100 per task; the overall score should reflect performance across tasks (not a strict average — weigh judgment-critical failures like confidentiality leaks heavily). Choose an overall level from: "Emerging", "Developing", "Practitioner", "Advanced". Write for the participant directly ("you"), constructive and specific — this text goes into their personal report.
+Grade each task against its rubric. Every rubric criterion must appear as a finding with status "passed", "partial", or "missed" and a concrete, evidence-based detail quoting or referencing what the participant actually did. Write every user-facing string (task titles, summaries, finding labels/details, strengths, improvements, overall summary) in Spanish — this text goes directly into the participant's personal report. Scores: 0-100 per task; the overall score should reflect performance across tasks (not a strict average — weigh judgment-critical failures like confidentiality leaks heavily). Choose an overall level from: "Emerging", "Developing", "Practitioner", "Advanced" (keep these four level values in English exactly as given — only the level values, everything else must be in Spanish).
 
 ${sections.join("\n\n")}`;
 }
@@ -213,6 +213,8 @@ function clamp(n: number): number {
 
 // The PDF uses standard Helvetica (WinAnsi encoding); glyphs outside it render
 // as garbage. Swap the ones the grader tends to produce for safe equivalents.
+// WinAnsi covers the standard Spanish accented letters (á é í ó ú ñ ¿ ¡ etc.)
+// so no extra substitutions are needed for those.
 function sanitize<T>(value: T): T {
   if (typeof value === "string") {
     return value
@@ -220,7 +222,7 @@ function sanitize<T>(value: T): T {
       .replace(/←/g, " from ")
       .replace(/✓|✔/g, "")
       .replace(/✗|✘/g, "")
-      .replace(/ /g, " ")
+      .replace(/ /g, " ")
       .replace(/ {2,}/g, " ") as T;
   }
   if (Array.isArray(value)) return value.map(sanitize) as T;

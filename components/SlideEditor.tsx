@@ -21,21 +21,21 @@ export default function SlideEditor({
           className="flex flex-col rounded-2xl bg-[var(--surface)] p-3 shadow-[var(--card-shadow-sm)]"
         >
           <span className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-[var(--foreground-subtle)]">
-            Slide {i + 1}
+            Diapositiva {i + 1}
           </span>
           <div className="flex aspect-video flex-col rounded-xl border border-dashed border-[var(--border-strong)] bg-[var(--background)] p-3">
             <input
               value={slide.title}
               onChange={(e) => updateSlide(i, { title: e.target.value })}
               disabled={disabled}
-              placeholder="Slide title"
+              placeholder="Título de la diapositiva"
               className="w-full bg-transparent text-sm font-semibold text-[var(--foreground)] outline-none placeholder:text-[var(--foreground-subtle)] disabled:text-[var(--foreground-subtle)]"
             />
             <textarea
               value={slide.bullets}
               onChange={(e) => updateSlide(i, { bullets: e.target.value })}
               disabled={disabled}
-              placeholder="Bullet points…"
+              placeholder="Puntos clave…"
               className="thin-scroll mt-2 w-full flex-1 resize-none bg-transparent text-xs leading-5 text-[var(--foreground-muted)] outline-none placeholder:text-[var(--foreground-subtle)] disabled:text-[var(--foreground-subtle)]"
             />
           </div>

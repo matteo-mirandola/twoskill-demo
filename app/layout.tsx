@@ -16,8 +16,8 @@ const sourceSerif4 = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-  title: "2Skill Assessment",
-  description: "AI-skills assessment prototype",
+  title: "Evaluación 2Skill",
+  description: "Prototipo de evaluación de habilidades con IA",
 };
 
 export default function RootLayout({
@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="es"
       className={`${inter.variable} ${sourceSerif4.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>

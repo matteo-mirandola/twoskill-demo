@@ -76,9 +76,9 @@ export default async function DebugPage({
                   <td>{u?.rawPasteDetected ? "yes" : "no"}</td>
                   <td>
                     {u?.rawPasteDetected
-                      ? `IBAN ${u.pastedIbanCount ?? 0} · email ${
-                          u.pastedEmailCount ?? 0
-                        } · names ${u.pastedClientNameCount ?? 0}`
+                      ? `names ${u.pastedClientNameCount ?? 0} · domains ${
+                          u.pastedClientDomainCount ?? 0
+                        }`
                       : "—"}
                   </td>
                   <td>

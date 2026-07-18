@@ -101,7 +101,7 @@ export default function AssessmentApp({
   if (gateStatus === "checking") {
     return (
       <div className="flex flex-1 items-center justify-center">
-        <p className="text-sm text-[var(--foreground-subtle)]">Loading…</p>
+        <p className="text-sm text-[var(--foreground-subtle)]">Cargando…</p>
       </div>
     );
   }
@@ -110,7 +110,7 @@ export default function AssessmentApp({
     return (
       <div className="flex flex-1 items-center justify-center px-6 text-center">
         <p className="text-sm text-[var(--foreground-muted)]">
-          This link is not valid.
+          Este enlace no es válido.
         </p>
       </div>
     );

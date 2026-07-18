@@ -1,4 +1,4 @@
-const STEPS = ["Intake", "Task 1", "Task 2", "Task 3", "Done"];
+const STEPS = ["Perfil", "Tarea 1", "Tarea 2", "Tarea 3", "Hecho"];
 
 export default function ProgressBar({ stepIndex }: { stepIndex: number }) {
   return (

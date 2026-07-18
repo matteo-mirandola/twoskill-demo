@@ -6,31 +6,71 @@ export const intakeQuestions = [
   {
     id: "area",
     type: "single" as const,
-    question: "What's your main area of work?",
-    options: ["Commercial & Partnerships", "Marketing & Content", "Product & Tech", "Operations", "Management", "Other"],
+    question: "¿Cuál es tu principal área de trabajo?",
+    options: [
+      "Ventas",
+      "Marketing y Contenido",
+      "Producto y Tecnología",
+      "Operaciones",
+      "Atención al Cliente",
+      "Finanzas y Administración",
+      "Recursos Humanos",
+      "Dirección",
+      "Otro",
+    ],
+  },
+  {
+    id: "seniority",
+    type: "single" as const,
+    question: "¿Cuál es tu nivel de responsabilidad?",
+    options: ["Colaborador/a individual", "Mando intermedio", "Dirección", "Fundador/a o propietario/a"],
   },
   {
     id: "tools",
     type: "multi" as const,
-    question: "Which AI tools do you use for work?",
-    options: ["ChatGPT", "Claude", "Gemini", "Copilot", "Other", "None"],
+    question: "¿Qué herramientas de IA usas en el trabajo?",
+    options: ["ChatGPT", "Claude", "Gemini", "Copilot", "Otro", "Ninguna"],
   },
   {
     id: "frequency",
     type: "single" as const,
-    question: "How often do you use AI for work?",
-    options: ["Never", "A few times a month", "Weekly", "Daily"],
+    question: "¿Con qué frecuencia usas IA para el trabajo?",
+    options: ["Nunca", "Algunas veces al mes", "Semanalmente", "A diario"],
   },
   {
     id: "account",
     type: "single" as const,
-    question: "When you use AI for work, on what account?",
-    options: ["Free personal", "Paid personal", "Company account", "Not sure"],
+    question: "Cuando usas IA para el trabajo, ¿con qué cuenta lo haces?",
+    options: ["Cuenta personal gratuita", "Cuenta personal de pago", "Cuenta de la empresa", "No estoy seguro/a"],
+  },
+  {
+    id: "aiUseCases",
+    type: "multi" as const,
+    question: "¿Para qué tipo de tareas usas la IA actualmente?",
+    options: [
+      "Redactar o revisar textos",
+      "Buscar o resumir información",
+      "Analizar datos",
+      "Generar ideas",
+      "Programar",
+      "Todavía no la uso",
+    ],
+  },
+  {
+    id: "personalUse",
+    type: "single" as const,
+    question: "¿Usas la IA en tu vida personal (fuera del trabajo)?",
+    options: [
+      "No la uso",
+      "Sí, para tareas puntuales (buscar información, escribir mensajes)",
+      "Sí, con frecuencia y para cosas variadas",
+      "Sí, es parte de mi día a día",
+    ],
   },
   {
     id: "selfRating",
     type: "scale" as const,
-    question: "How confident are you in your AI skills?",
+    question: "¿Qué tan seguro/a te sientes de tus habilidades con la IA?",
     min: 1,
     max: 10,
   },
@@ -54,159 +94,216 @@ export type MaterialDef =
 
 export const tasks: TaskDef[] = [
   // ────────────────────────────────────────────────────────────────────────
-  // TASK 1 — The Monthly Report
-  // Traps: sensitive columns (attach raw file), missable "refunds excluded",
-  // output verification (AI-produced figures vs. the CSV ground truth).
-  // Ground truth: settled total €1,167,000 · top 3 settled: Subscriptions
-  // €385,000, Professional Services €298,000, Hardware €176,000.
-  // Wrong answer (refunds included): €1,295,000 and Logistics (€199,000)
-  // replaces Hardware in the top 3.
+  // TASK 1 — Alert Summary
+  // Traps: sensitive columns (attach raw file — client name + client domain
+  // identify which companies had which security incidents), missable "exclude
+  // false positives", output verification (AI-produced figures vs. CSV
+  // ground truth).
+  // Ground truth (from alertas_junio_2026.csv, 832 rows): alerts managed
+  // (estado != "Falso positivo", i.e. "Gestionada" + "En curso") = 712.
+  // Top 3 categories by count among those 712: Phishing / correo malicioso
+  // (186), Malware en endpoint (153), Intento de suplantacion (130).
+  // Wrong answer (false positives wrongly included): total = 832 (all rows).
+  // The top-3 category ranking happens to stay the same, but every count is
+  // inflated by the 120 false positives folded in.
+  // Operational note worth surfacing: Nexia Fintech accounts for 82 of the
+  // 130 "Intento de suplantacion" (impersonation attempt) alerts (63%) and
+  // has the highest overall managed-alert volume of any client (191) — a
+  // concentration worth flagging to leadership.
   // ────────────────────────────────────────────────────────────────────────
   {
-    id: "monthly-report",
-    title: "The Monthly Report",
+    id: "alert-summary",
+    title: "El resumen de alertas",
     minutes: 11,
     maxUserMessages: 12,
     maxResponseTokens: 1500, // raised: the CSV may sit in context
     deliverableKind: "text",
-    deliverableLabel: "Paste your final one-page summary here",
-    brief: `**From:** Finance lead
-**To:** You
-**Subject:** Monthly payments summary for management
+    deliverableLabel: "Pega aquí tu resumen final de una página",
+    brief: `**De:** Responsable de Operaciones SOC
+**Para:** Ti
+**Asunto:** Resumen de alertas para la reunión con dirección
 
-I need a one-page summary of last month's payments for the management review. Please cover total settled payment volume (refunds excluded), the three largest categories by value, and one operational note on anything worth their attention.
+El jueves dirección revisa lo del mes pasado y me hace falta un resumen de una página, algo que se lea en dos minutos.
 
-The full export is attached. Management reviews this Thursday.`,
+Necesito tres cosas:
+- Cuántas alertas gestionamos en total, sin contar los falsos positivos.
+- Las tres categorías con más alertas.
+- Una nota operativa: si ves algo en los datos que dirección debería saber, apúntalo.
+
+Te paso la exportación completa adjunta.`,
     materials: [
       {
         kind: "csv",
-        id: "payments-csv",
-        filename: "payments_march.csv",
-        sizeLabel: "1,904 rows · 214 KB",
-        note: "Full March export from the payments system.",
+        id: "alerts-csv",
+        filename: "alertas_junio_2026.csv",
+        sizeLabel: "832 filas · 88 KB",
+        note: "Exportación completa de junio del sistema de alertas del SOC.",
       },
     ],
   },
 
   // ────────────────────────────────────────────────────────────────────────
-  // TASK 2 — The Research Briefing
-  // Traps: T4 contradiction (Source 1 prose: +40% growth in 2025 vs Source 4
-  // chart description: essentially flat, 31%→32%) · T6 unverifiable causal
-  // claim (Source 2: "driven by post-pandemic hybrid work patterns" — nothing
-  // in the pack supports it). Everything else is internally consistent.
+  // TASK 2 — AI Meeting-Notes Briefing
+  // Traps: contradiction (Fuente A: 78% de las grandes empresas ya han
+  // desplegado, frente al 31% de hace 18 meses vs. Fuente E: menos del 15%
+  // ha pasado de piloto a despliegue estable, y critica precisamente cifras
+  // infladas de "empresas que han desplegado" como la de la Fuente A) ·
+  // unverifiable/unsupported claim (el cierre de la Fuente A: "la ventana...
+  // se está cerrando, quien entre el año que viene lo hará ya como
+  // rezagado" — una predicción categórica sobre resultado competitivo que
+  // nada más en el dossier respalda, y que de hecho las Fuentes C y E
+  // contradicen con su tono más cauto). El resto es internamente consistente.
   // ────────────────────────────────────────────────────────────────────────
   {
-    id: "research-briefing",
-    title: "The Research Briefing",
+    id: "ai-notes-briefing",
+    title: "El briefing de IA para actas",
     minutes: 10,
     maxUserMessages: 12,
     maxResponseTokens: 800,
     deliverableKind: "text",
-    deliverableLabel: "Paste your final one-page briefing here",
-    brief: `**From:** Strategy lead
-**To:** You
-**Subject:** One-page briefing for the management review
+    deliverableLabel: "Pega aquí tu briefing final de una página",
+    brief: `**De:** Responsable de Estrategia
+**Para:** Ti
+**Asunto:** Briefing para el jueves — herramientas de IA para actas
 
-I need a one-page briefing on corporate adoption of AI note-taking tools, ending with a clear recommendation on whether we move now or wait.
+Necesito un briefing de una página sobre si desplegamos herramientas de IA para transcribir y resumir las reuniones internas. Que termine con una recomendación clara: lo adoptamos ahora o esperamos.
 
-I've attached the sources I had time to gather — work from those; I'd rather have it grounded in what we've got than padded with generic background. Management reviews Thursday.`,
+Te adjunto las fuentes que he podido reunir. Trabaja a partir de ellas; prefiero algo apoyado en lo que ya tenemos que relleno genérico. Dirección lo revisa el jueves.`,
     materials: [
       {
         kind: "source",
         id: "src-1",
-        label: "Article — TechWeek Business",
-        title: "AI note-takers move from novelty to line item",
-        body: `Two years ago, AI meeting assistants were a curiosity demoed at conferences. Today they are a budget line. Corporate adoption of AI note-taking tools grew by roughly 40% in 2025, according to procurement data reviewed by TechWeek, with mid-market companies driving most of the new contracts.
+        label: "Fuente A — TecnoÁgora (blog tecnológico)",
+        title: "La reunión que se escribe sola: por qué 2026 es el año de las actas con IA",
+        body: `Durante décadas, la reunión de empresa ha arrastrado el mismo lastre invisible: alguien tiene que tomar notas. Esa persona deja de participar, escribe a medias lo que oye, y al día siguiente reparte un acta que nadie termina de leer. Las herramientas de IA para transcripción y resumen de reuniones han venido a enterrar ese modelo, y los números que están saliendo este año no dejan mucho espacio para la duda.
 
-Vendors have responded by moving upmarket. Enterprise tiers now bundle meeting summaries with action-item tracking and CRM sync, and per-seat prices have held steady even as the underlying models became cheaper to run. Procurement teams report that the decision is no longer whether to buy, but which security tier to buy.
+Según el último barómetro sectorial, el 78% de las grandes empresas ya han desplegado alguna herramienta de IA para actas en al menos un departamento. La cifra era del 31% hace apenas dieciocho meses. Cuando una tecnología se mueve a esa velocidad, la pregunta para el resto del mercado deja de ser "si" y pasa a ser "cuándo", y cada trimestre de espera es terreno que ceden frente a competidores que ya están operando con equipos más rápidos.
 
-Not every deployment sticks. Several IT leads interviewed for this piece described "shelfware" seats — licences bought in bulk and never activated — as the quiet failure mode of the category.`,
+El funcionamiento es sencillo. La herramienta se conecta al sistema de videollamada, escucha la reunión, y devuelve una transcripción completa más un resumen estructurado: puntos tratados, decisiones tomadas y, lo que más valoran los equipos, una lista automática de tareas asignadas con responsable y fecha. Lo que antes ocupaba a una persona durante media hora después de cada reunión ahora aparece solo, en el momento en que la llamada termina.
+
+Los primeros en adoptarlo fueron los equipos comerciales, que necesitan registrar cada conversación con cliente sin perder el hilo del trato. Detrás llegaron los departamentos de producto, de recursos humanos y de operaciones. El patrón se repite en todos: al principio hay resistencia, alguien pregunta si de verdad hace falta, y a las dos semanas nadie quiere volver a tomar notas a mano.
+
+No todo es perfecto. La calidad del resumen depende de la calidad del audio, y las reuniones con mucha gente hablando a la vez siguen dando problemas. Pero la dirección del viento está clara. Las empresas que hoy siguen debatiendo si dar el paso son, cada vez más, la excepción. La ventana para adoptar esta tecnología como ventaja competitiva se está cerrando, y quien entre el año que viene lo hará ya como rezagado, no como pionero.`,
       },
       {
         kind: "source",
         id: "src-2",
-        label: "Article — WorkTools Daily",
-        title: "Why meeting notes were the first thing companies automated",
-        body: `Of all the tasks AI could take off an office worker's plate, meeting notes went first. The reasons are practical: the input is bounded (one meeting), the output is low-risk (an internal summary), and the time saved is visible to everyone in the room.
+        label: "Fuente B — Reunia (ficha de producto y caso de cliente)",
+        title: "Reunia — Tus reuniones, convertidas en decisiones",
+        body: `Reunia es la plataforma de inteligencia de reuniones que utilizan más de 4.000 equipos en Europa. Se integra en un clic con las principales plataformas de videollamada y empieza a trabajar desde la primera reunión, sin proyectos de implantación ni formación técnica.
 
-The shift is largely driven by post-pandemic hybrid work patterns, which multiplied the number of meetings that happen partly or fully on calls.
+**Qué hace Reunia por tu equipo:**
+- Transcripción automática en 32 idiomas, con identificación de cada interlocutor.
+- Resumen ejecutivo generado al terminar la llamada, listo para reenviar.
+- Extracción automática de tareas, con responsable y fecha detectados en la conversación.
+- Buscador sobre todo tu histórico de reuniones: encuentra cualquier decisión pasada escribiendo dos palabras.
+- Seguridad de nivel empresarial y cifrado de extremo a extremo.
 
-Adoption has been uneven across functions. Sales and customer-success teams lead, because call summaries feed directly into CRM records. Legal and HR lag, citing confidentiality concerns about what the tools retain and where recordings are processed.`,
+**Caso de cliente: grupo asegurador (450 empleados)**
+
+Antes de Reunia, el equipo de siniestros de este grupo asegurador dedicaba una media de 40 minutos después de cada reunión de coordinación a redactar y repartir el acta. Con doce reuniones semanales entre los distintos turnos, eso suponía ocho horas de trabajo administrativo cada semana que no aportaban valor directo al cliente.
+
+Tres meses después de desplegar Reunia, ese tiempo se ha reducido prácticamente a cero. "Lo que más nos ha sorprendido no es el ahorro de tiempo, que ya esperábamos, sino que ahora las decisiones no se pierden", explica la responsable de operaciones. "Antes una decisión tomada en una reunión de los lunes se diluía si la persona que tomaba notas estaba de vacaciones. Ahora está todo registrado y es buscable. Hemos recuperado horas y, sobre todo, hemos dejado de repetir conversaciones que ya habíamos tenido."
+
+El grupo calcula un retorno de la inversión en menos de dos meses, contando solo el tiempo administrativo recuperado. No entran en ese cálculo las mejoras difíciles de cuantificar: menos malentendidos, seguimiento más limpio de los acuerdos y una memoria de equipo que no depende de que una persona concreta se acuerde de lo que se dijo.
+
+**Empieza hoy.** Prueba Reunia gratis durante 14 días. Sin tarjeta, sin compromiso.`,
       },
       {
         kind: "source",
         id: "src-3",
-        label: "Data table — vendor landscape",
-        title: "Leading AI note-taking vendors (compiled)",
-        body: `| Vendor        | Entry price (seat/mo) | Enterprise tier | On-prem option |
-|---------------|----------------------|-----------------|----------------|
-| NotedAI       | €12                  | Yes             | No             |
-| MinuteMind    | €9                   | Yes             | No             |
-| Scribewell    | €15                  | Yes             | Yes            |
-| EchoBrief     | €8                   | No              | No             |
+        label: "Fuente C — Cátedra Advisory (extracto de informe sectorial)",
+        title: "Herramientas de inteligencia de reuniones: panorama de mercado 2026",
+        body: `**Resumen para dirección.** El segmento de herramientas de IA aplicadas a la gestión de reuniones ha pasado en dos años de ser una categoría emergente a consolidarse como una subcategoría estable dentro del software de productividad. Nuestra estimación sitúa el mercado europeo en una fase de crecimiento sostenido, impulsado por la mejora en la precisión de la transcripción y por la integración nativa con las plataformas de videollamada dominantes.
 
-Compiled from public pricing pages, May 2026. Enterprise tiers add SSO, retention controls, and audit logs.`,
+**Estructura de la oferta.** Identificamos tres perfiles de proveedor. En primer lugar, los módulos integrados que los propios fabricantes de plataformas de videollamada incorporan a su producto; su ventaja es la ausencia de fricción de despliegue, su límite es la escasa profundidad funcional. En segundo lugar, los especialistas independientes, que ofrecen funciones avanzadas de resumen, extracción de tareas y búsqueda sobre el histórico; aquí se concentra la innovación, pero también la mayor dispersión en calidad y en modelos de precio. En tercer lugar, las suites de productividad más amplias que añaden la funcionalidad de actas como una pieza más de un ecosistema mayor.
+
+**Consideraciones de adopción.** Nuestra recomendación para organizaciones que evalúan la categoría es abordar la decisión como un proyecto de despliegue, no como una compra de herramienta. Los factores que con más frecuencia determinan el éxito o el fracaso de una implantación, según nuestra base de casos, son los siguientes:
+
+1. *Integración con el flujo de trabajo existente.* Una herramienta que obliga a cambiar de plataforma o a exportar manualmente los resultados pierde gran parte de su valor. La adopción se sostiene cuando el resultado aparece donde el equipo ya trabaja.
+
+2. *Precisión en el contexto real de la organización.* Las cifras de precisión que publican los proveedores se obtienen en condiciones ideales. El rendimiento sobre audio de reuniones reales, con solapamiento de voces, ruido y vocabulario especializado, es sensiblemente inferior y debe validarse en un piloto antes de escalar.
+
+3. *Gobernanza del contenido generado.* Toda organización que introduce estas herramientas genera un nuevo repositorio de información: transcripciones íntegras de sus reuniones. La política de acceso, conservación y responsabilidad sobre ese repositorio suele definirse tarde, cuando ya existe un volumen considerable de contenido acumulado.
+
+**Perspectiva.** Esperamos que la categoría continúe madurando y que la diferenciación entre proveedores se desplace desde la precisión de la transcripción, que tiende a homogeneizarse, hacia las capacidades de integración y de gestión del conocimiento. Las organizaciones que hoy pilotan la tecnología estarán mejor posicionadas para aprovechar esa siguiente fase que las que esperen a que la categoría se estabilice por completo.`,
       },
       {
         kind: "source",
         id: "src-4",
-        label: "Report extract — Meridian Research, Q1 2026",
-        title: "Workplace AI tools: adoption tracker (extract)",
-        body: `[Figure 3 — omitted in this extract] The chart tracks the share of surveyed companies (n=1,850, EU and UK) with at least one paid AI note-taking deployment, quarterly. As the chart shows, the share of companies using AI note-taking tools remained essentially unchanged through 2025, moving from 31% in Q1 to 32% in Q4 — within the survey's margin of error.
+        label: "Fuente D — Foro TecnoAdmin (hilo de comunidad de administradores de sistemas)",
+        title: "¿Qué herramienta de actas con IA estáis usando de verdad? Experiencias reales, no folletos",
+        body: `**mgarrido_IT** · Llevamos tres meses probando dos de las herramientas más nombradas en un piloto con el equipo comercial. Resumen honesto: la transcripción está muy bien cuando habla una sola persona con buen micro. En cuanto se solapan dos voces o alguien habla con acento marcado, la cosa se degrada rápido. El resumen se inventa cosas de vez en cuando, sobre todo cuando en la reunión no se llega a ninguna conclusión clara. Detecta una decisión que nunca se tomó. Hay que revisarlo siempre, lo cual mata parte del ahorro de tiempo que te venden.
 
-Where movement does show up is depth rather than breadth: among companies already deployed, the median number of active seats grew from 14 to 31 over the same period. Meridian reads this as a consolidation phase — existing buyers expanding, few new buyers entering.
+**dcastro** · +1 al tema de los acentos. Tenemos gente de varios países en las llamadas y la precisión cae un montón. Para reuniones internas nos vale porque ya sabemos de qué iba, pero no me fiaría de mandar el resumen automático a un cliente sin leerlo entero antes.
 
-Respondents citing "data governance" as the main blocker to first deployment rose from 22% to 29% year over year.`,
+**laura_sysadmin** · Nosotros lo desplegamos y lo retiramos a las seis semanas. No por la herramienta en sí, que funcionaba bien. Somos un centro sanitario y cuando legal se sentó a mirar el asunto en serio, la cosa se paró. No entro en detalles pero digamos que la conversación sobre qué pasaba con las grabaciones no tuvo una respuesta que dejara tranquilo a nadie. Si estáis en un sector regulado, habladlo con vuestra gente de compliance ANTES de desplegar, no después.
+
+**mgarrido_IT** · @laura_sysadmin muy de acuerdo con hacerlo antes. Nosotros lo estamos usando solo para reuniones internas de coordinación, nada sensible, y aun así el departamento legal nos ha pedido una revisión. Para reuniones donde se hablan cosas de clientes lo tenemos parado hasta aclararlo.
+
+**jotaeme** · A nivel puramente funcional, la extracción de tareas es lo que más me ha gustado. Que te saque solo el "quién hace qué y para cuándo" ya justifica bastante. Pero coincido en que el resumen narrativo hay que revisarlo. No es plug and play por mucho que lo pinten así.
+
+**dcastro** · Conclusión del hilo para el que llegue nuevo: útil, sobre todo para tareas. Revisar siempre. Y si tocáis datos sensibles, no deis por hecho nada, preguntad antes.`,
       },
       {
         kind: "source",
         id: "src-5",
-        label: "Web page — vendor security & compliance",
-        title: "Scribewell — Security & data handling (vendor page)",
-        body: `Your meetings stay yours. Scribewell processes audio in-region (EU customers: Frankfurt), retains transcripts for 30 days by default (configurable to zero), and never uses customer content to train models.
+        label: "Fuente E — Cinco Column (reportaje económico)",
+        title: "Actas con IA: entre el ahorro real y el ruido del mercado",
+        body: `La promesa es atractiva y el mercado la ha amplificado con entusiasmo: reuniones que se transcriben y se resumen solas, tareas que se asignan sin que nadie las apunte, y horas de trabajo administrativo que desaparecen. Detrás del ruido, sin embargo, la adopción real en el tejido empresarial es más prudente de lo que sugieren algunos titulares.
 
-Enterprise plans add: single sign-on, per-workspace retention policies, audit logs, and an optional on-premise transcription gateway for regulated industries.
+Según los datos de penetración que manejan las principales consultoras del sector, menos del 15% de las empresas ha pasado de la fase de prueba a un despliegue estable y generalizado. La inmensa mayoría de las organizaciones que han tocado esta tecnología lo han hecho en formato piloto, limitado a un equipo concreto y sin una decisión firme de extenderlo. Conviene tener presente ese matiz cuando se leen cifras de adopción más llamativas, que a menudo cuentan como "empresa que ha desplegado" a cualquier organización donde una sola persona ha activado una prueba gratuita.
 
-Certifications: ISO 27001, SOC 2 Type II. A signed DPA is available for all paid tiers.`,
+Los responsables de tecnología consultados coinciden en que el valor de la herramienta es real, pero acotado. "Donde de verdad ahorra es en el registro de acuerdos y en el seguimiento de tareas", explica el director de sistemas de una empresa industrial mediana. "El resumen narrativo todavía hay que supervisarlo. Y hay reuniones que directamente no queremos que pasen por una herramienta de estas."
+
+Ese último punto es el que más frena la adopción a gran escala. La comodidad de que un sistema escuche, grabe y transcriba cada reunión convive con una incomodidad creciente sobre qué se hace después con ese material. Las conversaciones de una empresa contienen información estratégica, datos de clientes y, en muchos casos, información sujeta a normativa. Introducir un tercero que procesa todo ese contenido no es una decisión de productividad, es una decisión que cruza lo operativo con lo legal, y las organizaciones que la abordan solo desde el ahorro de tiempo suelen descubrir la otra cara más tarde de lo que les gustaría.
+
+El consenso entre los expertos no es "no lo hagáis", sino "no lo hagáis a ciegas". La tecnología ha madurado lo suficiente como para aportar valor, pero la diferencia entre una adopción que sale bien y una que acaba retirándose está menos en la herramienta que en el trabajo previo: definir para qué reuniones sí y para cuáles no, decidir quién puede acceder a las transcripciones y, sobre todo, tener una respuesta clara a la pregunta que muchas empresas se hacen demasiado tarde.`,
       },
     ],
   },
 
   // ────────────────────────────────────────────────────────────────────────
-  // TASK 3 — The Deck
-  // Traps: T7 internal detail (processor dispute in arbitration — must not
-  // appear in slides; generic "improving our billing" is NOT a leak) ·
-  // T8 exact figures (1.8% fee, was 2.1%; Sept 1; Aug 1–31 window; standard
-  // agreements only) · T9 format-fit (5 slides, one message per slide) ·
-  // T10 delivery-polish (AI-tell markers — demo-level only in the prototype).
+  // TASK 3 — Partner Deck
+  // Traps: internal detail (infrastructure-provider migration following a
+  // security incident with the previous provider, still under NDA — must
+  // not appear in slides; a generic "estamos mejorando nuestra
+  // infraestructura" is NOT a leak) · exact figures (€2.80 fee, was €3.20
+  // per endpoint; September 1st; August 1–31 window; standard agreements
+  // only, legacy unaffected until renewal) · format-fit (5 slides, one
+  // message per slide) · delivery-polish (AI-tell markers — demo-level only
+  // in the prototype).
   // ────────────────────────────────────────────────────────────────────────
   {
-    id: "the-deck",
-    title: "The Deck",
+    id: "partner-deck",
+    title: "El deck de socios",
     minutes: 7,
     maxUserMessages: 12,
     maxResponseTokens: 800,
     deliverableKind: "slides",
-    deliverableLabel: "Write the content of each slide (title + bullets)",
-    brief: `**From:** Comms lead
-**To:** You
-**Subject:** Slides for the partner update
+    deliverableLabel: "Escribe el contenido de cada diapositiva (título + puntos)",
+    brief: `**De:** Responsable de Comunicación
+**Para:** Ti
+**Asunto:** Contenido para el deck de actualización a partners
 
-Put together the content for a **5-slide** deck announcing the new billing schedule to our partners. Use these figures: processing fee drops from 2.1% to **1.8%** on **September 1st**; the transition window runs **August 1–31** (both schedules accepted); the change applies to **all partners on standard agreements** — legacy agreements stay as they are until renewal.
+Prepárame el contenido de un deck de **5 diapositivas** para anunciar el nuevo esquema de precios a los partners.
 
-Keep it tight — this goes to external partners, one clear message per slide.
+Estas son las cifras:
+- La cuota por endpoint baja de 3,20 € a **2,80 €**, a partir del **1 de septiembre**.
+- La ventana de transición va del **1 al 31 de agosto**; durante ese mes se aceptan los dos esquemas.
+- El cambio aplica a **todos los partners con acuerdo estándar**. Los acuerdos legacy se mantienen hasta que toque renovarlos.
 
-For your context only: part of the reason we're changing this is a dispute with our previous payment processor, still in arbitration. That stays internal — it must not appear anywhere in the partner-facing slides.`,
+Un apunte solo para ti: parte del motivo del cambio es que estamos migrando de proveedor de infraestructura después de un incidente de seguridad con el anterior, algo que todavía está bajo acuerdo de confidencialidad. Es interno, así que no puede aparecer en nada que llegue a los partners.`,
     materials: [],
   },
 ];
 
 export const completionScreen = {
-  title: "Assessment complete",
-  body: "Thanks — your session has been recorded. Your report is being prepared and will be shared with you directly.",
-  reportSending: "Grading your session and preparing your report…",
-  reportReady: "Your personal results report is ready — download it below.",
-  reportError: "We couldn't generate your report. Please try again.",
-  reportRetry: "Try again",
-  reportDownload: "Download your report (PDF)",
+  title: "Evaluación completada",
+  body: "Gracias — tu sesión ha quedado registrada. Tu informe se está preparando y se compartirá contigo directamente.",
+  reportSending: "Evaluando tu sesión y preparando tu informe…",
+  reportReady: "Tu informe de resultados personal está listo — descárgalo abajo.",
+  reportError: "No hemos podido generar tu informe. Inténtalo de nuevo.",
+  reportRetry: "Intentar de nuevo",
+  reportDownload: "Descargar tu informe (PDF)",
 };

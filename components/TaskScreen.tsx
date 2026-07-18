@@ -80,7 +80,7 @@ export default function TaskScreen({
         <div className="mx-auto flex max-w-[640px] flex-col gap-9 px-8 py-12 sm:px-12">
           <div className="flex items-center justify-between gap-4">
             <span className="text-[13px] font-extrabold uppercase tracking-wide text-[var(--foreground)]">
-              Task {taskNumber} · {task.title}
+              Tarea {taskNumber} · {task.title}
             </span>
             <Timer minutes={task.minutes} startedAt={state.startedAt} />
           </div>
@@ -105,7 +105,7 @@ export default function TaskScreen({
 
           <div className="flex flex-col gap-3.5">
             <p className="text-xs font-bold uppercase tracking-wide text-[var(--foreground-muted)]">
-              Materials
+              Materiales
             </p>
             <MaterialsPane materials={task.materials} accessKey={accessKey} />
           </div>
@@ -134,7 +134,7 @@ export default function TaskScreen({
             disabled={state.submitted}
             className="btn-press w-full rounded-2xl bg-[image:var(--accent-gradient)] py-3 text-sm font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-40"
           >
-            Submit & continue
+            Enviar y continuar
           </button>
         </div>
       </div>
@@ -147,25 +147,25 @@ export default function TaskScreen({
           messages={state.messages}
           onChange={onChangeMessages}
           maxUserMessages={task.maxUserMessages}
-          canAttach={task.id === "monthly-report"}
+          canAttach={task.id === "alert-summary"}
           disabled={state.submitted}
         />
       </div>
 
       {confirmStep === 1 && (
         <ConfirmDialog
-          title="Empty deliverable"
-          message="You haven't written anything yet. Submit anyway?"
-          confirmLabel="Submit anyway"
+          title="Entregable vacío"
+          message="Todavía no has escrito nada. ¿Enviar de todas formas?"
+          confirmLabel="Enviar de todas formas"
           onConfirm={() => setConfirmStep(2)}
           onCancel={() => setConfirmStep(0)}
         />
       )}
       {confirmStep === 2 && (
         <ConfirmDialog
-          title="Submit task"
-          message="You won't be able to return to this task."
-          confirmLabel="Submit & continue"
+          title="Enviar tarea"
+          message="No podrás volver a esta tarea."
+          confirmLabel="Enviar y continuar"
           onConfirm={() => {
             setConfirmStep(0);
             onSubmit();

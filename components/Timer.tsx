@@ -52,7 +52,7 @@ export default function Timer({
       <span
         className={`text-[13px] font-semibold tabular-nums tracking-wide transition-colors duration-300 ${textColor}`}
       >
-        {format(elapsed)} elapsed
+        {format(elapsed)} transcurrido
       </span>
     </span>
   );

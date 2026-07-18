@@ -1,0 +1,833 @@
+alerta_id,fecha_hora,cliente,dominio_cliente,categoria,severidad,estado
+ALT-1660,2026-06-01 00:44:21,Loredo Logistica,loredologistica.es,Fuga de datos (DLP),media,Gestionada
+ALT-1726,2026-06-01 01:53:49,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,baja,Falso positivo
+ALT-1130,2026-06-01 02:41:27,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1751,2026-06-01 04:37:45,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,media,Falso positivo
+ALT-1688,2026-06-01 05:31:22,Nexia Fintech,nexiapay.com,Navegacion no segura,alta,Gestionada
+ALT-1290,2026-06-01 05:55:09,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,critica,Gestionada
+ALT-1763,2026-06-01 08:13:15,Loredo Logistica,loredologistica.es,Navegacion no segura,media,Falso positivo
+ALT-1357,2026-06-01 08:13:53,Gestoria Vallbona,gestoriavallbona.es,Intento de suplantacion,media,Gestionada
+ALT-1769,2026-06-01 10:16:06,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,baja,Falso positivo
+ALT-1811,2026-06-01 12:03:10,Bufete Salazar Ortun,salazar-ortun.com,Acceso no autorizado,media,En curso
+ALT-1127,2026-06-01 12:21:42,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,media,Gestionada
+ALT-1732,2026-06-01 12:43:27,Loredo Logistica,loredologistica.es,Navegacion no segura,media,Falso positivo
+ALT-1706,2026-06-01 13:01:14,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,baja,Falso positivo
+ALT-1772,2026-06-01 13:41:10,Nexia Fintech,nexiapay.com,Navegacion no segura,media,Falso positivo
+ALT-1066,2026-06-01 14:39:36,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1228,2026-06-01 14:57:18,Nexia Fintech,nexiapay.com,Malware en endpoint,media,Gestionada
+ALT-1603,2026-06-01 15:06:18,Bufete Salazar Ortun,salazar-ortun.com,Vulnerabilidad critica,critica,Gestionada
+ALT-1625,2026-06-01 15:08:12,Bufete Salazar Ortun,salazar-ortun.com,Fuga de datos (DLP),media,Gestionada
+ALT-1301,2026-06-01 15:47:27,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,media,Gestionada
+ALT-1004,2026-06-01 17:12:45,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1547,2026-06-01 17:35:26,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,alta,Gestionada
+ALT-1567,2026-06-01 20:17:50,Bufete Salazar Ortun,salazar-ortun.com,Vulnerabilidad critica,critica,Gestionada
+ALT-1813,2026-06-01 21:00:30,Acelor Metalurgica,acelor.es,Acceso no autorizado,alta,En curso
+ALT-1671,2026-06-01 21:56:19,Nexia Fintech,nexiapay.com,Navegacion no segura,media,Gestionada
+ALT-1758,2026-06-01 22:36:25,Nexia Fintech,nexiapay.com,Navegacion no segura,baja,Falso positivo
+ALT-1746,2026-06-01 22:44:22,Acelor Metalurgica,acelor.es,Navegacion no segura,media,Falso positivo
+ALT-1003,2026-06-02 00:05:13,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1135,2026-06-02 00:15:12,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,alta,Gestionada
+ALT-1251,2026-06-02 01:19:31,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,media,Gestionada
+ALT-1748,2026-06-02 02:03:14,Loredo Logistica,loredologistica.es,Navegacion no segura,baja,Falso positivo
+ALT-1773,2026-06-02 03:21:13,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,media,Falso positivo
+ALT-1092,2026-06-02 03:38:27,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,critica,Gestionada
+ALT-1652,2026-06-02 03:40:50,Gestoria Vallbona,gestoriavallbona.es,Fuga de datos (DLP),alta,Gestionada
+ALT-1266,2026-06-02 04:47:26,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,baja,Gestionada
+ALT-1685,2026-06-02 07:05:59,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,alta,Gestionada
+ALT-1107,2026-06-02 07:30:39,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1238,2026-06-02 09:50:28,Nexia Fintech,nexiapay.com,Malware en endpoint,critica,Gestionada
+ALT-1355,2026-06-02 09:58:53,Clinica Dental Nervion,clinicanervion.es,Intento de suplantacion,alta,Gestionada
+ALT-1260,2026-06-02 10:15:08,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,media,Gestionada
+ALT-1223,2026-06-02 10:50:03,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,alta,Gestionada
+ALT-1829,2026-06-02 11:14:47,Clinica Dental Nervion,clinicanervion.es,Vulnerabilidad critica,critica,En curso
+ALT-1807,2026-06-02 11:45:12,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,baja,Falso positivo
+ALT-1320,2026-06-02 11:53:18,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,media,Gestionada
+ALT-1513,2026-06-02 12:28:14,Nexia Fintech,nexiapay.com,Acceso no autorizado,baja,Gestionada
+ALT-1790,2026-06-02 13:05:43,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,baja,Falso positivo
+ALT-1324,2026-06-02 14:06:51,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,media,Gestionada
+ALT-1696,2026-06-02 15:23:24,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,baja,Falso positivo
+ALT-1270,2026-06-02 15:54:25,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,media,Gestionada
+ALT-1220,2026-06-02 19:04:15,Acelor Metalurgica,acelor.es,Malware en endpoint,media,Gestionada
+ALT-1062,2026-06-02 19:05:26,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1734,2026-06-02 19:39:39,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,media,Falso positivo
+ALT-1234,2026-06-02 19:47:31,Nexia Fintech,nexiapay.com,Malware en endpoint,alta,Gestionada
+ALT-1348,2026-06-02 20:30:55,Bufete Salazar Ortun,salazar-ortun.com,Intento de suplantacion,baja,Gestionada
+ALT-1295,2026-06-02 21:05:17,Acelor Metalurgica,acelor.es,Malware en endpoint,baja,Gestionada
+ALT-1723,2026-06-02 21:19:16,Acelor Metalurgica,acelor.es,Navegacion no segura,media,Falso positivo
+ALT-1607,2026-06-02 22:07:01,Bufete Salazar Ortun,salazar-ortun.com,Vulnerabilidad critica,alta,Gestionada
+ALT-1181,2026-06-03 01:10:50,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,critica,Gestionada
+ALT-1035,2026-06-03 02:46:31,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1120,2026-06-03 04:09:14,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Gestionada
+ALT-1659,2026-06-03 04:37:14,Loredo Logistica,loredologistica.es,Fuga de datos (DLP),baja,Gestionada
+ALT-1291,2026-06-03 04:47:40,Loredo Logistica,loredologistica.es,Malware en endpoint,media,Gestionada
+ALT-1729,2026-06-03 06:57:41,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,baja,Falso positivo
+ALT-1170,2026-06-03 07:07:35,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,alta,Gestionada
+ALT-1351,2026-06-03 07:52:28,Loredo Logistica,loredologistica.es,Intento de suplantacion,baja,Gestionada
+ALT-1200,2026-06-03 07:53:58,Loredo Logistica,loredologistica.es,Malware en endpoint,baja,Gestionada
+ALT-1012,2026-06-03 07:55:06,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,alta,Gestionada
+ALT-1736,2026-06-03 08:24:08,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,media,Falso positivo
+ALT-1827,2026-06-03 08:46:51,Nexia Fintech,nexiapay.com,Vulnerabilidad critica,critica,En curso
+ALT-1684,2026-06-03 09:44:27,Nexia Fintech,nexiapay.com,Navegacion no segura,media,Gestionada
+ALT-1338,2026-06-03 09:54:50,Clinica Dental Nervion,clinicanervion.es,Intento de suplantacion,critica,Gestionada
+ALT-1329,2026-06-03 10:06:35,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,media,Gestionada
+ALT-1730,2026-06-03 10:07:02,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,media,Falso positivo
+ALT-1193,2026-06-03 10:16:20,Loredo Logistica,loredologistica.es,Malware en endpoint,media,Gestionada
+ALT-1353,2026-06-03 11:14:01,Loredo Logistica,loredologistica.es,Intento de suplantacion,media,Gestionada
+ALT-1462,2026-06-03 11:59:28,Nexia Fintech,nexiapay.com,Acceso no autorizado,media,Gestionada
+ALT-1592,2026-06-03 13:43:31,Nexia Fintech,nexiapay.com,Vulnerabilidad critica,critica,Gestionada
+ALT-1308,2026-06-03 13:54:06,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,alta,Gestionada
+ALT-1229,2026-06-03 14:22:37,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,alta,Gestionada
+ALT-1594,2026-06-03 14:38:30,Loredo Logistica,loredologistica.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1701,2026-06-03 14:55:18,Loredo Logistica,loredologistica.es,Navegacion no segura,baja,Falso positivo
+ALT-1267,2026-06-03 15:28:49,Nexia Fintech,nexiapay.com,Malware en endpoint,media,Gestionada
+ALT-1496,2026-06-03 16:28:51,Loredo Logistica,loredologistica.es,Acceso no autorizado,alta,Gestionada
+ALT-1144,2026-06-03 16:41:21,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,media,Gestionada
+ALT-1261,2026-06-03 17:13:37,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,alta,Gestionada
+ALT-1702,2026-06-03 17:29:00,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,media,Falso positivo
+ALT-1178,2026-06-03 21:14:59,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1383,2026-06-03 21:40:25,Gestoria Vallbona,gestoriavallbona.es,Intento de suplantacion,media,Gestionada
+ALT-1722,2026-06-03 22:15:22,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,media,Falso positivo
+ALT-1575,2026-06-04 00:05:22,Loredo Logistica,loredologistica.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1817,2026-06-04 00:32:42,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,En curso
+ALT-1166,2026-06-04 00:36:18,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1493,2026-06-04 01:53:35,Acelor Metalurgica,acelor.es,Acceso no autorizado,media,Gestionada
+ALT-1168,2026-06-04 02:25:31,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,critica,Gestionada
+ALT-1071,2026-06-04 04:16:07,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1313,2026-06-04 04:16:12,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,alta,Gestionada
+ALT-1653,2026-06-04 05:28:29,Gestoria Vallbona,gestoriavallbona.es,Fuga de datos (DLP),alta,Gestionada
+ALT-1174,2026-06-04 06:40:13,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1091,2026-06-04 08:11:37,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,media,Gestionada
+ALT-1830,2026-06-04 10:23:16,Loredo Logistica,loredologistica.es,Vulnerabilidad critica,critica,En curso
+ALT-1297,2026-06-04 11:27:07,Acelor Metalurgica,acelor.es,Malware en endpoint,media,Gestionada
+ALT-1086,2026-06-04 12:55:02,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1565,2026-06-04 13:14:53,Gestoria Vallbona,gestoriavallbona.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1282,2026-06-04 13:22:55,Nexia Fintech,nexiapay.com,Malware en endpoint,media,Gestionada
+ALT-1246,2026-06-04 14:23:43,Acelor Metalurgica,acelor.es,Malware en endpoint,baja,Gestionada
+ALT-1268,2026-06-04 14:32:14,Acelor Metalurgica,acelor.es,Malware en endpoint,media,Gestionada
+ALT-1284,2026-06-04 18:32:13,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,media,Gestionada
+ALT-1608,2026-06-04 21:51:10,Nexia Fintech,nexiapay.com,Vulnerabilidad critica,critica,Gestionada
+ALT-1264,2026-06-04 21:55:01,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,media,Gestionada
+ALT-1604,2026-06-04 23:09:22,Gestoria Vallbona,gestoriavallbona.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1216,2026-06-05 02:30:50,Nexia Fintech,nexiapay.com,Malware en endpoint,baja,Gestionada
+ALT-1637,2026-06-05 06:52:13,Acelor Metalurgica,acelor.es,Fuga de datos (DLP),media,Gestionada
+ALT-1136,2026-06-05 07:08:30,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1362,2026-06-05 09:27:00,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1801,2026-06-05 09:47:28,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,baja,Falso positivo
+ALT-1663,2026-06-05 12:49:52,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,media,Gestionada
+ALT-1254,2026-06-05 13:41:06,Nexia Fintech,nexiapay.com,Malware en endpoint,media,Gestionada
+ALT-1489,2026-06-05 14:47:38,Loredo Logistica,loredologistica.es,Acceso no autorizado,critica,Gestionada
+ALT-1482,2026-06-05 15:20:59,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,alta,Gestionada
+ALT-1514,2026-06-05 16:18:14,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,media,Gestionada
+ALT-1820,2026-06-05 16:48:15,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,alta,En curso
+ALT-1791,2026-06-05 19:16:20,Nexia Fintech,nexiapay.com,Malware en endpoint,baja,Falso positivo
+ALT-1333,2026-06-05 19:45:05,Loredo Logistica,loredologistica.es,Intento de suplantacion,alta,Gestionada
+ALT-1832,2026-06-05 20:37:37,Gestoria Vallbona,gestoriavallbona.es,Vulnerabilidad critica,critica,En curso
+ALT-1710,2026-06-05 22:17:05,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,media,Falso positivo
+ALT-1740,2026-06-06 00:20:38,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,media,Falso positivo
+ALT-1131,2026-06-06 01:16:24,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1161,2026-06-06 06:13:47,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,alta,Gestionada
+ALT-1347,2026-06-06 06:51:38,Loredo Logistica,loredologistica.es,Intento de suplantacion,media,Gestionada
+ALT-1175,2026-06-06 07:11:35,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,media,Gestionada
+ALT-1655,2026-06-06 08:05:41,Bufete Salazar Ortun,salazar-ortun.com,Fuga de datos (DLP),alta,Gestionada
+ALT-1797,2026-06-06 08:25:09,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,media,Falso positivo
+ALT-1050,2026-06-06 08:29:15,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,media,Gestionada
+ALT-1037,2026-06-06 08:33:55,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Gestionada
+ALT-1694,2026-06-06 08:49:06,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,baja,Falso positivo
+ALT-1826,2026-06-06 09:06:30,Clinica Dental Nervion,clinicanervion.es,Vulnerabilidad critica,critica,En curso
+ALT-1560,2026-06-06 10:01:13,Gestoria Vallbona,gestoriavallbona.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1624,2026-06-06 10:53:28,Clinica Dental Nervion,clinicanervion.es,Fuga de datos (DLP),media,Gestionada
+ALT-1293,2026-06-06 11:19:46,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,media,Gestionada
+ALT-1770,2026-06-06 12:10:46,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,baja,Falso positivo
+ALT-1574,2026-06-06 13:28:35,Gestoria Vallbona,gestoriavallbona.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1053,2026-06-06 13:31:30,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1831,2026-06-06 14:54:07,Bufete Salazar Ortun,salazar-ortun.com,Vulnerabilidad critica,critica,En curso
+ALT-1152,2026-06-06 15:13:22,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,media,Gestionada
+ALT-1622,2026-06-06 15:40:34,Loredo Logistica,loredologistica.es,Fuga de datos (DLP),media,Gestionada
+ALT-1542,2026-06-06 17:41:03,Loredo Logistica,loredologistica.es,Acceso no autorizado,alta,Gestionada
+ALT-1731,2026-06-06 18:27:52,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,media,Falso positivo
+ALT-1480,2026-06-06 19:54:40,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,media,Gestionada
+ALT-1611,2026-06-06 20:42:27,Clinica Dental Nervion,clinicanervion.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1618,2026-06-06 21:45:51,Acelor Metalurgica,acelor.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1590,2026-06-06 21:49:35,Acelor Metalurgica,acelor.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1828,2026-06-06 21:57:21,Clinica Dental Nervion,clinicanervion.es,Vulnerabilidad critica,critica,En curso
+ALT-1341,2026-06-06 22:49:39,Clinica Dental Nervion,clinicanervion.es,Intento de suplantacion,media,Gestionada
+ALT-1678,2026-06-07 01:59:03,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,baja,Gestionada
+ALT-1046,2026-06-07 03:06:42,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,media,Gestionada
+ALT-1733,2026-06-07 05:17:17,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,baja,Falso positivo
+ALT-1779,2026-06-07 05:40:18,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,baja,Falso positivo
+ALT-1094,2026-06-07 08:02:45,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Gestionada
+ALT-1374,2026-06-07 09:22:55,Nexia Fintech,nexiapay.com,Intento de suplantacion,baja,Gestionada
+ALT-1007,2026-06-07 10:06:05,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,media,Gestionada
+ALT-1538,2026-06-07 10:14:24,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,media,Gestionada
+ALT-1529,2026-06-07 10:19:58,Loredo Logistica,loredologistica.es,Acceso no autorizado,media,Gestionada
+ALT-1727,2026-06-07 12:23:43,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,baja,Falso positivo
+ALT-1087,2026-06-07 14:22:19,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1137,2026-06-07 14:44:16,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1586,2026-06-07 15:20:11,Nexia Fintech,nexiapay.com,Vulnerabilidad critica,critica,Gestionada
+ALT-1747,2026-06-07 15:34:19,Acelor Metalurgica,acelor.es,Navegacion no segura,baja,Falso positivo
+ALT-1709,2026-06-07 16:15:26,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,media,Falso positivo
+ALT-1545,2026-06-07 16:29:23,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,alta,Gestionada
+ALT-1019,2026-06-07 18:56:45,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,media,Gestionada
+ALT-1236,2026-06-07 19:16:43,Nexia Fintech,nexiapay.com,Malware en endpoint,media,Gestionada
+ALT-1011,2026-06-07 22:04:02,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1654,2026-06-07 22:58:08,Loredo Logistica,loredologistica.es,Fuga de datos (DLP),baja,Gestionada
+ALT-1509,2026-06-07 23:48:07,Bufete Salazar Ortun,salazar-ortun.com,Acceso no autorizado,media,Gestionada
+ALT-1088,2026-06-08 00:42:12,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1285,2026-06-08 03:22:54,Loredo Logistica,loredologistica.es,Malware en endpoint,baja,Gestionada
+ALT-1023,2026-06-08 04:32:31,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,media,Gestionada
+ALT-1511,2026-06-08 06:04:06,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,alta,Gestionada
+ALT-1049,2026-06-08 06:12:34,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1465,2026-06-08 07:03:42,Acelor Metalurgica,acelor.es,Acceso no autorizado,media,Gestionada
+ALT-1593,2026-06-08 08:42:09,Bufete Salazar Ortun,salazar-ortun.com,Vulnerabilidad critica,alta,Gestionada
+ALT-1157,2026-06-08 09:42:37,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1177,2026-06-08 09:45:18,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,media,Gestionada
+ALT-1516,2026-06-08 09:56:09,Bufete Salazar Ortun,salazar-ortun.com,Acceso no autorizado,alta,Gestionada
+ALT-1568,2026-06-08 11:35:24,Loredo Logistica,loredologistica.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1517,2026-06-08 13:19:17,Acelor Metalurgica,acelor.es,Acceso no autorizado,critica,Gestionada
+ALT-1203,2026-06-08 14:35:09,Loredo Logistica,loredologistica.es,Malware en endpoint,media,Gestionada
+ALT-1343,2026-06-08 14:39:18,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1227,2026-06-08 14:40:16,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,critica,Gestionada
+ALT-1609,2026-06-08 16:11:35,Nexia Fintech,nexiapay.com,Vulnerabilidad critica,critica,Gestionada
+ALT-1344,2026-06-08 17:15:19,Loredo Logistica,loredologistica.es,Intento de suplantacion,alta,Gestionada
+ALT-1745,2026-06-08 18:20:51,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,baja,Falso positivo
+ALT-1562,2026-06-08 18:53:54,Acelor Metalurgica,acelor.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1221,2026-06-08 23:05:27,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,media,Gestionada
+ALT-1133,2026-06-09 02:30:01,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,media,Gestionada
+ALT-1378,2026-06-09 02:46:27,Acelor Metalurgica,acelor.es,Intento de suplantacion,critica,Gestionada
+ALT-1764,2026-06-09 03:46:00,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,baja,Falso positivo
+ALT-1021,2026-06-09 04:15:47,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,media,Gestionada
+ALT-1689,2026-06-09 05:23:08,Nexia Fintech,nexiapay.com,Navegacion no segura,media,Gestionada
+ALT-1258,2026-06-09 06:07:54,Loredo Logistica,loredologistica.es,Malware en endpoint,media,Gestionada
+ALT-1816,2026-06-09 06:29:19,Loredo Logistica,loredologistica.es,Acceso no autorizado,alta,En curso
+ALT-1389,2026-06-09 07:07:01,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1600,2026-06-09 07:32:47,Gestoria Vallbona,gestoriavallbona.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1579,2026-06-09 09:17:31,Clinica Dental Nervion,clinicanervion.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1149,2026-06-09 10:54:15,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1634,2026-06-09 11:55:52,Loredo Logistica,loredologistica.es,Fuga de datos (DLP),critica,Gestionada
+ALT-1796,2026-06-09 12:41:31,Loredo Logistica,loredologistica.es,Acceso no autorizado,media,Falso positivo
+ALT-1822,2026-06-09 13:25:24,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,alta,En curso
+ALT-1150,2026-06-09 14:15:48,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1055,2026-06-09 14:18:27,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1350,2026-06-09 14:57:32,Clinica Dental Nervion,clinicanervion.es,Intento de suplantacion,media,Gestionada
+ALT-1197,2026-06-09 17:08:59,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,alta,Gestionada
+ALT-1153,2026-06-09 19:44:56,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,alta,Gestionada
+ALT-1644,2026-06-09 20:26:24,Nexia Fintech,nexiapay.com,Fuga de datos (DLP),baja,Gestionada
+ALT-1289,2026-06-09 22:48:19,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,media,Gestionada
+ALT-1014,2026-06-09 22:59:43,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1330,2026-06-09 23:54:42,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,alta,Gestionada
+ALT-1787,2026-06-10 02:25:57,Loredo Logistica,loredologistica.es,Malware en endpoint,baja,Falso positivo
+ALT-1359,2026-06-10 03:03:15,Clinica Dental Nervion,clinicanervion.es,Intento de suplantacion,alta,Gestionada
+ALT-1620,2026-06-10 03:11:23,Clinica Dental Nervion,clinicanervion.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1306,2026-06-10 03:25:01,Loredo Logistica,loredologistica.es,Malware en endpoint,alta,Gestionada
+ALT-1139,2026-06-10 03:37:01,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1486,2026-06-10 05:25:43,Loredo Logistica,loredologistica.es,Acceso no autorizado,alta,Gestionada
+ALT-1629,2026-06-10 05:49:29,Acelor Metalurgica,acelor.es,Fuga de datos (DLP),media,Gestionada
+ALT-1825,2026-06-10 05:53:42,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,En curso
+ALT-1057,2026-06-10 06:03:37,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,media,Gestionada
+ALT-1102,2026-06-10 06:27:50,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,alta,Gestionada
+ALT-1119,2026-06-10 07:17:21,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1163,2026-06-10 07:23:11,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,critica,Gestionada
+ALT-1775,2026-06-10 09:15:06,Nexia Fintech,nexiapay.com,Navegacion no segura,media,Falso positivo
+ALT-1754,2026-06-10 10:08:10,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,baja,Falso positivo
+ALT-1521,2026-06-10 12:11:48,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,media,Gestionada
+ALT-1039,2026-06-10 12:42:41,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,alta,Gestionada
+ALT-1065,2026-06-10 14:20:59,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1507,2026-06-10 14:43:46,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,alta,Gestionada
+ALT-1735,2026-06-10 15:26:56,Nexia Fintech,nexiapay.com,Navegacion no segura,baja,Falso positivo
+ALT-1173,2026-06-10 18:39:03,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,media,Gestionada
+ALT-1484,2026-06-10 18:46:36,Bufete Salazar Ortun,salazar-ortun.com,Acceso no autorizado,media,Gestionada
+ALT-1703,2026-06-10 18:50:19,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,media,Falso positivo
+ALT-1470,2026-06-10 20:03:58,Bufete Salazar Ortun,salazar-ortun.com,Acceso no autorizado,critica,Gestionada
+ALT-1031,2026-06-10 20:32:38,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1010,2026-06-10 20:39:56,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Gestionada
+ALT-1553,2026-06-10 21:52:54,Clinica Dental Nervion,clinicanervion.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1165,2026-06-10 22:08:40,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,critica,Gestionada
+ALT-1587,2026-06-10 23:44:40,Bufete Salazar Ortun,salazar-ortun.com,Vulnerabilidad critica,critica,Gestionada
+ALT-1262,2026-06-11 04:50:57,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,baja,Gestionada
+ALT-1167,2026-06-11 05:03:16,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,media,Gestionada
+ALT-1615,2026-06-11 06:29:07,Bufete Salazar Ortun,salazar-ortun.com,Vulnerabilidad critica,critica,Gestionada
+ALT-1073,2026-06-11 06:43:40,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1064,2026-06-11 07:16:25,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1310,2026-06-11 07:21:49,Nexia Fintech,nexiapay.com,Malware en endpoint,alta,Gestionada
+ALT-1698,2026-06-11 07:26:58,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,media,Falso positivo
+ALT-1375,2026-06-11 08:07:51,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1819,2026-06-11 08:16:41,Nexia Fintech,nexiapay.com,Acceso no autorizado,alta,En curso
+ALT-1650,2026-06-11 09:21:35,Bufete Salazar Ortun,salazar-ortun.com,Fuga de datos (DLP),baja,Gestionada
+ALT-1132,2026-06-11 10:48:56,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,media,Gestionada
+ALT-1572,2026-06-11 11:06:05,Loredo Logistica,loredologistica.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1563,2026-06-11 12:48:47,Acelor Metalurgica,acelor.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1277,2026-06-11 14:25:26,Loredo Logistica,loredologistica.es,Malware en endpoint,alta,Gestionada
+ALT-1103,2026-06-11 14:28:28,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1337,2026-06-11 15:12:14,Clinica Dental Nervion,clinicanervion.es,Intento de suplantacion,baja,Gestionada
+ALT-1272,2026-06-11 19:09:04,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,baja,Gestionada
+ALT-1249,2026-06-11 19:14:41,Acelor Metalurgica,acelor.es,Malware en endpoint,media,Gestionada
+ALT-1821,2026-06-11 21:08:46,Nexia Fintech,nexiapay.com,Malware en endpoint,alta,En curso
+ALT-1380,2026-06-11 21:18:19,Gestoria Vallbona,gestoriavallbona.es,Intento de suplantacion,media,Gestionada
+ALT-1750,2026-06-11 22:11:58,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,baja,Falso positivo
+ALT-1211,2026-06-11 23:30:45,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,alta,Gestionada
+ALT-1336,2026-06-12 00:23:19,Acelor Metalurgica,acelor.es,Intento de suplantacion,alta,Gestionada
+ALT-1777,2026-06-12 00:27:05,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,baja,Falso positivo
+ALT-1080,2026-06-12 01:57:22,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1364,2026-06-12 02:33:34,Acelor Metalurgica,acelor.es,Intento de suplantacion,alta,Gestionada
+ALT-1245,2026-06-12 02:50:25,Acelor Metalurgica,acelor.es,Malware en endpoint,critica,Gestionada
+ALT-1589,2026-06-12 03:59:36,Loredo Logistica,loredologistica.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1719,2026-06-12 06:28:19,Acelor Metalurgica,acelor.es,Navegacion no segura,baja,Falso positivo
+ALT-1134,2026-06-12 07:41:04,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1367,2026-06-12 07:46:42,Gestoria Vallbona,gestoriavallbona.es,Intento de suplantacion,baja,Gestionada
+ALT-1581,2026-06-12 08:15:46,Gestoria Vallbona,gestoriavallbona.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1675,2026-06-12 10:08:24,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,alta,Gestionada
+ALT-1386,2026-06-12 11:24:36,Nexia Fintech,nexiapay.com,Intento de suplantacion,baja,Gestionada
+ALT-1327,2026-06-12 11:58:18,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,media,Gestionada
+ALT-1782,2026-06-12 12:23:11,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,media,Falso positivo
+ALT-1809,2026-06-12 15:38:28,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,baja,Falso positivo
+ALT-1319,2026-06-12 16:04:19,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,media,Gestionada
+ALT-1638,2026-06-12 17:17:38,Acelor Metalurgica,acelor.es,Fuga de datos (DLP),alta,Gestionada
+ALT-1257,2026-06-12 17:57:41,Nexia Fintech,nexiapay.com,Malware en endpoint,baja,Gestionada
+ALT-1742,2026-06-12 18:14:10,Acelor Metalurgica,acelor.es,Navegacion no segura,media,Falso positivo
+ALT-1704,2026-06-12 18:31:49,Loredo Logistica,loredologistica.es,Navegacion no segura,baja,Falso positivo
+ALT-1488,2026-06-12 19:14:14,Bufete Salazar Ortun,salazar-ortun.com,Acceso no autorizado,media,Gestionada
+ALT-1656,2026-06-12 21:57:41,Gestoria Vallbona,gestoriavallbona.es,Fuga de datos (DLP),media,Gestionada
+ALT-1485,2026-06-12 22:15:03,Nexia Fintech,nexiapay.com,Acceso no autorizado,baja,Gestionada
+ALT-1636,2026-06-12 22:39:40,Nexia Fintech,nexiapay.com,Fuga de datos (DLP),alta,Gestionada
+ALT-1312,2026-06-12 23:52:41,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,baja,Gestionada
+ALT-1504,2026-06-13 02:43:42,Loredo Logistica,loredologistica.es,Acceso no autorizado,critica,Gestionada
+ALT-1577,2026-06-13 02:46:57,Loredo Logistica,loredologistica.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1061,2026-06-13 03:56:36,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1649,2026-06-13 06:27:52,Acelor Metalurgica,acelor.es,Fuga de datos (DLP),baja,Gestionada
+ALT-1508,2026-06-13 07:15:29,Acelor Metalurgica,acelor.es,Acceso no autorizado,media,Gestionada
+ALT-1483,2026-06-13 07:28:48,Bufete Salazar Ortun,salazar-ortun.com,Acceso no autorizado,baja,Gestionada
+ALT-1233,2026-06-13 08:00:36,Nexia Fintech,nexiapay.com,Malware en endpoint,baja,Gestionada
+ALT-1016,2026-06-13 08:59:40,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1798,2026-06-13 10:44:15,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,media,Falso positivo
+ALT-1583,2026-06-13 10:53:39,Gestoria Vallbona,gestoriavallbona.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1366,2026-06-13 11:16:47,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1621,2026-06-13 13:38:08,Acelor Metalurgica,acelor.es,Fuga de datos (DLP),alta,Gestionada
+ALT-1724,2026-06-13 14:35:47,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,baja,Falso positivo
+ALT-1552,2026-06-13 14:36:15,Bufete Salazar Ortun,salazar-ortun.com,Vulnerabilidad critica,alta,Gestionada
+ALT-1124,2026-06-13 15:00:22,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1309,2026-06-13 16:05:25,Acelor Metalurgica,acelor.es,Malware en endpoint,baja,Gestionada
+ALT-1520,2026-06-13 16:20:44,Nexia Fintech,nexiapay.com,Acceso no autorizado,critica,Gestionada
+ALT-1792,2026-06-13 17:25:35,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,baja,Falso positivo
+ALT-1299,2026-06-13 19:03:00,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,media,Gestionada
+ALT-1212,2026-06-13 21:50:52,Loredo Logistica,loredologistica.es,Malware en endpoint,critica,Gestionada
+ALT-1090,2026-06-13 21:53:34,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Gestionada
+ALT-1099,2026-06-13 22:18:35,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,alta,Gestionada
+ALT-1571,2026-06-13 22:50:40,Clinica Dental Nervion,clinicanervion.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1304,2026-06-14 00:29:58,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,alta,Gestionada
+ALT-1352,2026-06-14 01:25:32,Gestoria Vallbona,gestoriavallbona.es,Intento de suplantacion,alta,Gestionada
+ALT-1280,2026-06-14 03:47:47,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,alta,Gestionada
+ALT-1794,2026-06-14 04:09:36,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,media,Falso positivo
+ALT-1224,2026-06-14 04:15:33,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,media,Gestionada
+ALT-1240,2026-06-14 05:12:08,Nexia Fintech,nexiapay.com,Malware en endpoint,media,Gestionada
+ALT-1381,2026-06-14 05:44:28,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1005,2026-06-14 07:28:37,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Gestionada
+ALT-1255,2026-06-14 08:02:44,Acelor Metalurgica,acelor.es,Malware en endpoint,alta,Gestionada
+ALT-1580,2026-06-14 08:26:19,Clinica Dental Nervion,clinicanervion.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1278,2026-06-14 10:42:16,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,alta,Gestionada
+ALT-1676,2026-06-14 11:34:43,Acelor Metalurgica,acelor.es,Navegacion no segura,alta,Gestionada
+ALT-1610,2026-06-14 14:14:51,Acelor Metalurgica,acelor.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1176,2026-06-14 14:44:38,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1047,2026-06-14 14:55:46,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,media,Gestionada
+ALT-1786,2026-06-14 17:43:55,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Falso positivo
+ALT-1785,2026-06-14 18:14:35,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Falso positivo
+ALT-1025,2026-06-14 19:04:24,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1093,2026-06-14 19:32:07,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,media,Gestionada
+ALT-1802,2026-06-14 19:41:05,Nexia Fintech,nexiapay.com,Malware en endpoint,media,Falso positivo
+ALT-1510,2026-06-14 19:49:59,Nexia Fintech,nexiapay.com,Acceso no autorizado,baja,Gestionada
+ALT-1680,2026-06-14 22:25:05,Loredo Logistica,loredologistica.es,Navegacion no segura,media,Gestionada
+ALT-1156,2026-06-15 00:05:18,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,media,Gestionada
+ALT-1029,2026-06-15 00:46:56,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,media,Gestionada
+ALT-1793,2026-06-15 00:50:44,Acelor Metalurgica,acelor.es,Malware en endpoint,media,Falso positivo
+ALT-1360,2026-06-15 02:07:53,Acelor Metalurgica,acelor.es,Intento de suplantacion,media,Gestionada
+ALT-1768,2026-06-15 02:51:54,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,baja,Falso positivo
+ALT-1040,2026-06-15 03:15:14,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Gestionada
+ALT-1495,2026-06-15 03:43:13,Acelor Metalurgica,acelor.es,Acceso no autorizado,media,Gestionada
+ALT-1534,2026-06-15 03:51:46,Loredo Logistica,loredologistica.es,Acceso no autorizado,media,Gestionada
+ALT-1725,2026-06-15 03:51:50,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,baja,Falso positivo
+ALT-1113,2026-06-15 04:51:29,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1667,2026-06-15 06:05:57,Nexia Fintech,nexiapay.com,Navegacion no segura,media,Gestionada
+ALT-1256,2026-06-15 07:54:23,Loredo Logistica,loredologistica.es,Malware en endpoint,media,Gestionada
+ALT-1477,2026-06-15 08:12:51,Acelor Metalurgica,acelor.es,Acceso no autorizado,critica,Gestionada
+ALT-1716,2026-06-15 08:14:04,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,media,Falso positivo
+ALT-1346,2026-06-15 09:49:24,Loredo Logistica,loredologistica.es,Intento de suplantacion,critica,Gestionada
+ALT-1584,2026-06-15 10:27:52,Bufete Salazar Ortun,salazar-ortun.com,Vulnerabilidad critica,alta,Gestionada
+ALT-1209,2026-06-15 10:55:12,Loredo Logistica,loredologistica.es,Malware en endpoint,alta,Gestionada
+ALT-1573,2026-06-15 11:48:17,Bufete Salazar Ortun,salazar-ortun.com,Vulnerabilidad critica,alta,Gestionada
+ALT-1195,2026-06-15 13:03:12,Acelor Metalurgica,acelor.es,Malware en endpoint,alta,Gestionada
+ALT-1122,2026-06-15 13:03:13,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Gestionada
+ALT-1108,2026-06-15 13:56:40,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1783,2026-06-15 14:16:14,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,baja,Falso positivo
+ALT-1718,2026-06-15 14:20:26,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,baja,Falso positivo
+ALT-1051,2026-06-15 17:06:03,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1009,2026-06-15 17:07:59,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,alta,Gestionada
+ALT-1632,2026-06-15 17:13:27,Nexia Fintech,nexiapay.com,Fuga de datos (DLP),alta,Gestionada
+ALT-1069,2026-06-15 17:45:19,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,media,Gestionada
+ALT-1318,2026-06-15 20:19:50,Loredo Logistica,loredologistica.es,Malware en endpoint,media,Gestionada
+ALT-1591,2026-06-15 22:13:28,Nexia Fintech,nexiapay.com,Vulnerabilidad critica,alta,Gestionada
+ALT-1765,2026-06-15 23:26:10,Loredo Logistica,loredologistica.es,Navegacion no segura,baja,Falso positivo
+ALT-1606,2026-06-15 23:44:28,Gestoria Vallbona,gestoriavallbona.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1213,2026-06-16 01:08:32,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,alta,Gestionada
+ALT-1555,2026-06-16 01:40:00,Acelor Metalurgica,acelor.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1198,2026-06-16 03:01:40,Nexia Fintech,nexiapay.com,Malware en endpoint,media,Gestionada
+ALT-1467,2026-06-16 03:43:49,Nexia Fintech,nexiapay.com,Acceso no autorizado,media,Gestionada
+ALT-1463,2026-06-16 06:12:52,Nexia Fintech,nexiapay.com,Acceso no autorizado,alta,Gestionada
+ALT-1044,2026-06-16 06:34:08,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1074,2026-06-16 08:57:58,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1208,2026-06-16 11:21:35,Acelor Metalurgica,acelor.es,Malware en endpoint,baja,Gestionada
+ALT-1190,2026-06-16 11:26:21,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,media,Gestionada
+ALT-1020,2026-06-16 12:56:58,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1556,2026-06-16 13:41:50,Gestoria Vallbona,gestoriavallbona.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1315,2026-06-16 14:48:36,Nexia Fintech,nexiapay.com,Malware en endpoint,critica,Gestionada
+ALT-1188,2026-06-16 16:41:28,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,alta,Gestionada
+ALT-1539,2026-06-16 17:41:43,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,media,Gestionada
+ALT-1296,2026-06-16 19:28:26,Loredo Logistica,loredologistica.es,Malware en endpoint,media,Gestionada
+ALT-1469,2026-06-16 20:12:48,Loredo Logistica,loredologistica.es,Acceso no autorizado,critica,Gestionada
+ALT-1118,2026-06-16 20:15:17,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Gestionada
+ALT-1755,2026-06-16 20:20:11,Nexia Fintech,nexiapay.com,Navegacion no segura,media,Falso positivo
+ALT-1377,2026-06-16 22:31:23,Clinica Dental Nervion,clinicanervion.es,Intento de suplantacion,media,Gestionada
+ALT-1271,2026-06-16 22:58:28,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,media,Gestionada
+ALT-1104,2026-06-16 23:10:42,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1070,2026-06-17 00:42:52,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1550,2026-06-17 04:15:12,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,baja,Gestionada
+ALT-1524,2026-06-17 04:24:15,Acelor Metalurgica,acelor.es,Acceso no autorizado,critica,Gestionada
+ALT-1506,2026-06-17 04:46:14,Loredo Logistica,loredologistica.es,Acceso no autorizado,critica,Gestionada
+ALT-1804,2026-06-17 05:04:19,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,media,Falso positivo
+ALT-1154,2026-06-17 06:05:15,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,media,Gestionada
+ALT-1672,2026-06-17 06:47:25,Acelor Metalurgica,acelor.es,Navegacion no segura,baja,Gestionada
+ALT-1026,2026-06-17 08:35:55,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,media,Gestionada
+ALT-1274,2026-06-17 09:29:32,Acelor Metalurgica,acelor.es,Malware en endpoint,media,Gestionada
+ALT-1679,2026-06-17 09:40:45,Loredo Logistica,loredologistica.es,Navegacion no segura,critica,Gestionada
+ALT-1481,2026-06-17 10:05:25,Loredo Logistica,loredologistica.es,Acceso no autorizado,alta,Gestionada
+ALT-1063,2026-06-17 10:59:16,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1693,2026-06-17 11:03:31,Loredo Logistica,loredologistica.es,Navegacion no segura,media,Falso positivo
+ALT-1158,2026-06-17 11:27:47,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Gestionada
+ALT-1808,2026-06-17 12:40:59,Loredo Logistica,loredologistica.es,Malware en endpoint,media,Falso positivo
+ALT-1390,2026-06-17 12:58:35,Loredo Logistica,loredologistica.es,Intento de suplantacion,alta,Gestionada
+ALT-1497,2026-06-17 13:29:36,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,baja,Gestionada
+ALT-1112,2026-06-17 14:03:35,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,alta,Gestionada
+ALT-1492,2026-06-17 14:33:45,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,media,Gestionada
+ALT-1749,2026-06-17 15:00:21,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,baja,Falso positivo
+ALT-1241,2026-06-17 16:58:17,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,alta,Gestionada
+ALT-1147,2026-06-17 20:17:39,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1616,2026-06-17 20:20:38,Loredo Logistica,loredologistica.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1626,2026-06-17 20:31:26,Acelor Metalurgica,acelor.es,Fuga de datos (DLP),alta,Gestionada
+ALT-1595,2026-06-17 22:26:34,Acelor Metalurgica,acelor.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1204,2026-06-17 23:56:08,Acelor Metalurgica,acelor.es,Malware en endpoint,media,Gestionada
+ALT-1365,2026-06-18 00:24:55,Acelor Metalurgica,acelor.es,Intento de suplantacion,media,Gestionada
+ALT-1361,2026-06-18 00:40:32,Acelor Metalurgica,acelor.es,Intento de suplantacion,critica,Gestionada
+ALT-1129,2026-06-18 00:58:25,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,critica,Gestionada
+ALT-1281,2026-06-18 01:37:35,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,media,Gestionada
+ALT-1164,2026-06-18 04:17:02,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1072,2026-06-18 04:17:18,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,alta,Gestionada
+ALT-1438,2026-06-18 04:45:21,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1067,2026-06-18 06:32:16,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,critica,Gestionada
+ALT-1422,2026-06-18 07:09:06,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1180,2026-06-18 07:41:09,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1155,2026-06-18 07:44:30,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1445,2026-06-18 08:41:50,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1391,2026-06-18 08:45:28,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1532,2026-06-18 10:49:18,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,media,Gestionada
+ALT-1810,2026-06-18 11:22:10,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Falso positivo
+ALT-1423,2026-06-18 12:55:39,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1519,2026-06-18 15:03:22,Loredo Logistica,loredologistica.es,Acceso no autorizado,media,Gestionada
+ALT-1184,2026-06-18 15:28:05,Acelor Metalurgica,acelor.es,Malware en endpoint,critica,Gestionada
+ALT-1429,2026-06-18 15:38:56,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1490,2026-06-18 15:48:34,Nexia Fintech,nexiapay.com,Acceso no autorizado,media,Gestionada
+ALT-1630,2026-06-18 16:07:36,Loredo Logistica,loredologistica.es,Fuga de datos (DLP),media,Gestionada
+ALT-1406,2026-06-18 16:09:19,Nexia Fintech,nexiapay.com,Intento de suplantacion,critica,Gestionada
+ALT-1452,2026-06-18 16:13:35,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1476,2026-06-18 16:31:56,Nexia Fintech,nexiapay.com,Acceso no autorizado,media,Gestionada
+ALT-1460,2026-06-18 17:24:57,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1444,2026-06-18 18:19:50,Nexia Fintech,nexiapay.com,Intento de suplantacion,critica,Gestionada
+ALT-1399,2026-06-18 18:23:29,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1670,2026-06-18 19:38:46,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,media,Gestionada
+ALT-1415,2026-06-18 20:34:18,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1413,2026-06-18 20:49:36,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1824,2026-06-18 20:50:30,Nexia Fintech,nexiapay.com,Acceso no autorizado,media,En curso
+ALT-1302,2026-06-18 22:14:32,Loredo Logistica,loredologistica.es,Malware en endpoint,baja,Gestionada
+ALT-1077,2026-06-18 22:27:35,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1526,2026-06-18 23:53:12,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,alta,Gestionada
+ALT-1619,2026-06-19 02:43:08,Acelor Metalurgica,acelor.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1617,2026-06-19 03:22:22,Loredo Logistica,loredologistica.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1795,2026-06-19 03:50:18,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,baja,Falso positivo
+ALT-1614,2026-06-19 03:51:55,Gestoria Vallbona,gestoriavallbona.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1760,2026-06-19 03:59:31,Nexia Fintech,nexiapay.com,Navegacion no segura,baja,Falso positivo
+ALT-1405,2026-06-19 04:27:32,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1388,2026-06-19 04:33:23,Gestoria Vallbona,gestoriavallbona.es,Intento de suplantacion,media,Gestionada
+ALT-1471,2026-06-19 07:34:47,Nexia Fintech,nexiapay.com,Acceso no autorizado,alta,Gestionada
+ALT-1398,2026-06-19 07:50:31,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1728,2026-06-19 08:58:52,Acelor Metalurgica,acelor.es,Navegacion no segura,baja,Falso positivo
+ALT-1101,2026-06-19 09:25:35,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,critica,Gestionada
+ALT-1232,2026-06-19 09:44:18,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,media,Gestionada
+ALT-1392,2026-06-19 09:44:58,Nexia Fintech,nexiapay.com,Intento de suplantacion,critica,Gestionada
+ALT-1515,2026-06-19 10:36:38,Nexia Fintech,nexiapay.com,Acceso no autorizado,alta,Gestionada
+ALT-1210,2026-06-19 12:14:54,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,critica,Gestionada
+ALT-1744,2026-06-19 12:22:59,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,baja,Falso positivo
+ALT-1247,2026-06-19 12:52:40,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,alta,Gestionada
+ALT-1363,2026-06-19 13:11:42,Clinica Dental Nervion,clinicanervion.es,Intento de suplantacion,media,Gestionada
+ALT-1305,2026-06-19 13:36:25,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,baja,Gestionada
+ALT-1189,2026-06-19 13:40:52,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,critica,Gestionada
+ALT-1045,2026-06-19 15:15:50,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1458,2026-06-19 15:20:30,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1298,2026-06-19 15:33:42,Nexia Fintech,nexiapay.com,Malware en endpoint,media,Gestionada
+ALT-1578,2026-06-19 16:10:43,Clinica Dental Nervion,clinicanervion.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1397,2026-06-19 16:14:07,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1437,2026-06-19 16:25:32,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1162,2026-06-19 16:38:18,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1788,2026-06-19 16:51:36,Acelor Metalurgica,acelor.es,Acceso no autorizado,baja,Falso positivo
+ALT-1494,2026-06-19 17:09:10,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,critica,Gestionada
+ALT-1079,2026-06-19 17:09:27,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,media,Gestionada
+ALT-1041,2026-06-19 17:14:37,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1776,2026-06-19 17:53:31,Loredo Logistica,loredologistica.es,Navegacion no segura,baja,Falso positivo
+ALT-1451,2026-06-19 19:58:30,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1683,2026-06-19 20:48:53,Loredo Logistica,loredologistica.es,Navegacion no segura,media,Gestionada
+ALT-1569,2026-06-19 21:24:05,Nexia Fintech,nexiapay.com,Vulnerabilidad critica,critica,Gestionada
+ALT-1207,2026-06-19 21:31:55,Acelor Metalurgica,acelor.es,Malware en endpoint,media,Gestionada
+ALT-1179,2026-06-19 21:51:59,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1407,2026-06-19 22:14:22,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1419,2026-06-19 22:20:46,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1668,2026-06-19 23:24:22,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,baja,Gestionada
+ALT-1598,2026-06-20 01:36:41,Nexia Fintech,nexiapay.com,Vulnerabilidad critica,alta,Gestionada
+ALT-1427,2026-06-20 02:25:32,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1294,2026-06-20 02:56:03,Acelor Metalurgica,acelor.es,Malware en endpoint,media,Gestionada
+ALT-1475,2026-06-20 03:59:21,Acelor Metalurgica,acelor.es,Acceso no autorizado,baja,Gestionada
+ALT-1681,2026-06-20 04:17:05,Acelor Metalurgica,acelor.es,Navegacion no segura,media,Gestionada
+ALT-1585,2026-06-20 04:19:20,Nexia Fintech,nexiapay.com,Vulnerabilidad critica,critica,Gestionada
+ALT-1420,2026-06-20 04:48:23,Nexia Fintech,nexiapay.com,Intento de suplantacion,critica,Gestionada
+ALT-1456,2026-06-20 06:15:17,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1612,2026-06-20 06:28:37,Nexia Fintech,nexiapay.com,Vulnerabilidad critica,alta,Gestionada
+ALT-1582,2026-06-20 06:29:06,Acelor Metalurgica,acelor.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1033,2026-06-20 10:31:01,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,critica,Gestionada
+ALT-1114,2026-06-20 10:48:57,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1576,2026-06-20 10:55:24,Acelor Metalurgica,acelor.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1759,2026-06-20 10:58:51,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,baja,Falso positivo
+ALT-1403,2026-06-20 14:29:43,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1454,2026-06-20 14:58:34,Nexia Fintech,nexiapay.com,Intento de suplantacion,critica,Gestionada
+ALT-1453,2026-06-20 15:33:24,Nexia Fintech,nexiapay.com,Intento de suplantacion,critica,Gestionada
+ALT-1358,2026-06-20 16:27:07,Nexia Fintech,nexiapay.com,Intento de suplantacion,baja,Gestionada
+ALT-1414,2026-06-20 18:26:39,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1686,2026-06-20 19:03:19,Loredo Logistica,loredologistica.es,Navegacion no segura,media,Gestionada
+ALT-1171,2026-06-20 19:14:49,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1321,2026-06-20 19:32:24,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,baja,Gestionada
+ALT-1138,2026-06-20 19:47:45,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1665,2026-06-20 20:10:28,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,media,Gestionada
+ALT-1226,2026-06-20 21:15:31,Loredo Logistica,loredologistica.es,Malware en endpoint,baja,Gestionada
+ALT-1416,2026-06-20 21:25:19,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1512,2026-06-20 21:45:55,Loredo Logistica,loredologistica.es,Acceso no autorizado,media,Gestionada
+ALT-1455,2026-06-20 21:49:55,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1288,2026-06-20 21:53:44,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,media,Gestionada
+ALT-1395,2026-06-20 22:04:35,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1217,2026-06-20 22:25:41,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,critica,Gestionada
+ALT-1082,2026-06-20 23:09:59,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,media,Gestionada
+ALT-1459,2026-06-20 23:17:18,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1430,2026-06-21 00:54:06,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1417,2026-06-21 01:10:28,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1658,2026-06-21 02:45:06,Loredo Logistica,loredologistica.es,Fuga de datos (DLP),alta,Gestionada
+ALT-1762,2026-06-21 02:52:45,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,media,Falso positivo
+ALT-1525,2026-06-21 02:59:28,Bufete Salazar Ortun,salazar-ortun.com,Acceso no autorizado,media,Gestionada
+ALT-1048,2026-06-21 03:03:25,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1311,2026-06-21 03:33:32,Acelor Metalurgica,acelor.es,Malware en endpoint,baja,Gestionada
+ALT-1450,2026-06-21 04:26:44,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1201,2026-06-21 04:31:59,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,baja,Gestionada
+ALT-1439,2026-06-21 04:38:57,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1393,2026-06-21 04:54:04,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1015,2026-06-21 05:34:46,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Gestionada
+ALT-1424,2026-06-21 05:52:20,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1323,2026-06-21 06:20:38,Acelor Metalurgica,acelor.es,Malware en endpoint,media,Gestionada
+ALT-1418,2026-06-21 06:21:38,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1428,2026-06-21 06:37:22,Nexia Fintech,nexiapay.com,Intento de suplantacion,critica,Gestionada
+ALT-1466,2026-06-21 07:03:06,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,critica,Gestionada
+ALT-1812,2026-06-21 07:43:13,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,media,En curso
+ALT-1431,2026-06-21 08:46:23,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1657,2026-06-21 09:46:44,Loredo Logistica,loredologistica.es,Fuga de datos (DLP),baja,Gestionada
+ALT-1436,2026-06-21 10:35:23,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1334,2026-06-21 10:52:08,Loredo Logistica,loredologistica.es,Intento de suplantacion,media,Gestionada
+ALT-1505,2026-06-21 11:07:11,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,alta,Gestionada
+ALT-1013,2026-06-21 11:10:23,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,media,Gestionada
+ALT-1533,2026-06-21 11:19:16,Acelor Metalurgica,acelor.es,Acceso no autorizado,media,Gestionada
+ALT-1432,2026-06-21 12:03:36,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1075,2026-06-21 13:53:17,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1426,2026-06-21 14:31:56,Nexia Fintech,nexiapay.com,Intento de suplantacion,critica,Gestionada
+ALT-1737,2026-06-21 16:15:40,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,media,Falso positivo
+ALT-1434,2026-06-21 17:17:52,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1402,2026-06-21 18:04:08,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1273,2026-06-21 18:35:45,Acelor Metalurgica,acelor.es,Malware en endpoint,baja,Gestionada
+ALT-1674,2026-06-21 19:04:33,Loredo Logistica,loredologistica.es,Navegacion no segura,baja,Gestionada
+ALT-1778,2026-06-21 19:30:12,Nexia Fintech,nexiapay.com,Navegacion no segura,media,Falso positivo
+ALT-1447,2026-06-21 20:46:39,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1664,2026-06-21 21:09:04,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,alta,Gestionada
+ALT-1448,2026-06-21 21:15:02,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1394,2026-06-21 22:28:05,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1219,2026-06-21 22:56:48,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,media,Gestionada
+ALT-1666,2026-06-21 23:09:58,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,media,Gestionada
+ALT-1401,2026-06-21 23:30:33,Nexia Fintech,nexiapay.com,Intento de suplantacion,critica,Gestionada
+ALT-1441,2026-06-21 23:53:19,Nexia Fintech,nexiapay.com,Intento de suplantacion,critica,Gestionada
+ALT-1443,2026-06-22 00:23:21,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1169,2026-06-22 01:09:09,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1700,2026-06-22 01:11:14,Acelor Metalurgica,acelor.es,Navegacion no segura,baja,Falso positivo
+ALT-1400,2026-06-22 02:04:19,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1408,2026-06-22 02:16:12,Nexia Fintech,nexiapay.com,Intento de suplantacion,critica,Gestionada
+ALT-1435,2026-06-22 03:08:06,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1449,2026-06-22 03:12:01,Nexia Fintech,nexiapay.com,Intento de suplantacion,critica,Gestionada
+ALT-1081,2026-06-22 03:22:49,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1818,2026-06-22 03:30:04,Bufete Salazar Ortun,salazar-ortun.com,Acceso no autorizado,alta,En curso
+ALT-1714,2026-06-22 04:15:18,Loredo Logistica,loredologistica.es,Navegacion no segura,baja,Falso positivo
+ALT-1237,2026-06-22 04:40:06,Nexia Fintech,nexiapay.com,Malware en endpoint,alta,Gestionada
+ALT-1384,2026-06-22 05:01:09,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1096,2026-06-22 06:23:27,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,critica,Gestionada
+ALT-1259,2026-06-22 06:41:40,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,alta,Gestionada
+ALT-1425,2026-06-22 06:48:10,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1743,2026-06-22 07:17:34,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,baja,Falso positivo
+ALT-1248,2026-06-22 07:30:01,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,critica,Gestionada
+ALT-1559,2026-06-22 08:57:34,Gestoria Vallbona,gestoriavallbona.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1106,2026-06-22 09:14:51,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1498,2026-06-22 09:46:01,Loredo Logistica,loredologistica.es,Acceso no autorizado,baja,Gestionada
+ALT-1457,2026-06-22 09:49:18,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1396,2026-06-22 09:54:10,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1421,2026-06-22 10:15:29,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1017,2026-06-22 10:53:49,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1151,2026-06-22 12:21:01,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Gestionada
+ALT-1140,2026-06-22 12:25:45,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,critica,Gestionada
+ALT-1100,2026-06-22 12:43:47,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1192,2026-06-22 12:52:48,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,alta,Gestionada
+ALT-1549,2026-06-22 13:51:58,Nexia Fintech,nexiapay.com,Acceso no autorizado,baja,Gestionada
+ALT-1387,2026-06-22 14:23:23,Clinica Dental Nervion,clinicanervion.es,Intento de suplantacion,baja,Gestionada
+ALT-1279,2026-06-22 15:04:05,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,media,Gestionada
+ALT-1335,2026-06-22 16:05:41,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1442,2026-06-22 16:34:31,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1433,2026-06-22 17:18:04,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1404,2026-06-22 17:40:37,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1412,2026-06-22 18:02:52,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1186,2026-06-22 18:37:01,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,baja,Gestionada
+ALT-1316,2026-06-22 18:41:40,Loredo Logistica,loredologistica.es,Malware en endpoint,alta,Gestionada
+ALT-1756,2026-06-22 18:52:11,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,media,Falso positivo
+ALT-1328,2026-06-22 19:03:50,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,media,Gestionada
+ALT-1440,2026-06-22 19:20:10,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1527,2026-06-22 19:38:02,Loredo Logistica,loredologistica.es,Acceso no autorizado,baja,Gestionada
+ALT-1546,2026-06-22 19:58:30,Nexia Fintech,nexiapay.com,Acceso no autorizado,baja,Gestionada
+ALT-1410,2026-06-22 20:10:37,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1409,2026-06-22 20:19:39,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1105,2026-06-22 20:39:21,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1411,2026-06-22 21:39:46,Nexia Fintech,nexiapay.com,Intento de suplantacion,media,Gestionada
+ALT-1648,2026-06-22 22:22:54,Nexia Fintech,nexiapay.com,Fuga de datos (DLP),critica,Gestionada
+ALT-1446,2026-06-22 23:03:37,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1002,2026-06-22 23:57:34,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1110,2026-06-23 00:57:48,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1325,2026-06-23 02:32:41,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,alta,Gestionada
+ALT-1500,2026-06-23 02:34:03,Bufete Salazar Ortun,salazar-ortun.com,Acceso no autorizado,baja,Gestionada
+ALT-1222,2026-06-23 03:28:10,Nexia Fintech,nexiapay.com,Malware en endpoint,critica,Gestionada
+ALT-1661,2026-06-23 04:30:04,Loredo Logistica,loredologistica.es,Navegacion no segura,alta,Gestionada
+ALT-1199,2026-06-23 05:19:35,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,media,Gestionada
+ALT-1121,2026-06-23 06:04:26,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,media,Gestionada
+ALT-1613,2026-06-23 06:13:17,Gestoria Vallbona,gestoriavallbona.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1464,2026-06-23 08:08:06,Acelor Metalurgica,acelor.es,Acceso no autorizado,media,Gestionada
+ALT-1202,2026-06-23 08:26:53,Acelor Metalurgica,acelor.es,Malware en endpoint,alta,Gestionada
+ALT-1230,2026-06-23 08:29:54,Loredo Logistica,loredologistica.es,Malware en endpoint,media,Gestionada
+ALT-1639,2026-06-23 09:18:36,Bufete Salazar Ortun,salazar-ortun.com,Fuga de datos (DLP),media,Gestionada
+ALT-1183,2026-06-23 09:44:25,Loredo Logistica,loredologistica.es,Malware en endpoint,media,Gestionada
+ALT-1109,2026-06-23 12:31:25,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1371,2026-06-23 14:02:18,Gestoria Vallbona,gestoriavallbona.es,Intento de suplantacion,alta,Gestionada
+ALT-1159,2026-06-23 14:17:19,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,media,Gestionada
+ALT-1326,2026-06-23 14:28:33,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,baja,Gestionada
+ALT-1627,2026-06-23 14:31:10,Loredo Logistica,loredologistica.es,Fuga de datos (DLP),alta,Gestionada
+ALT-1370,2026-06-23 15:40:11,Loredo Logistica,loredologistica.es,Intento de suplantacion,alta,Gestionada
+ALT-1349,2026-06-23 16:54:07,Gestoria Vallbona,gestoriavallbona.es,Intento de suplantacion,media,Gestionada
+ALT-1596,2026-06-23 17:38:40,Bufete Salazar Ortun,salazar-ortun.com,Vulnerabilidad critica,alta,Gestionada
+ALT-1774,2026-06-23 17:46:59,Loredo Logistica,loredologistica.es,Navegacion no segura,baja,Falso positivo
+ALT-1601,2026-06-23 18:14:28,Acelor Metalurgica,acelor.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1692,2026-06-23 18:40:04,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,baja,Falso positivo
+ALT-1823,2026-06-23 18:52:12,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,En curso
+ALT-1721,2026-06-23 19:02:13,Nexia Fintech,nexiapay.com,Navegacion no segura,media,Falso positivo
+ALT-1531,2026-06-23 19:45:13,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,media,Gestionada
+ALT-1042,2026-06-23 20:03:14,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1141,2026-06-23 20:15:06,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1815,2026-06-23 20:17:27,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,alta,En curso
+ALT-1753,2026-06-23 21:25:37,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,baja,Falso positivo
+ALT-1761,2026-06-24 02:15:22,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,baja,Falso positivo
+ALT-1564,2026-06-24 02:32:47,Nexia Fintech,nexiapay.com,Vulnerabilidad critica,alta,Gestionada
+ALT-1712,2026-06-24 02:37:06,Loredo Logistica,loredologistica.es,Navegacion no segura,media,Falso positivo
+ALT-1662,2026-06-24 03:06:20,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,baja,Gestionada
+ALT-1027,2026-06-24 03:43:56,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,critica,Gestionada
+ALT-1530,2026-06-24 03:47:48,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,baja,Gestionada
+ALT-1690,2026-06-24 03:49:57,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,alta,Gestionada
+ALT-1239,2026-06-24 04:05:58,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,baja,Gestionada
+ALT-1687,2026-06-24 05:07:00,Nexia Fintech,nexiapay.com,Navegacion no segura,alta,Gestionada
+ALT-1128,2026-06-24 05:53:29,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1160,2026-06-24 06:20:07,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,media,Gestionada
+ALT-1276,2026-06-24 06:27:28,Acelor Metalurgica,acelor.es,Malware en endpoint,alta,Gestionada
+ALT-1499,2026-06-24 06:37:04,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,media,Gestionada
+ALT-1001,2026-06-24 08:15:14,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,media,Gestionada
+ALT-1548,2026-06-24 08:34:18,Acelor Metalurgica,acelor.es,Acceso no autorizado,baja,Gestionada
+ALT-1098,2026-06-24 09:32:19,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1058,2026-06-24 10:03:03,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1368,2026-06-24 10:08:02,Acelor Metalurgica,acelor.es,Intento de suplantacion,media,Gestionada
+ALT-1185,2026-06-24 10:38:16,Loredo Logistica,loredologistica.es,Malware en endpoint,media,Gestionada
+ALT-1479,2026-06-24 10:50:18,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,alta,Gestionada
+ALT-1382,2026-06-24 11:39:27,Gestoria Vallbona,gestoriavallbona.es,Intento de suplantacion,media,Gestionada
+ALT-1342,2026-06-24 14:02:26,Clinica Dental Nervion,clinicanervion.es,Intento de suplantacion,alta,Gestionada
+ALT-1478,2026-06-24 14:41:16,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,baja,Gestionada
+ALT-1376,2026-06-24 14:57:24,Loredo Logistica,loredologistica.es,Intento de suplantacion,media,Gestionada
+ALT-1695,2026-06-24 16:00:02,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,baja,Falso positivo
+ALT-1292,2026-06-24 16:13:24,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,critica,Gestionada
+ALT-1022,2026-06-24 18:27:57,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,media,Gestionada
+ALT-1540,2026-06-24 20:47:31,Loredo Logistica,loredologistica.es,Acceso no autorizado,media,Gestionada
+ALT-1269,2026-06-24 21:33:19,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,critica,Gestionada
+ALT-1757,2026-06-24 22:18:08,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,media,Falso positivo
+ALT-1253,2026-06-24 22:34:26,Nexia Fintech,nexiapay.com,Malware en endpoint,media,Gestionada
+ALT-1554,2026-06-25 01:05:25,Nexia Fintech,nexiapay.com,Vulnerabilidad critica,alta,Gestionada
+ALT-1677,2026-06-25 02:01:37,Loredo Logistica,loredologistica.es,Navegacion no segura,baja,Gestionada
+ALT-1036,2026-06-25 04:08:42,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1461,2026-06-25 04:18:02,Bufete Salazar Ortun,salazar-ortun.com,Acceso no autorizado,critica,Gestionada
+ALT-1076,2026-06-25 04:40:16,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1300,2026-06-25 04:48:16,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,baja,Gestionada
+ALT-1030,2026-06-25 05:32:58,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1032,2026-06-25 05:34:49,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1006,2026-06-25 05:44:27,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,media,Gestionada
+ALT-1635,2026-06-25 07:13:51,Gestoria Vallbona,gestoriavallbona.es,Fuga de datos (DLP),baja,Gestionada
+ALT-1633,2026-06-25 07:19:55,Nexia Fintech,nexiapay.com,Fuga de datos (DLP),baja,Gestionada
+ALT-1235,2026-06-25 07:38:51,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,alta,Gestionada
+ALT-1597,2026-06-25 07:42:42,Gestoria Vallbona,gestoriavallbona.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1491,2026-06-25 07:43:48,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,alta,Gestionada
+ALT-1117,2026-06-25 07:53:40,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,media,Gestionada
+ALT-1286,2026-06-25 08:36:14,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,media,Gestionada
+ALT-1487,2026-06-25 09:44:07,Nexia Fintech,nexiapay.com,Acceso no autorizado,media,Gestionada
+ALT-1599,2026-06-25 10:50:27,Loredo Logistica,loredologistica.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1111,2026-06-25 13:14:11,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1205,2026-06-25 13:21:59,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,alta,Gestionada
+ALT-1789,2026-06-25 14:11:10,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,baja,Falso positivo
+ALT-1148,2026-06-25 15:29:27,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1196,2026-06-25 15:40:28,Acelor Metalurgica,acelor.es,Malware en endpoint,media,Gestionada
+ALT-1805,2026-06-25 16:56:36,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,media,Falso positivo
+ALT-1717,2026-06-25 18:06:09,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,baja,Falso positivo
+ALT-1566,2026-06-25 19:38:25,Acelor Metalurgica,acelor.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1287,2026-06-25 19:39:43,Acelor Metalurgica,acelor.es,Malware en endpoint,alta,Gestionada
+ALT-1314,2026-06-25 20:04:11,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,baja,Gestionada
+ALT-1028,2026-06-25 20:21:07,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,media,Gestionada
+ALT-1502,2026-06-25 20:46:41,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,media,Gestionada
+ALT-1708,2026-06-25 21:24:54,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,media,Falso positivo
+ALT-1643,2026-06-25 21:25:31,Clinica Dental Nervion,clinicanervion.es,Fuga de datos (DLP),alta,Gestionada
+ALT-1602,2026-06-25 21:37:44,Loredo Logistica,loredologistica.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1356,2026-06-25 22:30:28,Clinica Dental Nervion,clinicanervion.es,Intento de suplantacion,media,Gestionada
+ALT-1784,2026-06-25 22:42:06,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,baja,Falso positivo
+ALT-1814,2026-06-26 00:14:16,Acelor Metalurgica,acelor.es,Malware en endpoint,media,En curso
+ALT-1143,2026-06-26 01:22:34,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1645,2026-06-26 02:25:32,Nexia Fintech,nexiapay.com,Fuga de datos (DLP),media,Gestionada
+ALT-1243,2026-06-26 03:29:04,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,alta,Gestionada
+ALT-1669,2026-06-26 04:15:17,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,critica,Gestionada
+ALT-1225,2026-06-26 05:10:11,Nexia Fintech,nexiapay.com,Malware en endpoint,media,Gestionada
+ALT-1083,2026-06-26 05:56:26,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,critica,Gestionada
+ALT-1605,2026-06-26 06:33:30,Loredo Logistica,loredologistica.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1628,2026-06-26 07:18:02,Gestoria Vallbona,gestoriavallbona.es,Fuga de datos (DLP),baja,Gestionada
+ALT-1588,2026-06-26 07:20:24,Acelor Metalurgica,acelor.es,Vulnerabilidad critica,critica,Gestionada
+ALT-1673,2026-06-26 07:31:24,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,media,Gestionada
+ALT-1265,2026-06-26 07:37:20,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,baja,Gestionada
+ALT-1570,2026-06-26 07:45:04,Bufete Salazar Ortun,salazar-ortun.com,Vulnerabilidad critica,critica,Gestionada
+ALT-1303,2026-06-26 11:04:25,Nexia Fintech,nexiapay.com,Malware en endpoint,media,Gestionada
+ALT-1541,2026-06-26 11:10:08,Nexia Fintech,nexiapay.com,Acceso no autorizado,media,Gestionada
+ALT-1691,2026-06-26 13:17:33,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,baja,Falso positivo
+ALT-1385,2026-06-26 14:02:08,Nexia Fintech,nexiapay.com,Intento de suplantacion,alta,Gestionada
+ALT-1056,2026-06-26 17:42:45,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,alta,Gestionada
+ALT-1528,2026-06-26 18:46:42,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,alta,Gestionada
+ALT-1307,2026-06-26 19:29:53,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,critica,Gestionada
+ALT-1275,2026-06-26 22:07:54,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,media,Gestionada
+ALT-1738,2026-06-26 22:22:30,Loredo Logistica,loredologistica.es,Navegacion no segura,baja,Falso positivo
+ALT-1322,2026-06-26 23:57:02,Acelor Metalurgica,acelor.es,Malware en endpoint,media,Gestionada
+ALT-1052,2026-06-27 00:05:59,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1206,2026-06-27 00:18:46,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,alta,Gestionada
+ALT-1018,2026-06-27 01:51:20,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1699,2026-06-27 02:36:23,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,media,Falso positivo
+ALT-1379,2026-06-27 05:34:18,Acelor Metalurgica,acelor.es,Intento de suplantacion,baja,Gestionada
+ALT-1187,2026-06-27 08:36:02,Nexia Fintech,nexiapay.com,Malware en endpoint,critica,Gestionada
+ALT-1551,2026-06-27 11:17:50,Bufete Salazar Ortun,salazar-ortun.com,Vulnerabilidad critica,critica,Gestionada
+ALT-1631,2026-06-27 11:34:52,Acelor Metalurgica,acelor.es,Fuga de datos (DLP),baja,Gestionada
+ALT-1713,2026-06-27 12:04:37,Nexia Fintech,nexiapay.com,Navegacion no segura,baja,Falso positivo
+ALT-1473,2026-06-27 12:50:31,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,alta,Gestionada
+ALT-1561,2026-06-27 12:59:04,Nexia Fintech,nexiapay.com,Vulnerabilidad critica,critica,Gestionada
+ALT-1145,2026-06-27 15:06:27,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1767,2026-06-27 15:50:55,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,media,Falso positivo
+ALT-1800,2026-06-27 15:54:44,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,media,Falso positivo
+ALT-1373,2026-06-27 17:30:16,Loredo Logistica,loredologistica.es,Intento de suplantacion,media,Gestionada
+ALT-1182,2026-06-27 18:58:18,Nexia Fintech,nexiapay.com,Malware en endpoint,media,Gestionada
+ALT-1369,2026-06-27 20:11:53,Bufete Salazar Ortun,salazar-ortun.com,Intento de suplantacion,media,Gestionada
+ALT-1544,2026-06-27 20:14:04,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,baja,Gestionada
+ALT-1543,2026-06-27 21:03:48,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,media,Gestionada
+ALT-1354,2026-06-27 22:41:21,Gestoria Vallbona,gestoriavallbona.es,Intento de suplantacion,media,Gestionada
+ALT-1707,2026-06-27 22:56:00,Nexia Fintech,nexiapay.com,Navegacion no segura,media,Falso positivo
+ALT-1339,2026-06-27 23:56:33,Acelor Metalurgica,acelor.es,Intento de suplantacion,baja,Gestionada
+ALT-1089,2026-06-28 02:49:17,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,media,Gestionada
+ALT-1720,2026-06-28 03:05:10,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,media,Falso positivo
+ALT-1024,2026-06-28 03:09:40,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1780,2026-06-28 03:19:50,Loredo Logistica,loredologistica.es,Navegacion no segura,baja,Falso positivo
+ALT-1214,2026-06-28 03:55:54,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,critica,Gestionada
+ALT-1263,2026-06-28 04:08:34,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,media,Gestionada
+ALT-1642,2026-06-28 04:15:09,Nexia Fintech,nexiapay.com,Fuga de datos (DLP),alta,Gestionada
+ALT-1331,2026-06-28 04:21:05,Acelor Metalurgica,acelor.es,Intento de suplantacion,critica,Gestionada
+ALT-1060,2026-06-28 05:04:38,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,critica,Gestionada
+ALT-1191,2026-06-28 05:21:26,Gestoria Vallbona,gestoriavallbona.es,Malware en endpoint,media,Gestionada
+ALT-1522,2026-06-28 07:19:54,Clinica Dental Nervion,clinicanervion.es,Acceso no autorizado,media,Gestionada
+ALT-1536,2026-06-28 07:47:09,Acelor Metalurgica,acelor.es,Acceso no autorizado,media,Gestionada
+ALT-1474,2026-06-28 09:56:02,Nexia Fintech,nexiapay.com,Acceso no autorizado,baja,Gestionada
+ALT-1043,2026-06-28 10:04:32,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1008,2026-06-28 11:38:16,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,media,Gestionada
+ALT-1125,2026-06-28 13:34:47,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,media,Gestionada
+ALT-1231,2026-06-28 15:06:15,Loredo Logistica,loredologistica.es,Malware en endpoint,media,Gestionada
+ALT-1651,2026-06-28 15:50:21,Acelor Metalurgica,acelor.es,Fuga de datos (DLP),media,Gestionada
+ALT-1194,2026-06-28 16:52:00,Loredo Logistica,loredologistica.es,Malware en endpoint,baja,Gestionada
+ALT-1752,2026-06-28 16:55:23,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,baja,Falso positivo
+ALT-1317,2026-06-28 20:20:09,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,critica,Gestionada
+ALT-1142,2026-06-28 21:38:51,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,alta,Gestionada
+ALT-1244,2026-06-28 21:46:43,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,baja,Gestionada
+ALT-1218,2026-06-28 21:54:34,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,baja,Gestionada
+ALT-1283,2026-06-28 23:03:18,Loredo Logistica,loredologistica.es,Malware en endpoint,alta,Gestionada
+ALT-1647,2026-06-28 23:05:46,Gestoria Vallbona,gestoriavallbona.es,Fuga de datos (DLP),media,Gestionada
+ALT-1085,2026-06-28 23:51:15,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1054,2026-06-29 01:10:24,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1372,2026-06-29 01:20:59,Clinica Dental Nervion,clinicanervion.es,Intento de suplantacion,baja,Gestionada
+ALT-1771,2026-06-29 02:21:38,Acelor Metalurgica,acelor.es,Navegacion no segura,baja,Falso positivo
+ALT-1068,2026-06-29 02:56:15,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1116,2026-06-29 05:47:55,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,critica,Gestionada
+ALT-1345,2026-06-29 06:23:43,Loredo Logistica,loredologistica.es,Intento de suplantacion,critica,Gestionada
+ALT-1806,2026-06-29 06:53:03,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,baja,Falso positivo
+ALT-1126,2026-06-29 07:31:14,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1741,2026-06-29 08:03:51,Gestoria Vallbona,gestoriavallbona.es,Navegacion no segura,baja,Falso positivo
+ALT-1034,2026-06-29 09:15:03,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1799,2026-06-29 11:01:21,Bufete Salazar Ortun,salazar-ortun.com,Phishing / correo malicioso,media,Falso positivo
+ALT-1766,2026-06-29 12:22:34,Loredo Logistica,loredologistica.es,Navegacion no segura,media,Falso positivo
+ALT-1503,2026-06-29 12:28:55,Bufete Salazar Ortun,salazar-ortun.com,Acceso no autorizado,critica,Gestionada
+ALT-1146,2026-06-29 14:45:09,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,critica,Gestionada
+ALT-1711,2026-06-29 16:26:44,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,baja,Falso positivo
+ALT-1115,2026-06-29 16:27:53,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,media,Gestionada
+ALT-1557,2026-06-29 16:58:02,Gestoria Vallbona,gestoriavallbona.es,Vulnerabilidad critica,alta,Gestionada
+ALT-1252,2026-06-29 17:08:24,Clinica Dental Nervion,clinicanervion.es,Malware en endpoint,baja,Gestionada
+ALT-1705,2026-06-29 17:48:50,Nexia Fintech,nexiapay.com,Navegacion no segura,baja,Falso positivo
+ALT-1558,2026-06-29 18:30:17,Nexia Fintech,nexiapay.com,Vulnerabilidad critica,alta,Gestionada
+ALT-1123,2026-06-29 18:44:01,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,alta,Gestionada
+ALT-1340,2026-06-29 19:08:38,Bufete Salazar Ortun,salazar-ortun.com,Intento de suplantacion,baja,Gestionada
+ALT-1781,2026-06-29 21:16:05,Loredo Logistica,loredologistica.es,Malware en endpoint,media,Falso positivo
+ALT-1640,2026-06-29 21:52:06,Acelor Metalurgica,acelor.es,Fuga de datos (DLP),media,Gestionada
+ALT-1078,2026-06-29 22:57:09,Gestoria Vallbona,gestoriavallbona.es,Phishing / correo malicioso,baja,Gestionada
+ALT-1518,2026-06-29 23:58:11,Acelor Metalurgica,acelor.es,Acceso no autorizado,baja,Gestionada
+ALT-1641,2026-06-30 01:17:55,Loredo Logistica,loredologistica.es,Fuga de datos (DLP),baja,Gestionada
+ALT-1523,2026-06-30 01:35:26,Loredo Logistica,loredologistica.es,Acceso no autorizado,alta,Gestionada
+ALT-1697,2026-06-30 01:35:51,Clinica Dental Nervion,clinicanervion.es,Navegacion no segura,baja,Falso positivo
+ALT-1468,2026-06-30 05:26:41,Acelor Metalurgica,acelor.es,Acceso no autorizado,baja,Gestionada
+ALT-1472,2026-06-30 05:26:56,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,alta,Gestionada
+ALT-1623,2026-06-30 05:35:10,Nexia Fintech,nexiapay.com,Fuga de datos (DLP),alta,Gestionada
+ALT-1535,2026-06-30 06:23:20,Bufete Salazar Ortun,salazar-ortun.com,Acceso no autorizado,media,Gestionada
+ALT-1682,2026-06-30 06:51:09,Acelor Metalurgica,acelor.es,Navegacion no segura,media,Gestionada
+ALT-1097,2026-06-30 10:39:20,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1084,2026-06-30 10:50:59,Nexia Fintech,nexiapay.com,Phishing / correo malicioso,baja,Gestionada
+ALT-1332,2026-06-30 11:19:41,Clinica Dental Nervion,clinicanervion.es,Intento de suplantacion,media,Gestionada
+ALT-1646,2026-06-30 11:29:31,Nexia Fintech,nexiapay.com,Fuga de datos (DLP),alta,Gestionada
+ALT-1715,2026-06-30 12:44:53,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,media,Falso positivo
+ALT-1803,2026-06-30 13:47:31,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,media,Falso positivo
+ALT-1215,2026-06-30 14:00:46,Acelor Metalurgica,acelor.es,Malware en endpoint,media,Gestionada
+ALT-1172,2026-06-30 14:19:55,Loredo Logistica,loredologistica.es,Phishing / correo malicioso,media,Gestionada
+ALT-1501,2026-06-30 15:02:18,Gestoria Vallbona,gestoriavallbona.es,Acceso no autorizado,critica,Gestionada
+ALT-1242,2026-06-30 15:51:18,Bufete Salazar Ortun,salazar-ortun.com,Malware en endpoint,alta,Gestionada
+ALT-1059,2026-06-30 16:10:03,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Gestionada
+ALT-1095,2026-06-30 17:43:46,Acelor Metalurgica,acelor.es,Phishing / correo malicioso,media,Gestionada
+ALT-1038,2026-06-30 17:48:46,Clinica Dental Nervion,clinicanervion.es,Phishing / correo malicioso,media,Gestionada
+ALT-1739,2026-06-30 18:32:20,Bufete Salazar Ortun,salazar-ortun.com,Navegacion no segura,media,Falso positivo
+ALT-1537,2026-06-30 18:37:46,Acelor Metalurgica,acelor.es,Acceso no autorizado,baja,Gestionada
+ALT-1250,2026-06-30 22:19:41,Loredo Logistica,loredologistica.es,Malware en endpoint,baja,Gestionada

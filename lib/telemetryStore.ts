@@ -15,9 +15,8 @@ export type TaskTelemetry = {
   msgCount: number;
   rawFileAttached: boolean;
   rawPasteDetected: boolean;
-  pastedIbanCount: number | null;
-  pastedEmailCount: number | null;
   pastedClientNameCount: number | null;
+  pastedClientDomainCount: number | null;
   startedAt: number | null;
   submittedAt: number | null;
   deliverableChars: number | null;
@@ -65,9 +64,8 @@ type MemoryTaskUsage = {
   msgCount: number;
   rawFileAttached: boolean;
   rawPasteDetected: boolean;
-  pastedIbanCount: number | null;
-  pastedEmailCount: number | null;
   pastedClientNameCount: number | null;
+  pastedClientDomainCount: number | null;
   startedAt: number | null;
   submittedAt: number | null;
   deliverableChars: number | null;
@@ -91,9 +89,8 @@ function emptyMemoryUsage(): MemoryTaskUsage {
     msgCount: 0,
     rawFileAttached: false,
     rawPasteDetected: false,
-    pastedIbanCount: null,
-    pastedEmailCount: null,
     pastedClientNameCount: null,
+    pastedClientDomainCount: null,
     startedAt: null,
     submittedAt: null,
     deliverableChars: null,
@@ -126,9 +123,8 @@ function parseHash(
       data?.rawFileAttached === "1" || data?.rawFileAttached === 1,
     rawPasteDetected:
       data?.rawPasteDetected === "1" || data?.rawPasteDetected === 1,
-    pastedIbanCount: toNumberOrNull(data?.pastedIbanCount),
-    pastedEmailCount: toNumberOrNull(data?.pastedEmailCount),
     pastedClientNameCount: toNumberOrNull(data?.pastedClientNameCount),
+    pastedClientDomainCount: toNumberOrNull(data?.pastedClientDomainCount),
     startedAt: toNumberOrNull(data?.startedAt),
     submittedAt: toNumberOrNull(data?.submittedAt),
     deliverableChars: toNumberOrNull(data?.deliverableChars),
@@ -205,7 +201,7 @@ export async function recordRawFileAttached(
 export async function recordRawPasteDetected(
   accessKey: string,
   taskId: string,
-  counts: { ibanCount: number; emailCount: number; clientNameCount: number }
+  counts: { clientNameCount: number; clientDomainCount: number }
 ): Promise<void> {
   if (redis) {
     try {
@@ -215,23 +211,18 @@ export async function recordRawPasteDetected(
       // value anyway. Telemetry is best-effort (never throws), so the rare
       // lost race under concurrent requests is an accepted tradeoff here.
       const existing = await redis.hgetall<Record<string, unknown>>(key);
-      const nextIban = Math.max(
-        toNumberOrNull(existing?.pastedIbanCount) ?? 0,
-        counts.ibanCount
-      );
-      const nextEmail = Math.max(
-        toNumberOrNull(existing?.pastedEmailCount) ?? 0,
-        counts.emailCount
-      );
       const nextClientName = Math.max(
         toNumberOrNull(existing?.pastedClientNameCount) ?? 0,
         counts.clientNameCount
       );
+      const nextClientDomain = Math.max(
+        toNumberOrNull(existing?.pastedClientDomainCount) ?? 0,
+        counts.clientDomainCount
+      );
       await redis.hset(key, {
         rawPasteDetected: "1",
-        pastedIbanCount: String(nextIban),
-        pastedEmailCount: String(nextEmail),
         pastedClientNameCount: String(nextClientName),
+        pastedClientDomainCount: String(nextClientDomain),
       });
       await redis.sadd(INDEX_KEY, accessKey);
       await redis.expire(key, TTL_SECONDS);
@@ -245,14 +236,13 @@ export async function recordRawPasteDetected(
   }
   const usage = getMemoryTaskUsage(accessKey, taskId);
   usage.rawPasteDetected = true;
-  usage.pastedIbanCount = Math.max(usage.pastedIbanCount ?? 0, counts.ibanCount);
-  usage.pastedEmailCount = Math.max(
-    usage.pastedEmailCount ?? 0,
-    counts.emailCount
-  );
   usage.pastedClientNameCount = Math.max(
     usage.pastedClientNameCount ?? 0,
     counts.clientNameCount
+  );
+  usage.pastedClientDomainCount = Math.max(
+    usage.pastedClientDomainCount ?? 0,
+    counts.clientDomainCount
   );
 }
 

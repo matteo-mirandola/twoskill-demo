@@ -44,10 +44,14 @@ export default function MaterialsPane({
       m.kind === "source" && m.id === openSourceId
   );
 
+  const csvMaterial = materials.find(
+    (m): m is Extract<MaterialDef, { kind: "csv" }> => m.kind === "csv"
+  );
+
   if (materials.length === 0) {
     return (
       <p className="text-sm italic text-[var(--foreground-subtle)]">
-        No materials — everything you need is in the brief.
+        Sin materiales — todo lo que necesitas está en el brief.
       </p>
     );
   }
@@ -77,13 +81,13 @@ export default function MaterialsPane({
                 download
                 className="btn-press rounded-lg border-[1.5px] border-[var(--foreground)] bg-[var(--surface)] px-3.5 py-1.5 text-xs font-semibold text-[var(--foreground)] transition-colors hover:bg-[var(--foreground)] hover:text-white"
               >
-                Download
+                Descargar
               </a>
               <button
                 onClick={openCsvPreview}
                 className="btn-press rounded-lg bg-[image:var(--accent-gradient)] px-3.5 py-1.5 text-xs font-semibold text-white hover:opacity-90"
               >
-                Preview
+                Vista previa
               </button>
             </div>
           </div>
@@ -105,13 +109,13 @@ export default function MaterialsPane({
 
       {previewCsv && (
         <Modal
-          title="payments_march.csv — preview"
+          title={`${csvMaterial?.filename ?? "archivo"} — vista previa`}
           onClose={() => setPreviewCsv(false)}
           wide
         >
           {loadingCsv || !csvData ? (
             <p className="text-sm text-[var(--foreground-muted)]">
-              Loading preview…
+              Cargando vista previa…
             </p>
           ) : (
             <>
@@ -146,7 +150,7 @@ export default function MaterialsPane({
                 </table>
               </div>
               <p className="mt-2 text-xs text-[var(--foreground-subtle)]">
-                … {csvData.totalRows.toLocaleString("en-US")} rows total
+                … {csvData.totalRows.toLocaleString("es-ES")} filas en total
               </p>
             </>
           )}
