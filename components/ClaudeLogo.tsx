@@ -1,17 +1,7 @@
 export default function ClaudeLogo({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor">
-      {Array.from({ length: 12 }, (_, i) => (
-        <rect
-          key={i}
-          x="11"
-          y="1.5"
-          width="2"
-          height="6.5"
-          rx="1"
-          transform={`rotate(${i * 30} 12 12)`}
-        />
-      ))}
+      <polygon points="12,0 14.64,9.36 24,12 14.64,14.64 12,24 9.36,14.64 0,12 9.36,9.36" />
     </svg>
   );
 }

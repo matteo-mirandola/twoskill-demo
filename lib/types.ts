@@ -2,6 +2,7 @@ export type ChatMessage = {
   role: "user" | "assistant";
   content: string;
   attachedFile?: boolean;
+  attachedFileName?: string;
 };
 
 export type SlideContent = {

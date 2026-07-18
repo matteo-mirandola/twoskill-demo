@@ -23,10 +23,14 @@ export default function ChatPanel({
   disabled: boolean;
 }) {
   const [input, setInput] = useState("");
-  const [attachPending, setAttachPending] = useState(false);
+  const [pendingAttachment, setPendingAttachment] = useState<{
+    name: string;
+    content: string;
+  } | null>(null);
   const [isStreaming, setIsStreaming] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const userCount = messages.filter((m) => m.role === "user").length;
   const capReached = userCount >= maxUserMessages;
@@ -38,19 +42,34 @@ export default function ChatPanel({
     if (el) el.scrollTop = el.scrollHeight;
   }, [messages]);
 
+  async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = ""; // allow re-selecting the same file later
+    if (!file) return;
+    const content = await file.text();
+    setPendingAttachment({ name: file.name, content });
+  }
+
   async function send() {
     const text = input.trim();
-    if ((!text && !attachPending) || locked || isStreaming) return;
+    if ((!text && !pendingAttachment) || locked || isStreaming) return;
+
+    const content = pendingAttachment
+      ? `Attached file: ${pendingAttachment.name}\n\`\`\`\n${pendingAttachment.content}\n\`\`\`${
+          text ? `\n\n${text}` : ""
+        }`
+      : text;
 
     const userMessage: ChatMessage = {
       role: "user",
-      content: text,
-      attachedFile: attachPending,
+      content,
+      attachedFile: !!pendingAttachment,
+      attachedFileName: pendingAttachment?.name,
     };
     const withUser = [...messages, userMessage];
     onChange(withUser);
     setInput("");
-    setAttachPending(false);
+    setPendingAttachment(null);
     setIsStreaming(true);
     setError(null);
     onChange([...withUser, { role: "assistant", content: "" }]);
@@ -95,43 +114,45 @@ export default function ChatPanel({
   }
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col bg-[var(--claude-dark-bg)]">
-      <div className="flex items-center justify-between border-b border-[var(--claude-dark-border)] px-4 py-2.5">
-        <div className="flex items-center gap-1.5">
-          <ClaudeLogo className="h-4 w-4 text-[var(--claude-accent)]" />
-          <span className="font-serif text-sm font-semibold text-[var(--claude-dark-text)]">
+    <div className="flex min-h-0 flex-1 flex-col border-l border-[var(--border)] bg-[var(--surface)]">
+      <div className="flex shrink-0 items-center justify-between border-b border-[var(--border)] px-8 py-5">
+        <div className="flex items-center gap-2.5">
+          <ClaudeLogo className="h-5 w-5 rounded-[2px] text-[var(--claude-mark)]" />
+          <span className="font-serif text-[19px] italic text-[var(--foreground)]">
             Claude
           </span>
         </div>
-        <span className="tabular-nums text-xs text-[var(--claude-dark-text-muted)]">
-          {userCount}/{maxUserMessages}
+        <span className="text-[13px] font-semibold tabular-nums text-[var(--foreground-muted)]">
+          Number of prompts {userCount}/{maxUserMessages}
         </span>
       </div>
 
       <div
         ref={scrollRef}
-        className="thin-scroll flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto px-4 py-3"
+        className="thin-scroll flex min-h-0 flex-1 flex-col gap-[22px] overflow-y-auto px-8 py-7"
       >
         {messages.length === 0 && (
-          <p className="mt-2 text-center text-xs text-[var(--claude-dark-text-muted)]">
+          <p className="mt-2 text-center text-xs text-[var(--foreground-subtle)]">
             Ask the assistant anything about this task.
           </p>
         )}
         {messages.map((m, i) => (
           <div
             key={i}
-            className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
+            className={m.role === "user" ? "flex justify-end" : "flex"}
           >
             <div
-              className={`max-w-[85%] text-sm leading-6 ${
+              className={`text-[14.5px] leading-relaxed ${
                 m.role === "user"
-                  ? "rounded-xl bg-[var(--claude-dark-surface)] px-3 py-2 text-[var(--claude-dark-text)]"
-                  : "text-[var(--claude-dark-text)]"
+                  ? "max-w-[80%] rounded-2xl bg-[var(--accent-soft)] px-4 py-3 text-[var(--foreground)]"
+                  : "max-w-[92%] text-[var(--foreground-body)]"
               }`}
             >
               {m.attachedFile && (
-                <div className="mb-1 flex items-center gap-1 text-xs text-[var(--claude-dark-text-muted)]">
-                  <PaperclipIcon /> payments_march.csv attached
+                <div
+                  className={`mb-1 flex items-center gap-1 text-xs ${m.role === "user" ? "text-[var(--accent)]" : "text-[var(--foreground-subtle)]"}`}
+                >
+                  <PaperclipIcon /> {m.attachedFileName ?? "file"} attached
                 </div>
               )}
               {m.role === "assistant" ? (
@@ -153,65 +174,73 @@ export default function ChatPanel({
       </div>
 
       {error && (
-        <p className="border-t border-[var(--red-soft-border)] bg-[var(--red-soft)] px-4 py-2 text-xs text-[var(--red)]">
+        <p className="border-t border-[var(--red-soft-border)] bg-[var(--red-soft)] px-8 py-2 text-xs text-[var(--red)]">
           {error}
         </p>
       )}
       {nearCap && (
-        <p className="border-t border-[var(--amber-soft-border)] bg-[var(--amber-soft)] px-4 py-2 text-xs text-[var(--amber)]">
+        <p className="border-t border-[var(--amber-soft-border)] bg-[var(--amber-soft)] px-8 py-2 text-xs text-[var(--amber)]">
           {maxUserMessages - userCount} messages left in this task.
         </p>
       )}
 
-      <div className="border-t border-[var(--claude-dark-border)] p-3">
+      <div className="shrink-0 px-8 pb-7 pt-5">
         {locked ? (
-          <p className="rounded-md bg-[var(--claude-dark-surface)] px-3 py-2.5 text-center text-xs font-medium text-[var(--claude-dark-text-muted)]">
+          <p className="rounded-2xl bg-[var(--background)] px-4 py-3 text-center text-xs font-medium text-[var(--foreground-muted)]">
             {disabled
               ? "This task has been submitted."
               : "Message limit reached for this task."}
           </p>
         ) : (
           <>
-            {attachPending && (
-              <div className="mb-2 flex w-fit items-center gap-1.5 self-start rounded-md bg-[var(--claude-dark-surface)] px-2 py-1 text-xs font-medium text-[var(--claude-accent)]">
-                <PaperclipIcon /> payments_march.csv
+            {pendingAttachment && (
+              <div className="mb-2 flex w-fit items-center gap-1.5 self-start rounded-md bg-[var(--accent-soft)] px-2 py-1 text-xs font-medium text-[var(--accent)]">
+                <PaperclipIcon /> {pendingAttachment.name}
                 <button
-                  onClick={() => setAttachPending(false)}
+                  onClick={() => setPendingAttachment(null)}
                   aria-label="Remove attachment"
-                  className="ml-1 text-[var(--claude-accent)] hover:opacity-70"
+                  className="ml-1 text-[var(--accent)] hover:opacity-70"
                 >
                   ×
                 </button>
               </div>
             )}
-            <div className="flex items-end gap-2">
+            <div className="flex items-end gap-2.5 rounded-2xl border border-[var(--border)] bg-[var(--surface)] py-2.5 pl-4 pr-2.5 shadow-[var(--card-shadow-sm)]">
               {canAttach && (
-                <button
-                  type="button"
-                  onClick={() => setAttachPending((v) => !v)}
-                  title="Attach file"
-                  aria-label="Attach file"
-                  className={`btn-press flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border transition-colors ${
-                    attachPending
-                      ? "border-[var(--claude-accent)] bg-[var(--claude-dark-surface)] text-[var(--claude-accent)]"
-                      : "border-[var(--claude-dark-border)] bg-[var(--claude-dark-surface)] text-[var(--claude-dark-text-muted)] hover:bg-[var(--claude-dark-surface-hover)]"
-                  }`}
-                >
-                  <PaperclipIcon />
-                </button>
+                <>
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    onChange={handleFileChange}
+                    className="hidden"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => fileInputRef.current?.click()}
+                    title="Attach file"
+                    aria-label="Attach file"
+                    className={`btn-press flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors ${
+                      pendingAttachment
+                        ? "bg-[var(--accent-soft)] text-[var(--accent)]"
+                        : "text-[var(--foreground-muted)] hover:bg-[var(--background)]"
+                    }`}
+                  >
+                    <PaperclipIcon />
+                  </button>
+                </>
               )}
               <textarea
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={onKeyDown}
-                placeholder="Message the assistant…"
+                placeholder="Reply to Claude…"
                 rows={1}
-                className="thin-scroll max-h-28 flex-1 resize-none rounded-lg border border-[var(--claude-dark-border)] bg-[var(--claude-dark-surface)] px-3 py-2 text-sm text-[var(--claude-dark-text)] outline-none transition-colors placeholder:text-[var(--claude-dark-text-muted)] focus:border-[var(--claude-accent)]"
+                className="thin-scroll max-h-28 flex-1 resize-none bg-transparent py-1.5 text-[14.5px] text-[var(--foreground)] outline-none"
               />
               <button
                 onClick={send}
-                disabled={isStreaming || (!input.trim() && !attachPending)}
-                className="btn-press flex h-9 shrink-0 items-center justify-center rounded-lg bg-[var(--claude-accent)] px-3.5 text-sm font-medium text-white transition-colors hover:bg-[var(--claude-accent-hover)] disabled:opacity-40"
+                disabled={isStreaming || (!input.trim() && !pendingAttachment)}
+                className="btn-press flex h-9 shrink-0 items-center justify-center rounded-[10px] bg-[image:var(--accent-gradient)] px-4 text-[13.5px] font-bold text-white transition-opacity hover:opacity-90 disabled:opacity-40"
               >
                 Send
               </button>
@@ -245,7 +274,7 @@ function PaperclipIcon() {
 function Dot({ delay }: { delay: string }) {
   return (
     <span
-      className="h-1.5 w-1.5 animate-bounce rounded-full bg-[var(--claude-dark-text-muted)]"
+      className="h-1.5 w-1.5 animate-bounce rounded-full bg-[var(--foreground-subtle)]"
       style={{ animationDelay: delay }}
     />
   );

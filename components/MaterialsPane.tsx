@@ -7,6 +7,11 @@ import type { MaterialDef } from "@/lib/mockData";
 
 type CsvPreviewData = { headers: string[]; rows: string[][]; totalRows: number };
 
+function getExtension(filename: string): string {
+  const idx = filename.lastIndexOf(".");
+  return idx === -1 ? "FILE" : filename.slice(idx + 1).toUpperCase();
+}
+
 export default function MaterialsPane({
   materials,
   accessKey,
@@ -53,29 +58,30 @@ export default function MaterialsPane({
         m.kind === "csv" ? (
           <div
             key={m.id}
-            className="rounded-lg border border-[var(--border)] bg-white p-4"
+            className="flex items-center gap-4 rounded-2xl bg-[var(--surface)] p-4 shadow-[var(--card-shadow)]"
           >
-            <div className="flex items-center gap-2 text-sm font-medium text-[var(--foreground)]">
-              <FileIcon />
-              {m.filename}
+            <div className="flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[10px] bg-[var(--accent-soft)] text-[11px] font-bold text-[var(--accent)]">
+              {getExtension(m.filename)}
             </div>
-            <p className="mt-1 text-xs text-[var(--foreground-subtle)]">
-              {m.sizeLabel}
-            </p>
-            <p className="mt-2 text-xs leading-5 text-[var(--foreground-muted)]">
-              {m.note}
-            </p>
-            <div className="mt-3 flex gap-2">
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-semibold text-[var(--foreground)]">
+                {m.filename}
+              </p>
+              <p className="text-xs text-[var(--foreground-muted)]">
+                {m.sizeLabel} · {m.note}
+              </p>
+            </div>
+            <div className="flex shrink-0 gap-2">
               <a
                 href={`/${m.filename}`}
                 download
-                className="btn-press flex-1 rounded-md border border-[var(--border-strong)] bg-white px-3 py-1.5 text-center text-xs font-medium text-[var(--foreground)] hover:bg-black/[.03]"
+                className="btn-press rounded-lg border-[1.5px] border-[var(--foreground)] bg-[var(--surface)] px-3.5 py-1.5 text-xs font-semibold text-[var(--foreground)] transition-colors hover:bg-[var(--foreground)] hover:text-white"
               >
                 Download
               </a>
               <button
                 onClick={openCsvPreview}
-                className="btn-press flex-1 rounded-md bg-[var(--accent-soft)] px-3 py-1.5 text-xs font-medium text-[var(--accent)] hover:bg-[var(--accent-soft-border)]"
+                className="btn-press rounded-lg bg-[image:var(--accent-gradient)] px-3.5 py-1.5 text-xs font-semibold text-white hover:opacity-90"
               >
                 Preview
               </button>
@@ -85,12 +91,12 @@ export default function MaterialsPane({
           <button
             key={m.id}
             onClick={() => setOpenSourceId(m.id)}
-            className="btn-press rounded-lg border border-[var(--border)] bg-white p-4 text-left hover:border-[var(--border-strong)]"
+            className="btn-press rounded-2xl bg-[var(--surface)] p-4 text-left shadow-[var(--card-shadow)]"
           >
-            <p className="text-[11px] font-medium uppercase tracking-wide text-[var(--accent)]">
+            <p className="text-[11px] font-bold uppercase tracking-wide text-[var(--accent)]">
               {m.label}
             </p>
-            <p className="mt-1 text-sm font-medium text-[var(--foreground)]">
+            <p className="mt-1 text-sm font-semibold text-[var(--foreground)]">
               {m.title}
             </p>
           </button>
@@ -116,7 +122,7 @@ export default function MaterialsPane({
                       {csvData.headers.map((h) => (
                         <th
                           key={h}
-                          className="border-b border-[var(--border)] bg-black/[.02] px-2.5 py-1.5 text-left font-semibold"
+                          className="border-b border-[var(--border)] bg-[var(--background)] px-2.5 py-1.5 text-left font-semibold"
                         >
                           {h}
                         </th>
@@ -160,25 +166,5 @@ export default function MaterialsPane({
         </Modal>
       )}
     </div>
-  );
-}
-
-function FileIcon() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 20 20"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      className="text-[var(--foreground-muted)]"
-    >
-      <path
-        d="M5 2.5h7l3 3v12a1 1 0 01-1 1H5a1 1 0 01-1-1v-14a1 1 0 011-1z"
-        strokeLinejoin="round"
-      />
-      <path d="M12 2.5v3a1 1 0 001 1h3" strokeLinejoin="round" />
-    </svg>
   );
 }

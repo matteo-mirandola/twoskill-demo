@@ -3,9 +3,8 @@
 import { useEffect, useState } from "react";
 
 function format(totalSeconds: number): string {
-  const abs = Math.abs(totalSeconds);
-  const m = Math.floor(abs / 60);
-  const s = abs % 60;
+  const m = Math.floor(totalSeconds / 60);
+  const s = totalSeconds % 60;
   return `${m}:${s.toString().padStart(2, "0")}`;
 }
 
@@ -29,32 +28,32 @@ export default function Timer({
 
   if (!startedAt || now === null) return null;
 
-  const remaining = minutes * 60 - Math.floor((now - startedAt) / 1000);
-  const isOver = remaining < 0;
-  const isAmber = !isOver && remaining <= 120;
+  const elapsed = Math.floor((now - startedAt) / 1000);
+  const budget = minutes * 60;
+  const isOver = elapsed > budget;
+  const isAmber = !isOver && elapsed >= budget - 120;
 
-  const colorClass = isOver
-    ? "text-[var(--red)] bg-[var(--red-soft)] border-[var(--red-soft-border)]"
+  const dotColor = isOver
+    ? "bg-[var(--red)]"
     : isAmber
-      ? "text-[var(--amber)] bg-[var(--amber-soft)] border-[var(--amber-soft-border)]"
-      : "text-[var(--foreground-muted)] bg-black/[.03] border-transparent";
+      ? "bg-[var(--amber)]"
+      : "bg-[var(--accent)]";
+  const textColor = isOver
+    ? "text-[var(--red)]"
+    : isAmber
+      ? "text-[var(--amber)]"
+      : "text-[var(--foreground)]";
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium tabular-nums transition-colors duration-300 ${colorClass}`}
+      className="inline-flex shrink-0 items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3.5 py-1.5 shadow-[var(--card-shadow-sm)]"
     >
-      <svg
-        width="12"
-        height="12"
-        viewBox="0 0 20 20"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.6"
+      <span className={`blink-dot h-1.5 w-1.5 rounded-full ${dotColor}`} />
+      <span
+        className={`text-[13px] font-semibold tabular-nums tracking-wide transition-colors duration-300 ${textColor}`}
       >
-        <circle cx="10" cy="10" r="7.5" />
-        <path d="M10 6v4l2.5 2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-      {isOver ? `+${format(remaining)} over` : format(remaining)}
+        {format(elapsed)} elapsed
+      </span>
     </span>
   );
 }

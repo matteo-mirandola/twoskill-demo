@@ -1,35 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fafafa;
+  --background: #f5f8ff;
+  --background-to: #eef1fc;
   --surface: #ffffff;
-  --border: #e4e4e7;
-  --border-strong: #d4d4d8;
-  --foreground: #18181b;
-  --foreground-muted: #71717a;
-  --foreground-subtle: #a1a1aa;
-  --accent: #4f46e5;
-  --accent-hover: #4338ca;
+  --border: #e5e9f5;
+  --border-strong: #c9d3ec;
+  --foreground: #0f1b3d;
+  --foreground-body: #1e2a4a;
+  --foreground-muted: #64748b;
+  --foreground-subtle: #94a3b8;
+  --accent: #3b6fe0;
+  --accent-hover: #2f5bc4;
   --accent-foreground: #ffffff;
-  --accent-soft: #eef2ff;
-  --accent-soft-border: #c7d2fe;
+  --accent-soft: #eaf0ff;
+  --accent-soft-border: #c7d9fb;
+  --accent-gradient: linear-gradient(135deg, #3b6fe0 0%, #0f1b3d 100%);
+  --card-shadow: 0 4px 16px rgba(15, 27, 61, 0.06);
+  --card-shadow-sm: 0 2px 8px rgba(15, 27, 61, 0.06);
   --amber: #b45309;
   --amber-soft: #fffbeb;
   --amber-soft-border: #fde68a;
   --red: #b91c1c;
   --red-soft: #fef2f2;
   --red-soft-border: #fecaca;
-  --claude-accent: #d97757;
-  --claude-accent-hover: #c8663f;
-  --claude-soft: #f3e4dc;
-  --claude-soft-border: #e8c9b8;
-  --claude-cream: #f7f4ec;
-  --claude-dark-bg: #262624;
-  --claude-dark-surface: #32312e;
-  --claude-dark-surface-hover: #3a3935;
-  --claude-dark-border: #403e3a;
-  --claude-dark-text: #e8e6dc;
-  --claude-dark-text-muted: #9c9890;
+  --claude-mark: #d97757;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --font-system:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
@@ -45,7 +40,8 @@
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent-soft: var(--accent-soft);
-  --font-sans: var(--font-system);
+  --font-sans: var(--font-inter), var(--font-system);
+  --font-serif: var(--font-source-serif), ui-serif, Georgia, serif;
 }
 
 * {
@@ -58,9 +54,10 @@ body {
 }
 
 body {
-  background: var(--background);
+  background: linear-gradient(180deg, var(--background) 0%, var(--background-to) 100%);
+  background-attachment: fixed;
   color: var(--foreground);
-  font-family: var(--font-system);
+  font-family: var(--font-inter), var(--font-system);
 }
 
 button {
@@ -104,9 +101,24 @@ button {
   transition: transform 400ms var(--ease-out);
 }
 
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0.3;
+  }
+}
+.blink-dot {
+  animation: blink 1.4s infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .fade-in,
-  .progress-fill {
+  .progress-fill,
+  .blink-dot {
     animation: none !important;
     transition: none !important;
   }

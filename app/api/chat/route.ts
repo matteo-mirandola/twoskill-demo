@@ -1,6 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
 import { isValidAccessKey } from "@/lib/auth";
-import { getCsvText } from "@/lib/csv";
 import {
   decrementUserMessage,
   incrementUserMessage,
@@ -12,12 +11,6 @@ import { tasks } from "@/lib/mockData";
 import type { ChatMessage } from "@/lib/types";
 
 const MODEL = "claude-sonnet-4-6";
-
-function buildAttachedFileContent(userTypedText: string): string {
-  const csv = getCsvText();
-  const block = `Attached file: payments_march.csv\n\`\`\`\n${csv}\n\`\`\``;
-  return userTypedText ? `${block}\n\n${userTypedText}` : block;
-}
 
 export async function POST(request: Request) {
   if (!process.env.ANTHROPIC_API_KEY) {
@@ -80,10 +73,7 @@ export async function POST(request: Request) {
 
   const anthropicMessages = messages.map((m) => ({
     role: m.role,
-    content:
-      canAttach && m.attachedFile
-        ? buildAttachedFileContent(m.content)
-        : m.content,
+    content: m.content,
   }));
 
   const anthropic = new Anthropic();
