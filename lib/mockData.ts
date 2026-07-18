@@ -99,17 +99,19 @@ export const tasks: TaskDef[] = [
   // identify which companies had which security incidents), missable "exclude
   // false positives", output verification (AI-produced figures vs. CSV
   // ground truth).
-  // Ground truth (from alertas_junio_2026.csv, 832 rows): alerts managed
-  // (estado != "Falso positivo", i.e. "Gestionada" + "En curso") = 712.
-  // Top 3 categories by count among those 712: Phishing / correo malicioso
-  // (186), Malware en endpoint (153), Intento de suplantacion (130).
-  // Wrong answer (false positives wrongly included): total = 832 (all rows).
-  // The top-3 category ranking happens to stay the same, but every count is
-  // inflated by the 120 false positives folded in.
-  // Operational note worth surfacing: Nexia Fintech accounts for 82 of the
-  // 130 "Intento de suplantacion" (impersonation attempt) alerts (63%) and
-  // has the highest overall managed-alert volume of any client (191) — a
-  // concentration worth flagging to leadership.
+  // Ground truth (from alertas_junio_2026.csv, 832 rows): correct total =
+  // 690 alertas gestionadas (estado = "Gestionada"), excluding BOTH the 120
+  // false positives and the 22 still-open "En curso" rows.
+  // Top 3 categories by count among those 690: Phishing / correo malicioso
+  // (180), Malware en endpoint (150), Intento de suplantacion (130).
+  // Wrong answer (false positives wrongly included): total = 810 (690+120),
+  // a ~17% overstatement.
+  // Two operational notes worth surfacing:
+  // (1) Nexia Fintech concentrates 82 of the 130 "Intento de suplantacion"
+  //     alerts, heavily clustered June 18–22 — an active campaign, not
+  //     background noise.
+  // (2) 7 "Vulnerabilidad critica" alerts are still "En curso" with old
+  //     dates (June 2–6) — an unresolved critical backlog.
   // ────────────────────────────────────────────────────────────────────────
   {
     id: "alert-summary",
@@ -144,15 +146,22 @@ Te paso la exportación completa adjunta.`,
 
   // ────────────────────────────────────────────────────────────────────────
   // TASK 2 — AI Meeting-Notes Briefing
-  // Traps: contradiction (Fuente A: 78% de las grandes empresas ya han
-  // desplegado, frente al 31% de hace 18 meses vs. Fuente E: menos del 15%
-  // ha pasado de piloto a despliegue estable, y critica precisamente cifras
-  // infladas de "empresas que han desplegado" como la de la Fuente A) ·
-  // unverifiable/unsupported claim (el cierre de la Fuente A: "la ventana...
-  // se está cerrando, quien entre el año que viene lo hará ya como
-  // rezagado" — una predicción categórica sobre resultado competitivo que
-  // nada más en el dossier respalda, y que de hecho las Fuentes C y E
-  // contradicen con su tono más cauto). El resto es internamente consistente.
+  // Traps: (a) numeric contradiction — Fuente A: 78% de las grandes
+  // empresas ya han desplegado (frente al 31% de hace 18 meses) vs. Fuente
+  // E: menos del 15% ha pasado de piloto a despliegue estable, y critica
+  // precisamente cifras infladas de "empresas que han desplegado" como la
+  // de la Fuente A — a careful analyst surfaces/reconciles this;
+  // (b) data-residency silence — none of the 5 sources says where meeting
+  // audio/transcripts are stored or processed. For a data-sovereignty
+  // client this is the deciding factor; a strong briefing raises the gap
+  // and tempers the recommendation (e.g. "esperar" or "adoptar solo con
+  // opción autoalojada / residencia UE") instead of a flat "adoptar ya";
+  // (c) secondary signal — Fuente D warns the auto-summary "se inventa
+  // cosas" and once invented a decision that was never taken; recommending
+  // unreviewed auto-summaries reach clients ignores that warning.
+  // The Fuente A closing line ("la ventana se está cerrando...") remains an
+  // unsupported competitive prediction in the text but is not itself a
+  // scored criterion — see RUBRICS in lib/report/grading.ts.
   // ────────────────────────────────────────────────────────────────────────
   {
     id: "ai-notes-briefing",

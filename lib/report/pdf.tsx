@@ -131,6 +131,45 @@ const s = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 8,
   },
+  axisRow: { flexDirection: "row", gap: 16, marginBottom: 10 },
+  axisCol: { flex: 1 },
+  axisLabelRow: { flexDirection: "row", justifyContent: "space-between", marginBottom: 4 },
+  axisLabel: { fontSize: 9, fontFamily: "Helvetica-Bold" },
+  axisScore: { fontSize: 9, fontFamily: "Helvetica-Bold", color: C.accent },
+  quadrantRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+    backgroundColor: C.background,
+    borderWidth: 1,
+    borderColor: C.border,
+    borderRadius: 8,
+    padding: 10,
+    marginBottom: 20,
+  },
+  dimensionRow: { flexDirection: "row", alignItems: "center", gap: 10, marginBottom: 8 },
+  dimensionLabelCol: { width: 110 },
+  dimensionLabel: { fontSize: 8.5, fontFamily: "Helvetica-Bold" },
+  dimensionBarCol: { flex: 1 },
+  dimensionBandChip: {
+    width: 78,
+    borderRadius: 4,
+    paddingVertical: 2,
+    fontSize: 7.5,
+    fontFamily: "Helvetica-Bold",
+    textAlign: "center",
+    backgroundColor: C.accentSoft,
+    color: C.accent,
+  },
+  axisGroupLabel: {
+    fontSize: 7.5,
+    color: C.subtle,
+    letterSpacing: 0.5,
+    textTransform: "uppercase",
+    fontFamily: "Helvetica-Bold",
+    marginBottom: 5,
+    marginTop: 4,
+  },
   footer: {
     position: "absolute",
     bottom: 24,
@@ -216,6 +255,64 @@ function ReportDocument({
             </View>
           ))}
         </View>
+
+        <Text style={s.sectionTitle}>Capacidad frente a seguridad</Text>
+        <View style={s.axisRow}>
+          <View style={s.axisCol}>
+            <View style={s.axisLabelRow}>
+              <Text style={s.axisLabel}>Capacidad</Text>
+              <Text style={s.axisScore}>{grades.overall.capabilityScore}/100</Text>
+            </View>
+            <ScoreBar score={grades.overall.capabilityScore} />
+          </View>
+          <View style={s.axisCol}>
+            <View style={s.axisLabelRow}>
+              <Text style={s.axisLabel}>Seguridad</Text>
+              <Text style={s.axisScore}>{grades.overall.safetyScore}/100</Text>
+            </View>
+            <ScoreBar score={grades.overall.safetyScore} />
+          </View>
+        </View>
+        <View style={s.quadrantRow}>
+          <Text style={s.levelChip}>{grades.overall.quadrantLabel}</Text>
+          <Text style={{ flex: 1, fontSize: 8.5, color: C.muted }}>
+            Combina lo productivo que eres con la IA (capacidad) con lo bien que gestionas sus riesgos
+            (seguridad): datos sensibles, verificación de resultados y respeto de las instrucciones.
+          </Text>
+        </View>
+
+        <Text style={s.sectionTitle}>Tus competencias</Text>
+        {(["capability", "safety"] as const).map((axis) => (
+          <View key={axis} wrap={false}>
+            <Text style={s.axisGroupLabel}>{axis === "capability" ? "Capacidad" : "Seguridad"}</Text>
+            {grades.dimensions
+              .filter((d) => d.axis === axis)
+              .map((d) => (
+                <View key={d.dimension} style={s.dimensionRow}>
+                  <View style={s.dimensionLabelCol}>
+                    <Text style={s.dimensionLabel}>{d.label}</Text>
+                  </View>
+                  {d.score == null ? (
+                    <Text style={{ flex: 1, fontSize: 8, color: C.subtle }}>No evaluado esta sesión</Text>
+                  ) : (
+                    <>
+                      <View style={s.dimensionBarCol}>
+                        <ScoreBar score={d.score} />
+                      </View>
+                      <Text style={s.dimensionBandChip}>{d.band}</Text>
+                    </>
+                  )}
+                </View>
+              ))}
+            {grades.dimensions
+              .filter((d) => d.axis === axis && d.score != null)
+              .map((d) => (
+                <Text key={d.dimension} style={{ fontSize: 8, color: C.muted, marginBottom: 6 }}>
+                  {d.label}: {d.summary}
+                </Text>
+              ))}
+          </View>
+        ))}
 
         <Text style={s.sectionTitle}>Análisis por tarea</Text>
         {grades.tasks.map((task, i) => (
