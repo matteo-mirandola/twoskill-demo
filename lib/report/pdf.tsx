@@ -223,10 +223,10 @@ function ReportDocument({
   );
 
   return (
-    <Document title="2Skill — Informe de evaluación de habilidades con IA" author="2Skill">
+    <Document title="Twoskill — Informe de evaluación de habilidades con IA" author="Twoskill">
       <Page size="A4" style={s.page}>
         <View style={s.header} fixed>
-          <Text style={s.wordmark}>2Skill</Text>
+          <Text style={s.wordmark}>Twoskill</Text>
           <View>
             <Text style={s.headerMeta}>Informe de evaluación de habilidades con IA</Text>
             <Text style={s.headerMeta}>{dateLabel}</Text>
@@ -371,7 +371,7 @@ function ReportDocument({
         ))}
 
         <View style={s.footer} fixed>
-          <Text>2Skill — evaluación práctica de habilidades con IA</Text>
+          <Text>Twoskill — evaluación práctica de habilidades con IA</Text>
           <Text render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`} />
         </View>
       </Page>

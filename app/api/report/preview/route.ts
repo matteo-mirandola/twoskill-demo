@@ -22,7 +22,7 @@ export async function GET() {
   return new Response(new Uint8Array(pdf), {
     headers: {
       "Content-Type": "application/pdf",
-      "Content-Disposition": "inline; filename=2skill-report-preview.pdf",
+      "Content-Disposition": "inline; filename=twoskill-report-preview.pdf",
     },
   });
 }

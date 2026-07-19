@@ -216,13 +216,13 @@ ${formatDeliverable(sub)}`;
     new Set(Object.values(CRITERION_DIMENSION).flatMap((m) => Object.values(m)))
   );
 
-  return `You are grading a workplace AI-skills assessment for 2Skill. The participant completed ${submissions.length} realistic work tasks, in Spanish, with access to an AI assistant. Traps were planted in each task; the rubrics below (in Spanish) describe them.
+  return `You are grading a workplace AI-skills assessment for Twoskill. The participant completed ${submissions.length} realistic work tasks, in Spanish, with access to an AI assistant. Traps were planted in each task; the rubrics below (in Spanish) describe them.
 
 Participant self-reported profile (from intake): ${JSON.stringify(intakeAnswers)}
 
 Grade each task against its rubric. Every rubric criterion must appear as a finding with status "passed", "partial", or "missed" and a concrete, evidence-based detail quoting or referencing what the participant actually did. Use the EXACT criterion label given in the rubric (in quotes) as the finding's "label" — do not translate, reword, or invent labels, they are matched against a fixed lookup table in code. Write every user-facing string (task titles, summaries, finding labels/details, strengths, improvements, overall summary, dimension summaries) in Spanish — this text goes directly into the participant's personal report.
 
-Scores: 0-100 per task; the overall score should reflect performance across tasks (not a strict average — weigh judgment-critical failures like confidentiality leaks heavily).
+Scores: 0-100 per task, reflecting how well the participant did against that task's rubric (weigh judgment-critical failures like confidentiality leaks heavily within the task's own score). The overall score is computed automatically in code as the arithmetic mean of the three task scores — you do not provide it, but write the overall summary consistent with that average level of performance.
 
 Also write one short participant-facing sentence per competency dimension, summarizing how the participant did on that dimension specifically, for exactly these dimensions: ${assessedDimensions.join(", ")} (these are the only dimensions any task this session assesses — do not write one for any other dimension).
 
@@ -235,10 +235,9 @@ const GRADES_SCHEMA = {
     overall: {
       type: "object",
       properties: {
-        score: { type: "integer" },
         summary: { type: "string" },
       },
-      required: ["score", "summary"],
+      required: ["summary"],
       additionalProperties: false,
     },
     dimensionSummaries: {
@@ -301,7 +300,7 @@ type RawTaskGrade = {
   improvements: string[];
 };
 type RawGrades = {
-  overall: { score: number; summary: string };
+  overall: { summary: string };
   dimensionSummaries: { dimension: Dimension; summary: string }[];
   tasks: RawTaskGrade[];
 };
@@ -392,7 +391,7 @@ export async function gradeSession(
       ? clamp(safetyScores.reduce((a, b) => a + b, 0) / safetyScores.length)
       : 0;
   const quadrant = pickQuadrant(capabilityScore, safetyScore);
-  const overallScore = clamp(raw.overall.score);
+  const overallScore = clamp(tasks.reduce((sum, t) => sum + t.score, 0) / tasks.length);
 
   return {
     overall: {
