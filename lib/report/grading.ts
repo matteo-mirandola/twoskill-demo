@@ -3,7 +3,7 @@ import { tasks } from "@/lib/mockData";
 import type { TaskTelemetry } from "@/lib/telemetryStore";
 import type { ChatMessage, IntakeAnswers, SlideContent } from "@/lib/types";
 
-const GRADER_MODEL = "claude-opus-4-8";
+const GRADER_MODEL = "claude-opus-4-6";
 
 export type FindingStatus = "passed" | "partial" | "missed";
 
@@ -171,30 +171,28 @@ function formatDeliverable(sub: TaskSubmission): string {
   return sub.deliverable || "(entregable vacío)";
 }
 
-function buildGradingPrompt(
-  intakeAnswers: IntakeAnswers,
-  submissions: TaskSubmission[],
+function buildTaskSection(
+  sub: TaskSubmission,
   telemetry: Record<string, TaskTelemetry>
 ): string {
-  const sections = submissions.map((sub) => {
-    const task = tasks.find((t) => t.id === sub.taskId)!;
-    const u = telemetry[sub.taskId];
-    const wallClockMin =
-      u?.startedAt && u?.submittedAt
-        ? Math.max(1, Math.round((u.submittedAt - u.startedAt) / 60000))
-        : null;
-    const telemetryLine = [
-      `mensajes enviados a la IA: ${u?.msgCount ?? sub.messages.filter((m) => m.role === "user").length}`,
-      `archivo en bruto adjuntado al chat de IA: ${u?.rawFileAttached ? "SÍ" : "no"}`,
-      u?.rawPasteDetected
-        ? `datos sensibles pegados en el chat de IA: SÍ (nombres de cliente: ${u.pastedClientNameCount ?? 0}, dominios de cliente: ${u.pastedClientDomainCount ?? 0})`
-        : `datos sensibles pegados en el chat de IA: no`,
-      wallClockMin != null ? `tiempo empleado: ${wallClockMin} min` : null,
-    ]
-      .filter(Boolean)
-      .join(" · ");
+  const task = tasks.find((t) => t.id === sub.taskId)!;
+  const u = telemetry[sub.taskId];
+  const wallClockMin =
+    u?.startedAt && u?.submittedAt
+      ? Math.max(1, Math.round((u.submittedAt - u.startedAt) / 60000))
+      : null;
+  const telemetryLine = [
+    `mensajes enviados a la IA: ${u?.msgCount ?? sub.messages.filter((m) => m.role === "user").length}`,
+    `archivo en bruto adjuntado al chat de IA: ${u?.rawFileAttached ? "SÍ" : "no"}`,
+    u?.rawPasteDetected
+      ? `datos sensibles pegados en el chat de IA: SÍ (nombres de cliente: ${u.pastedClientNameCount ?? 0}, dominios de cliente: ${u.pastedClientDomainCount ?? 0})`
+      : `datos sensibles pegados en el chat de IA: no`,
+    wallClockMin != null ? `tiempo empleado: ${wallClockMin} min` : null,
+  ]
+    .filter(Boolean)
+    .join(" · ");
 
-    return `## Tarea: ${task.title} (id: ${task.id})
+  return `## Tarea: ${task.title} (id: ${task.id})
 
 ### Brief entregado al participante
 ${task.brief}
@@ -210,26 +208,71 @@ ${formatTranscript(sub.messages)}
 
 ### Entregable final enviado
 ${formatDeliverable(sub)}`;
-  });
+}
 
-  const assessedDimensions = Array.from(
-    new Set(Object.values(CRITERION_DIMENSION).flatMap((m) => Object.values(m)))
-  );
-
-  return `You are grading a workplace AI-skills assessment for Twoskill. The participant completed ${submissions.length} realistic work tasks, in Spanish, with access to an AI assistant. Traps were planted in each task; the rubrics below (in Spanish) describe them.
+function buildTaskPrompt(
+  intakeAnswers: IntakeAnswers,
+  sub: TaskSubmission,
+  telemetry: Record<string, TaskTelemetry>
+): string {
+  return `You are grading one task of a workplace AI-skills assessment for Twoskill. The participant completed this realistic work task, in Spanish, with access to an AI assistant. Traps were planted in the task; the rubric below (in Spanish) describes them.
 
 Participant self-reported profile (from intake): ${JSON.stringify(intakeAnswers)}
 
-Grade each task against its rubric. Every rubric criterion must appear as a finding with status "passed", "partial", or "missed" and a concrete, evidence-based detail quoting or referencing what the participant actually did. Use the EXACT criterion label given in the rubric (in quotes) as the finding's "label" — do not translate, reword, or invent labels, they are matched against a fixed lookup table in code. Write every user-facing string (task titles, summaries, finding labels/details, strengths, improvements, overall summary, dimension summaries) in Spanish — this text goes directly into the participant's personal report.
+Grade the task against its rubric. Every rubric criterion must appear as a finding with status "passed", "partial", or "missed" and a concrete, evidence-based detail quoting or referencing what the participant actually did. Use the EXACT criterion label given in the rubric (in quotes) as the finding's "label" — do not translate, reword, or invent labels, they are matched against a fixed lookup table in code. Write every user-facing string (summary, finding details, strengths, improvements) in Spanish, addressing the participant directly ("tú") — this text goes directly into their personal report.
 
-Scores: 0-100 per task, reflecting how well the participant did against that task's rubric (weigh judgment-critical failures like confidentiality leaks heavily within the task's own score). The overall score is computed automatically in code as the arithmetic mean of the three task scores — you do not provide it, but write the overall summary consistent with that average level of performance.
+Score: 0-100 for this task, reflecting how well the participant did against the rubric (weigh judgment-critical failures like confidentiality leaks heavily).
 
-Also write one short participant-facing sentence per competency dimension, summarizing how the participant did on that dimension specifically, for exactly these dimensions: ${assessedDimensions.join(", ")} (these are the only dimensions any task this session assesses — do not write one for any other dimension).
-
-${sections.join("\n\n")}`;
+${buildTaskSection(sub, telemetry)}`;
 }
 
-const GRADES_SCHEMA = {
+function buildSynthesisPrompt(
+  intakeAnswers: IntakeAnswers,
+  graded: TaskGrade[],
+  overallScore: number
+): string {
+  const assessedDimensions = Array.from(
+    new Set(graded.flatMap((t) => t.findings.map((f) => f.dimension)))
+  );
+
+  return `You are writing the executive synthesis of a workplace AI-skills assessment for Twoskill. The participant completed ${graded.length} realistic work tasks (in Spanish) with access to an AI assistant; each task has already been graded against a hidden rubric. The graded results are below as JSON. The overall score, computed in code as the mean of the task scores, is ${overallScore}/100 — write consistently with that level of performance.
+
+Write:
+1. A short participant-facing overall summary in Spanish, addressing the participant directly ("tú"): what they do well, the main gap, constructive and specific.
+2. One short participant-facing sentence in Spanish per competency dimension, summarizing how the participant did on that dimension specifically, for exactly these dimensions: ${assessedDimensions.join(", ")} (do not write one for any other dimension).
+
+Participant self-reported profile (from intake): ${JSON.stringify(intakeAnswers)}
+
+Graded tasks:
+${JSON.stringify(graded, null, 1)}`;
+}
+
+const TASK_GRADE_SCHEMA = {
+  type: "object",
+  properties: {
+    score: { type: "integer" },
+    summary: { type: "string" },
+    findings: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          label: { type: "string" },
+          status: { type: "string", enum: ["passed", "partial", "missed"] },
+          detail: { type: "string" },
+        },
+        required: ["label", "status", "detail"],
+        additionalProperties: false,
+      },
+    },
+    strengths: { type: "array", items: { type: "string" } },
+    improvements: { type: "array", items: { type: "string" } },
+  },
+  required: ["score", "summary", "findings", "strengths", "improvements"],
+  additionalProperties: false,
+} as const;
+
+const SYNTHESIS_SCHEMA = {
   type: "object",
   properties: {
     overall: {
@@ -255,54 +298,22 @@ const GRADES_SCHEMA = {
         additionalProperties: false,
       },
     },
-    tasks: {
-      type: "array",
-      items: {
-        type: "object",
-        properties: {
-          taskId: { type: "string" },
-          title: { type: "string" },
-          score: { type: "integer" },
-          summary: { type: "string" },
-          findings: {
-            type: "array",
-            items: {
-              type: "object",
-              properties: {
-                label: { type: "string" },
-                status: { type: "string", enum: ["passed", "partial", "missed"] },
-                detail: { type: "string" },
-              },
-              required: ["label", "status", "detail"],
-              additionalProperties: false,
-            },
-          },
-          strengths: { type: "array", items: { type: "string" } },
-          improvements: { type: "array", items: { type: "string" } },
-        },
-        required: ["taskId", "title", "score", "summary", "findings", "strengths", "improvements"],
-        additionalProperties: false,
-      },
-    },
   },
-  required: ["overall", "dimensionSummaries", "tasks"],
+  required: ["overall", "dimensionSummaries"],
   additionalProperties: false,
 } as const;
 
 type RawFinding = { label: string; status: FindingStatus; detail: string };
 type RawTaskGrade = {
-  taskId: string;
-  title: string;
   score: number;
   summary: string;
   findings: RawFinding[];
   strengths: string[];
   improvements: string[];
 };
-type RawGrades = {
+type RawSynthesis = {
   overall: { summary: string };
   dimensionSummaries: { dimension: Dimension; summary: string }[];
-  tasks: RawTaskGrade[];
 };
 
 const STATUS_POINTS: Record<FindingStatus, number> = { passed: 100, partial: 50, missed: 0 };
@@ -334,23 +345,25 @@ function buildDimensionScores(
   });
 }
 
-export async function gradeSession(
-  intakeAnswers: IntakeAnswers,
-  submissions: TaskSubmission[],
-  telemetry: Record<string, TaskTelemetry>
-): Promise<ReportGrades> {
-  const anthropic = new Anthropic();
-
+// Runs one structured-output grading/synthesis call and returns the parsed,
+// sanitized JSON payload.
+async function runGraderCall<T>(
+  anthropic: Anthropic,
+  prompt: string,
+  schema: typeof TASK_GRADE_SCHEMA | typeof SYNTHESIS_SCHEMA,
+  opts: { thinking: boolean } = { thinking: true }
+): Promise<T> {
   const response = await anthropic.messages.create({
     model: GRADER_MODEL,
     max_tokens: 16000,
-    thinking: { type: "adaptive" },
+    // Task grading benefits from thinking (rubric judgment); the synthesis
+    // pass just writes prose over already-made judgments and runs serially
+    // after the parallel task calls, so it skips thinking for latency.
+    ...(opts.thinking ? { thinking: { type: "adaptive" as const } } : {}),
     output_config: {
-      format: { type: "json_schema", schema: GRADES_SCHEMA },
+      format: { type: "json_schema", schema },
     },
-    messages: [
-      { role: "user", content: buildGradingPrompt(intakeAnswers, submissions, telemetry) },
-    ],
+    messages: [{ role: "user", content: prompt }],
   });
 
   if (response.stop_reason === "refusal") {
@@ -360,21 +373,67 @@ export async function gradeSession(
   const text = response.content.find((b) => b.type === "text");
   if (!text) throw new Error("Grading model returned no text output.");
 
-  const raw = sanitize(JSON.parse(text.text)) as RawGrades;
+  return sanitize(JSON.parse(text.text)) as T;
+}
 
-  const tasks: TaskGrade[] = raw.tasks.map((t) => ({
-    ...t,
-    score: clamp(t.score),
-    findings: t.findings.map((f) => ({
+async function gradeTask(
+  anthropic: Anthropic,
+  intakeAnswers: IntakeAnswers,
+  sub: TaskSubmission,
+  telemetry: Record<string, TaskTelemetry>
+): Promise<TaskGrade> {
+  const task = tasks.find((t) => t.id === sub.taskId)!;
+  const raw = await runGraderCall<RawTaskGrade>(
+    anthropic,
+    buildTaskPrompt(intakeAnswers, sub, telemetry),
+    TASK_GRADE_SCHEMA
+  );
+
+  return {
+    // taskId and title come from the task definition, not the model — one
+    // less thing that can drift now that each task is graded in isolation.
+    taskId: task.id,
+    title: task.title,
+    score: clamp(raw.score),
+    summary: raw.summary,
+    findings: raw.findings.map((f) => ({
       ...f,
       // Falls back to "instruction" if the model ever deviates from the
       // exact rubric label — keeps the rollup from throwing, at the cost of
       // that one finding not counting toward its true dimension.
-      dimension: CRITERION_DIMENSION[t.taskId]?.[f.label] ?? "instruction",
+      dimension: CRITERION_DIMENSION[task.id]?.[f.label] ?? "instruction",
     })),
-  }));
+    strengths: raw.strengths,
+    improvements: raw.improvements,
+  };
+}
 
-  const dimensions = buildDimensionScores(tasks, raw.dimensionSummaries);
+export async function gradeSession(
+  intakeAnswers: IntakeAnswers,
+  submissions: TaskSubmission[],
+  telemetry: Record<string, TaskTelemetry>
+): Promise<ReportGrades> {
+  const anthropic = new Anthropic();
+
+  // Each task is graded in its own concurrent call (it only needs its own
+  // rubric + transcript); wall clock is the slowest task instead of the sum.
+  const graded = await Promise.all(
+    submissions.map((sub) => gradeTask(anthropic, intakeAnswers, sub, telemetry))
+  );
+
+  // Overall score stays code-computed: the arithmetic mean of task scores.
+  const overallScore = clamp(graded.reduce((sum, t) => sum + t.score, 0) / graded.length);
+
+  // Only the overall summary and dimension summaries need to see all tasks
+  // at once — a small, fast call over the compact graded results.
+  const synthesis = await runGraderCall<RawSynthesis>(
+    anthropic,
+    buildSynthesisPrompt(intakeAnswers, graded, overallScore),
+    SYNTHESIS_SCHEMA,
+    { thinking: false }
+  );
+
+  const dimensions = buildDimensionScores(graded, synthesis.dimensionSummaries);
   const capabilityScores = dimensions
     .filter((d) => d.axis === "capability" && d.score != null)
     .map((d) => d.score as number);
@@ -391,20 +450,19 @@ export async function gradeSession(
       ? clamp(safetyScores.reduce((a, b) => a + b, 0) / safetyScores.length)
       : 0;
   const quadrant = pickQuadrant(capabilityScore, safetyScore);
-  const overallScore = clamp(tasks.reduce((sum, t) => sum + t.score, 0) / tasks.length);
 
   return {
     overall: {
       score: overallScore,
       level: bandFor(overallScore),
-      summary: raw.overall.summary,
+      summary: synthesis.overall.summary,
       capabilityScore,
       safetyScore,
       quadrant,
       quadrantLabel: QUADRANT_LABEL[quadrant],
     },
     dimensions,
-    tasks,
+    tasks: graded,
   };
 }
 
