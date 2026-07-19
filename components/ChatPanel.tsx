@@ -246,7 +246,8 @@ export default function ChatPanel({
                 onKeyDown={onKeyDown}
                 placeholder="Responde a Claude…"
                 rows={1}
-                className="thin-scroll max-h-28 flex-1 resize-none bg-transparent py-1.5 text-[14.5px] text-[var(--foreground)] outline-none"
+                disabled={isStreaming}
+                className="thin-scroll max-h-28 flex-1 resize-none bg-transparent py-1.5 text-[14.5px] text-[var(--foreground)] outline-none disabled:text-[var(--foreground-subtle)]"
               />
               <button
                 onClick={send}

@@ -39,7 +39,7 @@ export const intakeQuestions = [
   },
   {
     id: "account",
-    type: "single" as const,
+    type: "multi" as const,
     question: "Cuando usas IA para el trabajo, ¿con qué cuenta lo haces?",
     options: ["Cuenta personal gratuita", "Cuenta personal de pago", "Cuenta de la empresa", "No estoy seguro/a"],
   },
@@ -117,8 +117,8 @@ export const tasks: TaskDef[] = [
     id: "alert-summary",
     title: "El resumen de alertas",
     minutes: 11,
-    maxUserMessages: 12,
-    maxResponseTokens: 1500, // raised: the CSV may sit in context
+    maxUserMessages: 30,
+    maxResponseTokens: 2048, // raised: the CSV may sit in context
     deliverableKind: "text",
     deliverableLabel: "Pega aquí tu resumen final de una página",
     brief: `**De:** Responsable de Operaciones SOC
@@ -167,8 +167,8 @@ Te paso la exportación completa adjunta.`,
     id: "ai-notes-briefing",
     title: "El briefing de IA para actas",
     minutes: 10,
-    maxUserMessages: 12,
-    maxResponseTokens: 800,
+    maxUserMessages: 30,
+    maxResponseTokens: 2048,
     deliverableKind: "text",
     deliverableLabel: "Pega aquí tu briefing final de una página",
     brief: `**De:** Responsable de Estrategia
@@ -287,8 +287,8 @@ El consenso entre los expertos no es "no lo hagáis", sino "no lo hagáis a cieg
     id: "partner-deck",
     title: "El deck de socios",
     minutes: 7,
-    maxUserMessages: 12,
-    maxResponseTokens: 800,
+    maxUserMessages: 30,
+    maxResponseTokens: 2048,
     deliverableKind: "slides",
     deliverableLabel: "Escribe el contenido de cada diapositiva (título + puntos)",
     brief: `**De:** Responsable de Comunicación

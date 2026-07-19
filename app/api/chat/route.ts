@@ -13,6 +13,15 @@ import type { ChatMessage } from "@/lib/types";
 
 const MODEL = "claude-sonnet-4-6";
 
+// The chat UI renders replies with react-markdown + remark-gfm only (no LaTeX
+// renderer), so any $...$ / $$...$$ / \frac{}{} the model writes shows up as
+// raw, broken-looking syntax instead of formatted math.
+const SYSTEM_PROMPT =
+  "Formatea siempre tus respuestas en Markdown estándar (GFM): negrita, listas, tablas. " +
+  "No uses notación LaTeX ni delimitadores de fórmulas matemáticas (nada de $, $$, \\[, \\], \\(, \\), \\boxed, \\frac, etc.), " +
+  "porque no se renderizan en este chat y aparecerían como texto sin formato. " +
+  "Para resaltar un número, resultado o cálculo, usa negrita en Markdown o texto plano (por ejemplo 780 alertas o **780 alertas**), nunca $$\\boxed{...}$$.";
+
 function cellToString(value: ExcelJS.CellValue): string {
   if (value === null || value === undefined) return "";
   if (value instanceof Date) return value.toISOString();
@@ -142,6 +151,7 @@ export async function POST(request: Request) {
         const stream = anthropic.messages.stream({
           model: MODEL,
           max_tokens: task.maxResponseTokens,
+          system: SYSTEM_PROMPT,
           messages: anthropicMessages,
         });
 
