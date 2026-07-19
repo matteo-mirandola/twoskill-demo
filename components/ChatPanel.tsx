@@ -23,10 +23,11 @@ export default function ChatPanel({
   disabled: boolean;
 }) {
   const [input, setInput] = useState("");
-  const [pendingAttachment, setPendingAttachment] = useState<{
-    name: string;
-    content: string;
-  } | null>(null);
+  const [pendingAttachment, setPendingAttachment] = useState<
+    | { kind: "text"; name: string; content: string }
+    | { kind: "spreadsheet"; name: string; base64: string }
+    | null
+  >(null);
   const [isStreaming, setIsStreaming] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -46,25 +47,35 @@ export default function ChatPanel({
     const file = e.target.files?.[0];
     e.target.value = ""; // allow re-selecting the same file later
     if (!file) return;
-    const content = await file.text();
-    setPendingAttachment({ name: file.name, content });
+    if (isSpreadsheetFile(file)) {
+      const base64 = arrayBufferToBase64(await file.arrayBuffer());
+      setPendingAttachment({ kind: "spreadsheet", name: file.name, base64 });
+    } else {
+      const content = await file.text();
+      setPendingAttachment({ kind: "text", name: file.name, content });
+    }
   }
 
   async function send() {
     const text = input.trim();
     if ((!text && !pendingAttachment) || locked || isStreaming) return;
 
-    const content = pendingAttachment
-      ? `Archivo adjunto: ${pendingAttachment.name}\n\`\`\`\n${pendingAttachment.content}\n\`\`\`${
-          text ? `\n\n${text}` : ""
-        }`
-      : text;
+    const content =
+      pendingAttachment?.kind === "text"
+        ? `Archivo adjunto: ${pendingAttachment.name}\n\`\`\`\n${pendingAttachment.content}\n\`\`\`${
+            text ? `\n\n${text}` : ""
+          }`
+        : text;
 
     const userMessage: ChatMessage = {
       role: "user",
       content,
       attachedFile: !!pendingAttachment,
       attachedFileName: pendingAttachment?.name,
+      attachedFileBase64:
+        pendingAttachment?.kind === "spreadsheet"
+          ? pendingAttachment.base64
+          : undefined,
     };
     const withUser = [...messages, userMessage];
     onChange(withUser);
@@ -250,6 +261,30 @@ export default function ChatPanel({
       </div>
     </div>
   );
+}
+
+const SPREADSHEET_MIME_TYPES = new Set([
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  "application/vnd.ms-excel",
+]);
+
+function isSpreadsheetFile(file: File) {
+  const name = file.name.toLowerCase();
+  return (
+    name.endsWith(".xlsx") ||
+    name.endsWith(".xls") ||
+    SPREADSHEET_MIME_TYPES.has(file.type)
+  );
+}
+
+function arrayBufferToBase64(buffer: ArrayBuffer) {
+  const bytes = new Uint8Array(buffer);
+  let binary = "";
+  const chunkSize = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize));
+  }
+  return btoa(binary);
 }
 
 function PaperclipIcon() {

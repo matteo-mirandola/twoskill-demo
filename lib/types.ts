@@ -3,6 +3,11 @@ export type ChatMessage = {
   content: string;
   attachedFile?: boolean;
   attachedFileName?: string;
+  // Base64-encoded raw bytes of a spreadsheet attachment (.xlsx/.xls). Kept
+  // separate from `content` so the backend can convert it to a plain-text
+  // table right before calling the model, instead of ever sending the raw
+  // binary as if it were text.
+  attachedFileBase64?: string;
 };
 
 export type SlideContent = {

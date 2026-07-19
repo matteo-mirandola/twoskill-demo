@@ -1,4 +1,5 @@
 import Anthropic from "@anthropic-ai/sdk";
+import ExcelJS from "exceljs";
 import { isValidAccessKey } from "@/lib/auth";
 import {
   decrementUserMessage,
@@ -11,6 +12,65 @@ import { tasks } from "@/lib/mockData";
 import type { ChatMessage } from "@/lib/types";
 
 const MODEL = "claude-sonnet-4-6";
+
+function cellToString(value: ExcelJS.CellValue): string {
+  if (value === null || value === undefined) return "";
+  if (value instanceof Date) return value.toISOString();
+  if (typeof value === "object") {
+    if ("richText" in value && Array.isArray(value.richText)) {
+      return value.richText.map((t) => t.text).join("");
+    }
+    if ("result" in value) return cellToString(value.result as ExcelJS.CellValue);
+    if ("text" in value) return String(value.text);
+    if ("error" in value) return String(value.error);
+    return "";
+  }
+  return String(value);
+}
+
+function csvEscape(value: string): string {
+  return /[",\n]/.test(value) ? `"${value.replace(/"/g, '""')}"` : value;
+}
+
+// Converts an .xlsx/.xls attachment into a plain-text CSV representation
+// (one section per sheet) so the model receives readable table data instead
+// of raw spreadsheet bytes.
+async function spreadsheetToCsv(base64: string): Promise<string> {
+  const buffer = Buffer.from(base64, "base64");
+  const workbook = new ExcelJS.Workbook();
+  await workbook.xlsx.load(buffer as unknown as ArrayBuffer);
+
+  return workbook.worksheets
+    .map((sheet) => {
+      const lines: string[] = [];
+      sheet.eachRow((row) => {
+        const values = (row.values as ExcelJS.CellValue[]).slice(1);
+        lines.push(values.map((v) => csvEscape(cellToString(v))).join(","));
+      });
+      return `### Hoja: ${sheet.name}\n\n${lines.join("\n")}`;
+    })
+    .join("\n\n");
+}
+
+async function toAnthropicMessage(m: ChatMessage) {
+  if (m.attachedFile && m.attachedFileBase64) {
+    let sheetText: string;
+    try {
+      sheetText = await spreadsheetToCsv(m.attachedFileBase64);
+    } catch {
+      sheetText =
+        "[No se pudo leer el archivo adjunto: formato no soportado o dañado.]";
+    }
+    const label = m.attachedFileName
+      ? `Archivo adjunto: ${m.attachedFileName}`
+      : "Archivo adjunto";
+    const content = `${label}\n\nContenido (formato CSV, una sección por hoja):\n\n${sheetText}${
+      m.content ? `\n\n${m.content}` : ""
+    }`;
+    return { role: m.role, content };
+  }
+  return { role: m.role, content: m.content };
+}
 
 export async function POST(request: Request) {
   if (!process.env.ANTHROPIC_API_KEY) {
@@ -70,10 +130,7 @@ export async function POST(request: Request) {
     }
   }
 
-  const anthropicMessages = messages.map((m) => ({
-    role: m.role,
-    content: m.content,
-  }));
+  const anthropicMessages = await Promise.all(messages.map(toAnthropicMessage));
 
   const anthropic = new Anthropic();
   const encoder = new TextEncoder();

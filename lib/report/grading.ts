@@ -155,7 +155,7 @@ function formatTranscript(messages: ChatMessage[]): string {
   if (messages.length === 0) return "(el participante no usó el asistente de IA)";
   return messages
     .map((m) => {
-      const attach = m.attachedFile ? " [adjuntó el archivo CSV en bruto]" : "";
+      const attach = m.attachedFile ? " [adjuntó un archivo]" : "";
       return `${m.role === "user" ? "PARTICIPANTE" : "ASISTENTE IA"}${attach}:\n${m.content}`;
     })
     .join("\n\n");
