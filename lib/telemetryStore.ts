@@ -29,7 +29,7 @@ export type SessionTelemetry = {
 
 const KEY_PREFIX = "2skill:demo:t:";
 const INDEX_KEY = "2skill:demo:keys";
-const TTL_SECONDS = 60 * 60 * 24 * 7; // 7 days
+const TTL_SECONDS = 60 * 60 * 24 * 365; // 1 year
 
 function taskKey(accessKey: string, taskId: string): string {
   return `${KEY_PREFIX}${accessKey}:${taskId}`;
@@ -338,6 +338,11 @@ export async function getSessionTelemetry(
       : emptyMemoryUsage();
   }
   return result;
+}
+
+export async function getAllAccessKeys(): Promise<string[]> {
+  if (redis) return redis.smembers(INDEX_KEY);
+  return Object.keys(getMemoryStore());
 }
 
 export async function getAllTelemetry(): Promise<SessionTelemetry[]> {

@@ -7,7 +7,7 @@
 import { Redis } from "@upstash/redis";
 
 const KEY_PREFIX = "2skill:demo:pdf:";
-const TTL_SECONDS = 60 * 60 * 24 * 7; // 7 days
+const TTL_SECONDS = 60 * 60 * 24 * 365; // 1 year
 // Marks the value as base64 so the Upstash client's auto-deserialization
 // can never misread it (e.g. an all-digit string coming back as a number).
 const B64_MARKER = "b64:";

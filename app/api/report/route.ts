@@ -5,6 +5,7 @@ import { gradeSession, type TaskSubmission, type ReportGrades } from "@/lib/repo
 import { renderReportPdf } from "@/lib/report/pdf";
 import { MOCK_GRADES } from "@/lib/report/mockGrades";
 import { storeReportPdf } from "@/lib/report/pdfCache";
+import { saveSessionData } from "@/lib/sessionDataStore";
 import type { IntakeAnswers } from "@/lib/types";
 
 // Grading + PDF rendering comfortably exceeds the default budget.
@@ -56,6 +57,14 @@ export async function POST(request: Request) {
     }
   } else {
     console.warn("[report] ANTHROPIC_API_KEY missing — using mock grades.");
+  }
+
+  // Best-effort: persist profiling answers, full AI transcripts and final
+  // deliverables for later review. Never blocks report generation.
+  try {
+    await saveSessionData(key as string, intakeAnswers, submissions);
+  } catch (err) {
+    console.error("[report] saveSessionData failed:", err);
   }
 
   try {
